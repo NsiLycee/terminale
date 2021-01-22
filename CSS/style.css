@@ -1,0 +1,103 @@
+body {
+	background : rgb(200,250,255);
+	color : black;
+	padding : 20 px;
+}
+
+a { 
+
+}
+p {
+
+}
+
+tbody {
+	width : 800px; 
+}
+
+#titrePrincipal {
+	color : cyan;
+	border : solid 2px yellow;
+	background-color: red;
+  -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+  animation-name: example;
+  animation-duration: 4s;
+}
+/* pour Safari 4.0 - 8.0 */
+@-webkit-keyframes example {
+  from {background-color: red;}
+  to {background-color: pink;}
+}
+/* Standard syntax */
+@keyframes example {
+  from {background-color: red;}
+  to {background-color: pink;}
+}
+
+.initiale {
+
+	color : blue;
+	background : orange ;
+}
+
+
+input {
+
+	font-size : 200%;
+}
+
+table, td {
+	border : solid 1px black;
+	background : lightblue;
+	color : rgb(0,55,0);
+	width : 200px;
+	padding : 5px;
+	height : 20px;
+	font-size : 100 %;
+}
+
+svg{}
+div{
+	border : solid 2px red;
+}
+h1{}
+h2{}
+
+td.correction {
+
+	width : 400px;
+	border : solid 2px black;
+}
+
+
+
+.tbSimple
+{
+	border: 2px groove (internal value);
+	border-collapse: collapse;
+}
+
+fieldset {
+  display: block;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding-top: 0.35em;
+  padding-bottom: 0.625em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  border: 2px groove (internal value);
+  border-collapse: collapse;
+}
+ul {
+
+	list-style-type:arrow;
+}
+
+#reglages {
+	resize: both;
+	overflow: auto;
+	width : 600px;
+	padding : 10px;
+	height : 400px;
+}

@@ -1,0 +1,134 @@
+/*
+		Auteur : Joël Dendaletche
+		Contenu : feuille de style pour les programmes scolaires
+		Date de création : 18 / 09 /2019
+  
+ */
+table {
+}
+td, tr,th {
+	border : solid 1px black;
+	border-collapse : collapsed;
+	}
+	
+td:hover {
+			color: lightgray; /* couleur du texte */ 
+			background: darkgrey;
+	}
+
+ul {
+	list-style-image: url('../images/puces/puce2.png');
+	}
+	
+ul li {
+		display: block;
+	}
+ul li:hover { /* actif lorsque l'item est survolé par le pointeur de la souris */
+		background: rgb(0,0,0) ;
+		color : rgb(255,255,255);
+		font-size:150%;
+		list-style-type: circle;
+	}
+
+a:hover { /* quand le curseur de souris passe au dessus du lien */
+			color: orange; /* couleur du texte */ 
+			background: blue;
+			font-size:150%;
+			}
+		
+* { /* s'applique à tous les éléments = balises */ 
+  box-sizing: border-box;
+}
+/*----------------------------------------------------------------------
+ *                Style de la structure de base de la page            */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+header {
+  background-color: #666;
+  padding: 30px;
+  text-align: center;
+  font-size: 15px;
+  color: white;
+}
+
+/* Container for flexboxes */
+section {
+  display: -webkit-flex;
+  display: flex;
+}
+article {
+	background:rgba(220,220,255,0.8); /*url('https://cdn.pixabay.com/photo/2016/11/21/13/29/color-1845394_960_720.jpg');*/
+}
+/* Style the navigation menu */
+nav {
+  -webkit-flex: 1; // compte pour une seule part en largeur
+  -ms-flex: 1;
+  flex: 1;
+  background: #ccc;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Style the content */
+article {
+  -webkit-flex: 3; // compte pour trois parts en largeur
+  -ms-flex: 3;
+  flex: 3;
+  background-color: #f1f1f1;
+  padding: 10px;
+}
+/* Style the content */
+aside { /* zone latérale dans la version trois volets */
+  -webkit-flex: 1; // compte pour une seule part en largeur
+  -ms-flex: 1;
+  flex: 1;
+  background-color: #f1f1f1;
+  padding: 10px;
+}
+/* Style the footer */
+footer {
+  background-color: #777;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+/* Responsive layout - makes the menu and the content (inside the 
+ * section)  sit on top of each other instead of next to each other    */
+@media (max-width: 800px) {
+  section {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+ /* Styles appliqués aux portions de code */
+ iframe { /* permet de redimmentionnner si nécéssaire le cadre */
+  resize: both;
+  overflow: auto;
+}
+kbd { /* Pour représenter les touches du clavier */
+	color : white;
+	background : black;
+	border-radius : 5px;
+}
+/* ajoute _ avant et après */
+kbd::before {
+	content : "_";
+}
+kbd::after {
+	content : "_";
+}
+svg, canvas {
+	border : solid 2px red;
+	background : rg(20,20,50); 
+}

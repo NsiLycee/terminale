@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Essai de numérotation automatique des titres</title>
+		<link rel="stylesheet" type="text/css" href="numerotationTitres.css">
+	</head>
+	<body onload="init();">
+		Intro
+	<script>
+		function init () {
+			var i, j, k, l, m, n, N = 5;
+			var code = ""
+	
+			for (i=1 ; i <= N; i++) {
+				code += "<h1>titre de niveau 1</h1><p>into partie "+i+"</p>";
+				for (j=2 ; j <= N-1; j++) {
+					code += "<h2>titre de niveau 2</h2><p>intro 2</p><p>paragraphe niv 2</p>";
+					for (k=1 ; k <= N-2; k++) {
+						code += "<h3>titre de niveau 3</h3><p>paragraphe niv 3</p>";
+						for (l=1 ; l <= N-3; l++) {
+						code += "<h4>titre de niveau 4</h4><p>paragraphe niv 4</p>";
+							for (m=1 ; m <= N-3; m++) {
+								code += "<h5>titre de niveau 5</h5><p>paragraphe niv 5</p>";
+								for (n=1 ; n <= N-2; n++) {
+									code += "<h6>titre de niveau 6</h6><p>paragraphe niv 6</p>";
+								}
+							}
+						}
+					}
+				}
+			}
+			document.body.innerHTML += code + '<p>conclusion</p>';
+		}
+	</script>
+
+	</body>
+</html>

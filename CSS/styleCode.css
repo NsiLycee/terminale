@@ -1,0 +1,32 @@
+/* Styles appliqués aux portions de code */
+
+		.attribut { color : black;
+			font-weight: bold; }
+			
+		.fonction { color : blue;
+			font-weight: bold; }
+			
+		.balise { color : purple; }
+		
+		.texte { color : blue ; }
+		
+		.commentaire { color : green; }
+		
+		div.codeHTML { 
+			border : 2px solid black;
+			padding : 10px;
+			text-align: left;
+			}
+			
+		.caracteristique {
+			color : red;
+			font-weight: bold; 
+		}
+		propriete 
+		{
+			color : red;
+			font-weight: bold; 
+		}
+		.valeur {
+		color : orange;
+		}

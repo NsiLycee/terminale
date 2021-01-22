@@ -1,0 +1,22 @@
+table {
+	border : groove black 5px;
+	width : 90%;
+}
+td {
+	border-collapse : collapse;
+}
+td {
+	text-align = left;
+	
+}
+td:nth-child(2n) {
+	width : 80%;
+	
+}
+td:nth-child(2n+1) {
+	width : 20%;	
+}
+td:nth-child(2n+1):hover {
+	background : rgba(0,0,0,0.5);
+	color      : lightblue;	
+}

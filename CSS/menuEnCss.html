@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<style> /* dans le bloc style, les commentaires sont comme ceci */ 
+	
+		div {background-color: green;}
+		
+		div a { /* les liens simples dans div sont présentés comme ceci */
+			text-decoration: none; /* par de surlignage */
+			color: white;
+			font-size: 20px;
+			padding: 15px;
+			display:inline-block;
+		}
+		ul {
+			display: inline;
+			margin: 0;
+			padding: 0;
+		}
+
+		ul li {
+			display: inline-block;
+		}
+		
+		ul li:hover {
+			background: #550;
+		}
+		ul li:hover ul {
+			display: block;
+		}
+		ul li ul {
+			position: absolute;
+			width: 200px;
+			display: none;
+		}
+		ul li ul li { 
+			background: #555; 
+			display: block; 
+		}
+		ul li ul li a {
+			display:block !important;
+		} 
+		ul li ul li:hover {
+			background: #666;
+		}
+</style>
+</head>
+<body>
+<header>
+	<div>
+		<a href="#">Useless Link</a>
+		<ul>
+			<li>
+				<a href="#">Dropdown Link</a>
+				<ul>
+					<li><a href="#">Link 1</a></li>
+					<li><a href="#">Link 2</a></li>
+					<li>texte avant le lien <a href="#">Link 3</a> &nbsp;&nbsp;&nbsp; Ctrl + N</li>
+					<li>item de menu sans lien &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ctrl + M</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</header>
+<article>
+	<h1>Titre de l'article</h1>
+	<p>texte de l'article ...</p>
+</article>
+<footer>
+</footer>
+</body>
+</html>

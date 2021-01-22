@@ -1,0 +1,45 @@
+/* *********************************************************************
+ * 																	   *
+ * 				Auteur : J. Dendaletche								   *
+ * 				Projet	: feuille de style pour la coloration		   *
+ * 							syntaxique des codes python				   *
+ * 				Source : https://www.w3schools.com/css/				   *
+ * 							tryit.asp?filename=trycss_counters2		   *
+ * 																	   *
+ * ********************************************************************/
+
+		i { color : green; /* pour les commentaires """ """ python */
+		}
+		b { /* pour les mots réservés de python */
+			color : darkblue;
+		}
+		q { /* pour les textes python */
+		  display: inline;
+		  color : orange;
+		}
+		q::before {
+		  content: none;
+		}
+		q::after {
+		  content: none;
+		}
+		var { /* pour les variabbles */
+			font-weight : bold ;
+			color : pink;
+		}
+		s {
+			text-decoration: none;
+		}
+		strong {  /* pour les fonctions built'in Python*/
+			color : red;
+			/*background : white;*/
+		}
+		::-moz-selection { /* Code for Firefox */
+			  color: red;
+			  background: yellow;
+		}
+
+		::selection {
+			  color: red;
+			  background: yellow;
+		}

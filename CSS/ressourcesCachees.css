@@ -1,0 +1,41 @@
+/* *********************************************************************
+ * 																	   *
+ * 				Auteur 	: J. Dendaletche							   *
+ * 				Projet	: feuille de style des ressources cachées	   *
+ * 				But		: style des fenêtre popup					   *
+ * 																	   *
+ * ********************************************************************/
+.ressourceCachee {
+	margin : 2%;
+	border : 10px groove rgba(20,20,20,0.5);
+	padding : 20px;
+	color	: rgba(235,235,235,0.9);
+	background : rgba(20,20,20,0.9);
+	position : absolute;
+	left : 2%;
+	top : 2%;
+	height : 80%;
+	width : 90%;
+	overflow: scroll; /* scroll si trop grand */
+	display : none;
+}
+.btnQuitter {
+	position : absolute;
+	right : 1%;
+	top : 0;
+	background : green;
+	color : white;
+	border-radius : 50%;
+}
+.btnQuitter:active {
+	background : yellow;
+}
+.normal {
+	list-style-type: lower-alpha;
+	display : block;
+}
+/*#debug {
+	color 		: red;
+	font-size 	: 300%;
+}*/
+

@@ -1,0 +1,52 @@
+/* *********************************************************************
+ * 																	   *
+ * 				Auteur : J. Dendaletche								   *
+ * 				Projet	: feuille de style des titres				   *
+ * 				Source : https://www.w3schools.com/css/				   *
+ * 							tryit.asp?filename=trycss_counters2		   *
+ * 																	   *
+ * ********************************************************************/
+body {
+  counter-reset: section; /* section est une variable de comptage */
+}
+h1 {
+  counter-reset: subsection; /* chaque niveau de titre a son compteur */
+}
+h2 {
+  counter-reset: subsubsection;
+}
+h3 {
+  counter-reset: ss3;
+}
+h4 {
+  counter-reset: ss4;
+}
+h5 {
+  counter-reset: ss5;
+}
+
+h1::before {
+  counter-increment: section;
+  content: "Partie " counter(section) ". ";
+}
+
+h2::before {
+  counter-increment: subsection;
+  content: counter(section) "." counter(subsection) ". ";
+}
+h3::before {
+  counter-increment: subsubsection;
+  content: counter(section) "." counter(subsection) "." counter(subsubsection) ". ";
+}
+h4::before {
+  counter-increment: ss3;
+  content: counter(section) "." counter(subsection) "." counter(subsubsection) "." counter(ss3) ". ";
+}
+h5::before {
+  counter-increment: ss4;
+  content: counter(section) "." counter(subsection) "." counter(subsubsection) "." counter(ss3) "."  counter(ss4) ". " ;
+}
+h6::before {
+  counter-increment: ss5;
+  content: counter(section) "." counter(subsection) "." counter(subsubsection) "." counter(ss3) "."  counter(ss4) "." counter(ss5) ". ";
+}
