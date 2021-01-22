@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title> Blog de Joël Dendaletche </title>
+	<!-- Les deux lignes suivantes permettent d'insérer une icône à coté 
+	     de l'onglet de la page -->
+	<link rel="shortcut icon" href="../../icone.png" type="image/x-icon"/>
+	<link rel="icon" href="../../icone.png" type="image/x-icon"/>
+	
+	<script src="./sommaire.js"></script>
+	<script language="JavaScript">
+		var titrePage = "Blog de Joël Dendaletche";
+		var aurevoir = "&Aacute; bientôt, revenez vite !";
+		//var id = setInterval(ma_fontion, 1000);
+		function titre(texte) 
+		{
+			document.title = texte;
+		}
+		function init() 
+		{
+			 // alert("debug init");
+			 construireListeSommaire ();
+		}
+	</script>
+	
+	<meta name="author" content="Joël Dendaletche"/>
+	<meta name="created" content="2019-09-02"/>
+	<meta name="changed" content="2019-09-16"/>
+	<meta name="Company" content="Lycée La Découverte Decazeville 12300 Aveyron Occitanie France Terre"/>
+	<meta name="description" content="ressources pour l'enseignement de NSI en première">
+	<meta name="keywords" content="Informatique">
+	<!-- la méta-donnée suivante rafraichit l'écran toute les minutes -->
+	<meta http-equiv="refresh" content="60">
+
+	
+	<!-- feuille de style externe -->
+	<link rel="stylesheet" type="text/css" href="../styleProgramme.css">
+	<link rel="stylesheet" type="text/css" href="../../styleCode.css">    <!-- coloration syntaxique du code -->
+	<!-- Définition du style local de la page : déconseillé ! -->
+	<style>
+		table {
+			border-collapse: collapse;
+			
+		}
+		td, th {
+			padding : 15px;
+			text-align: center;
+	}
+	td : hover {
+			color : orange;
+			background : darkblue;
+		}
+	</style>
+</head>
+<body onload="init();" onblur="titre(aurevoir);" onfocus="titre(titrePage);">
+	<header>
+		<h1>Blog de <abbr title="Joël Dendaletche">jodenda</abbr> </h1>
+	</header>
+	<section>
+		<article>
+			
+			<h1>Enseignement de Numérique et Science Informatique en terminale</h1>	
+			<h2 >Bonnes pratiques dans le développement de code informatique</h2>
+			<hr/> <!-- séparateur horizontal -->
+			
+			<h3 id="sommairePage">Sommaire de cette page :</h3>
+			<h4><a href="#titre1">1. Écrire des commentaires dans le code</a></h4>
+			<h4><a href="#titre2">2. Nommer les variables et les fonctions</a></h4>
+			<h4><a href="#titre3">3. Indenter votre code</a></h4>
+			<h4><a href="#titre4">4. Copier/coller vos variables et portions de code identiques</a></h4>
+			<h4><a href="#titre5">5. Utiliser un logiciel créé pour le développement de code informatique</a></h4>
+			
+			<hr/> <!-- séparateur horizontal -->
+			
+			<p><strong><u>Développer</u></strong> un programme informatique sous forme d'algorithme <strong><u>sans erreurs</u></strong> et 
+				qui fonctionne c'est bien, mais développer un programme informatique sous forme d'algorithme sans erreurs, qui 
+				fonctionne et qui respecte les <strong><u>règles de codage reconnues par tous</u></strong> c'est mieux.</p>
+			<p>En effet, lorsqu'un programmeur développe un <strong><u>programme</u></strong>, il doit aussi penser que son programme pourra être 
+				<strong><u>relu</u></strong> par lui-même ou lu par d'autre quelque temps plus tard pour l'<strong><u>améliorer ou modifier</u></strong> une variable ou tout 
+				autre. De ce fait le programme doit être <strong><u>écrit « proprement »</u></strong> en respectant les quelques règles essentielles qui permettent 
+				de relire un programme facilement donc de se l'approprier plus rapidement.</p>
+			<p>Ce document a donc pour unique but de présenter les quelques <strong><u>règles de bon usage</u></strong> couramment utilisé par les 
+				<strong><u>développeurs</u></strong> de programmes informatiques.</p>
+			<p>Ces règles sont valables <strong><u>quel que soit le langage</u></strong> de programmation utilisé et quel que soit le niveau et la 
+				nationalité du développeur.</p>
+			<h2 id="titre1">1. Écrire des commentaires dans le code</h2>
+			
+			<p>Écrire des <strong><u>commentaires</u></strong> c’est gagner du temps de <strong><u>compréhension du programme</u></strong> ; cela permet 
+				aussi de le <strong><u>faire évoluer</u></strong> plus facilement. </p>
+			
+			<p>	Il n'est pas nécessaire de commenter votre code ligne par ligne, c'est le <strong><u>sens général du code</u></strong> que vous devez 
+				<strong><u>expliquer</u></strong> dans les commentaires.</p>
+			<p>Syntaxe et symboles utilis&#233;s dans diff&#233;rents langages pour r&#233;aliser des commentaires :</p>
+
+			<div class="table-container">
+
+				<table class="wysiwyg__table wysiwyg__table--border-xs wysiwyg__table--collapsed" role="presentation" summary="commentaires de programme">
+				<thead>
+					<tr>
+						<th ></th>
+						<th colspan="2">commentaires</th>
+					</tr>
+					<tr>
+						<th >langages</th>
+						<th>sur une seule ligne</th>
+						<th><p>sur un bloc de plusieurs lignes<br/>le texte est encadr&#233; par des bornes<br />
+						(symboles avant et apr&#232;s le commentaire)</p></th>
+					</tr>
+				</thead>
+				<tbody>
+					
+					<tr>
+						<td><p>c</p></td>
+						<td><p>// mon commentaire</p></td>
+						<td>/*&nbsp;&nbsp;&nbsp; mes lignes de commentaire */</p></td>
+					</tr>
+					<tr>
+						<td><p>javascript</p></td>
+						<td><p>// mon commentaire</p></td>
+						<td><p>/*&nbsp;&nbsp;&nbsp; mes lignes de commentaire */</p></td>
+					</tr>
+					<tr>
+						<td><p><abbr title="Hypertext Preprocessor">PHP</abbr></p></td>
+						<td><p>// mon commentaire<br/>
+						 mais aussi ! # mon commentaire </bt></p></td>
+						<td><p>/*&nbsp;&nbsp;&nbsp; mes lignes de commentaire */</p></td>
+					</tr>
+					<tr>
+						<td><p>python</td>
+						<td><p># mon commentaire</p></td>
+						<td><p>&#34;&#34;&#34; &nbsp; mes lignes de commentaire &#34;&#34;&#34;</p></td>
+					</tr>
+					<tr>
+						<td><p><abbr title="HyperText Markedup Langage">HTML</abbr></p></td>
+						<td colspan="2"><p>&lt;!--&nbsp;&nbsp; mon commentaire&nbsp; --&gt;</p></td>
+						
+					</tr>
+					<tr>
+						<td><p><abbr title="Cascade Style Sheet">CSS</abbr></p></td>
+						<td colspan="2"><p>/*&nbsp;&nbsp;&nbsp; mes lignes de commentaire */</p></td>
+					</tr>
+				</tbody>
+				</table>
+			</div>
+			
+			<h2 id="titre2">2. Nommer les variables et les fonctions &nbsp;<a href="#sommairePage"><img src="../../images/boutons/boutonRetour.png"></a></h2>
+			<p>Donner des noms <strong><u>clairs et précis</u></strong> qui permettent de comprendre ce que représente 
+				ce nom : compteurDeClic ; nombreDeVies ; niveau ; phraseDeBienvenue ; decomposeNombreEnBase (nombre, base). 
+				Ne vous faites pas plaisir en écrivant des noms de variables ou de fonctions drôles dont vous 
+				serez les seuls à en comprendre le sens !</p>
+			<h3>Exemples de mauvais noms de variables :</h3>
+			<p>	<dl>
+					<dd><span style="color:orange">int</span> to_to ;</dd>
+					<dd><span style="color:orange">float</span> DuchmolANous2 ;</dd>
+					<dd><span style="color:orange">boolean</span> 45ghJ5H2 ;</dd>
+				</dl>
+			</p>
+			<h3>Exemples de noms de variables cohérents et explicites, avec du code commenté :</h3>
+			<p>	<dl>
+					<dd><span style="color:orange">int</span> brocheNumero2 ;        <span style="color:green">// contiendra l’état de la broche 2</span></dd>
+					<dd><span style="color:orange">int</span> compteurClic ; &nbsp;  <span style="color:green">  // pour mémoriser le nombre total de clic</span></dd>
+				</dl>
+			</p>
+
+			<h3>N.B. : un standard international se dégage actuellement sur l’écriture des noms de fichiers, de fonctions, de variables, etc. : </h3>
+			<ul>
+				<li> l’initiale du premier mot est en minuscule (cherchez l’erreur dans l’exemple suivant);</li>
+				<li> les initiales des mots suivant sont en majuscule ;</li>
+				<li> aucun espace ou caractère _ ne séparent les mots concaténés (mis bout à bout).</li>
+			</ul>
+			
+			<h2 id="titre3">3. Indenter votre code &nbsp;<a href="#sommairePage"><img src="../../images/boutons/boutonRetour.png"></a></h2>
+			<p>Indenter un programme, c'est <strong><u>décaler</u></strong> certaines parties du code afin de mieux <strong><u>comprendre</u></strong> sa structure,
+			 son fonctionnement. On peut utiliser une ou plusieurs <strong><u>tabulations</u></strong> ou simplement plusieurs <strong><u>espaces</u></strong> pour indenter du code.</p>
+			<h3>Code (en c) indenté :</h3>
+			<img src="../img/exempleCodeArduino2.png" alt="exemples d'indentation dans un code Arduino en c" title="exemples d'indentation dans un code Arduino en c">
+			<p><u>Remarque :</u> dans le code ci-dessus, le nom des fonctions en orange respecte les conventions décrites précédemment, mais pas les nom de variables (c’est un code ancien). </p>
+			
+			<h2 id="titre4" >4. Copier/coller vos variables et portions de code identiques&nbsp;<a href="#sommairePage"><img src="../../images/boutons/boutonRetour.png"></a></h2>
+			
+			<p>Écrire une seul fois le nom de vos variables en tapant sur la clavier de l'ordinateur, lors de sa déclaration. Par la suite, 
+				il suffit de <strong><u>copier/coller</u></strong> le nom de chaque variable ou de fonction pour les utiliser. Cela permet d'éviter <strong><u>toutes erreurs 
+				de frappe</u></strong> et donc de problème par la suite ; de devoir chercher (parfois longtemps) l'erreur dans le programme.
+			</p>
+			
+			<h2 id="titre5"> 5. Utiliser un logiciel créé pour le développement de code informatique &nbsp;<a href="#sommairePage"><img src="../../images/boutons/boutonRetour.png"></a></h2>
+			
+			<p>Les éditeurs conçus pour aider le développeur utilisent :</p>
+			<ul>
+				<li>la <strong><u>coloration syntaxique</u></strong> qui colore les différents classes d’éléments pour mieux les repérer et dépister des erreurs de codage ;</li>
+				<li>la reconnaissance des <strong><u>mots réservés</u></strong> dans chaque <strong><u>langage</u></strong> (le fichier doit être enregistré avec l’<strong><u>extension</u></strong> permettant 
+					l’identification du langage : *.py = python ; *.c = langage c ; *.html ou *.htm = langage du web ; …), ces mots sont <strong><u>colorés</u></strong> ;</li>
+					<li>la <strong><u>suggestion</u></strong> de termes à choisir dans une <strong><u>liste de mots</u></strong> connus (<strong><u>réservés</u></strong> ou <strong><u>déjà définis</u></strong>) 
+					commençant par les lettres que l’on a déjà saisies au clavier.	Cela évite des erreurs de frappe.</li>
+			</ul>
+			<p><u>Remarque :</u> les exemples de codes ci-dessus montrent en orange les mots réservés et les noms de fonctions (en c) ; en bleu les constantes, ...</p>
+			<p><u>Exemples</u> de logiciels libres : Notepad++ ; Geany ; Code::Block (pour le langage c) ;  ...</p>
+			
+		</article> <!-- fin de l'article -->
+		
+		<nav id="listeSommaire" > <!-- sommaire latéral -->
+		
+		<!-- Le sommaire sera écrit ici au chargement de la page (onload) par une routine en javascript -->
+	
+		</nav>
+	</section>
+	<footer>
+		<h2>Liens utiles :</h2>
+			<ul>
+			<li><a href="https://www.w3schools.com" target="_blank">tutoriel w3school pour HTML, CSS, JS, Python ;</a></li>
+			<li><a href="https://www.w3schools.com/css/css_howto.asp" target="_blank">section "how to" du tutoriel w3school pour le langage <strong title="Cascade Style Sheet">CSS</strong> ;</a></li>
+			<li><a href="https://icon-icons.com" target="_blank">bibliothèque d'icones et images libres de droits.</a></li>	
+		</ul>
+	</footer>
+</body>
+</html>
