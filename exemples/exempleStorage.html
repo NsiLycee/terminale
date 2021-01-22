@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<title>Stokage local d'informations</title>
+	<style>
+		body {
+			background-color 	: rgb (120,120,150)	;
+			color 		: rgb (135,135,105)	;
+			}
+		footer {
+			background 	: rgb (20,20,50)	;
+			color 		: rgb (235,235,205)	;
+			}
+	</style>
+</head>
+<body onload="init();">
+	
+	<h2>Le stockage des données coté client</h2>
+	<h3>Les cockies</h3>
+	<p>Les <a href="https://www.w3schools.com/js/js_cookies.asp" 
+	          target="_blank">cookies</a> sont des données stockées sur 
+	   le poste client (le disque dur de l'ordinateur ...) ; 
+	   elles survivent après la fermeture de la page qui les a produites ;
+	   néanmoins une date de de péremption est souvent définie, au delà 
+	   de laquelle les données seront effacées. <br/> Depuis la loi 
+	   <a href="https://fr.wikipedia.org/wiki/R%C3%A8glement_g%C3%A9n%C3%A9ral_sur_la_protection_des_donn%C3%A9es" 
+	      target="_blank" 
+	      title="Règlement général sur la protection des données">
+	      RGPD</a>, l'utilisation des cookies par un site doit être
+	      signalée et soumise à l'approbation de l'utilisateur ;)).
+	    </p>
+	<h3>Le stockage local coté client avec 
+		<u><strong>localstorage</strong></u></h3>
+	<p>Il est possible de stocker jusqu'à 1 Mo de données pérennes 
+		(permanentes ou  rémanentes) sur le disque dur de votre ordinateur.</p>
+	<form name='formulaire'>
+		<fieldset><legend>Informations à stocker :</legend>
+		<table>
+			<caption> Formulaire de contact, progression :
+				<meter value="0" min="0" max="4" id="idMeter">
+					0 out of 4 : texte non affiché
+				</meter>
+			</caption>
+			<tr><td><label for="prenom"></label>(prénom) Fisrtname : </td>
+				<td><input type="text" size="30" 
+				           id="prenom" placeholder="votre prénom ?"
+				           oninput="evalProgress (this);">
+				           <br/>
+				</td>
+			</tr>
+			<tr><td><label 	for="nom"></label>(nom) Name : </td>
+				<td><input 	type="text" size="30" id="nom" 
+							placeholder="votre nom ?"
+							oninput="evalProgress (this);">
+					<br/>
+				</td>
+			</tr>
+			<tr><td><label 	for="courriel"></label>(mel ou courriel) eMail : </td>
+				<td><input 	type="mail" size="30" id="courriel" 
+							placeholder="votre courriel ?"
+							onclick=""  oninput="evalProgress (this);">
+					<br/>
+				</td>
+			</tr>
+			<tr><td><label 	for="dateNaiss"></label>(date de naissance) Date of birth : </td>
+				<td><input 	type="mail" size="30" id="dateNaiss"
+							placeholder="votre date de naissance ?"
+							oninput="evalProgress (this);">
+					<br/>
+				</td>
+			</tr>
+			<tr><td colspan="2">
+				<input type="button" id="valid" value="send (envoyer)" 
+				       onclick="voirStokage ();"/>
+				<input type="reset" id="reset" value="effacer tout" 
+				       onchange=""/>
+				</td>
+			</tr>
+		</table>
+		</fieldset>
+	</form>
+
+	<progress value="0" min="0" max="4" id="idProgress"></progress>
+	<p id='debug'></p>
+	
+	
+	<footer>
+		<h4>ressources utiles :</h4>
+		<ul>
+			<li>la balise de jauge 
+				<a  href="https://www.w3schools.com/tags/tag_meter.asp" 
+					target="_blank" 
+					title="la balise de jauge">&lt;meter&gt;
+				</a>
+			</li>
+			<li>la balise qui visualise barre de progression :
+				<a  href="https://www.w3schools.com/tags/tag_progress.asp" 
+					target="_blank" 
+					title="la balise qui visualise barre de progression">
+					&lt;progress&gt;
+				</a>
+			</li>
+			<li>la définition d'objets javascript comme structure de 
+			    données :
+				<a  href="https://www.w3schools.com/js/js_objects.asp" 
+					target="_blank" 
+					title="objets javascript comme structure de données">
+					{ prenom: 'Jean-Paul', nom : 'Deux', age : 122 }
+				</a>
+			</li>
+			<li>le stokage local des cookies (jusqu'à 1 ko) en javascript : 
+				<a  href="https://www.w3schools.com/js/js_cookies.asp" 
+					target="_blank" 
+					title="stokage local des cookies (jusqu'à 1 ko) en javascript">
+					document.cookie = "username=John Doe";
+				</a>
+			</li>
+			<li>le stokage local (jusqu'à 1 Mo !) 
+				<a  href="https://www.w3schools.com/jsref/prop_win_localstorage.asp" 
+					target="_blank" 
+					title=""> localStorage.setItem("lastname", "Smith");
+				</a>
+			</li>
+			<li>tout sur javascript (le site du livre) 
+				<a  href="https://www.toutjavascript.com/reference/ref-storage.getitem.php" 
+					target="_blank" 
+					title="tout sur javascript (le site du livre)">
+					<img src="https://www.toutjavascript.com/livre/toutjavascript.jpg" 
+					     style="width:5%"/>
+				</a>
+			</li>
+			<li><a  href="" 
+					target="_blank" 
+					title="">
+				</a>
+			</li>
+
+		</ul>
+	
+	</footer>
+</body>
+<script>
+	var debug = document.getElementById("debug");
+	var progression = 0;
+	var valid = [0,0,0,0];
+	var tabId = ['prenom', 'nom', 'courriel', 'dateNaiss'];
+	
+	function init() {
+		testStorage(); // stokage local possible ?
+	}
+	// teste si le navigateur peut réalisr du stokage local
+	function testStorage() {
+		let message="stokage local ";
+		let i;
+		
+		if (typeof Storage !== "undefined") {
+			message += "possible ";
+		}
+		else {
+			message += "malheureusement impossible ";
+		}
+		
+		message += "avec ce navigateur("+ navigator.appCodeName+' ';
+		message += 	navigator.appCodeName+' '+')'+
+					navigator.appName+' <br/>'+ 
+					navigator.appVersion+' lang = '+
+					navigator.language+' sur le système '+
+					navigator.platform+' avec les '+ navigator.mimeTypes.length+' types mime ';
+		 
+		for (i = 0; i < navigator.mimeTypes.length; i++) {
+			message += navigator.mimeTypes[i]+ " <br/> "; 
+		}
+		
+		message += 	' avec les '+navigator.plugins.length+' plugins ';
+		for (i = 0; i < navigator.plugins.length; i++) {
+			message += navigator.plugins[i]+ " <br> "; 
+		}
+ 
+		message += '<br/>En résumé : <br/>'+
+					navigator.userAgent+')';
+					
+		debug.innerHTML = message;
+	// source : https://www.commentcamarche.net/contents/580-javascript-l-objet-navigator 
+
+	}
+	function evalProgress (obj) {
+		
+		if (obj.value == "") return "";
+		
+		let i, somme = 0;
+		switch (obj.id) {
+			
+			case tabId[0] : valid[0] = 1;
+			break;
+			case tabId[1] : valid[1] = 1;
+			break;
+			case tabId[2] : valid[2] = 1;
+			break;
+			case tabId[3] : valid[3] = 1;
+/*			case 'prenom' : valid[0] = 1;
+			break;
+			case 'nom' : valid[1] = 1;
+			break;
+			case 'courriel' : valid[2] = 1;
+			break;
+			case 'dateNaiss' : valid[3] = 1;
+			break;*/
+
+			default : ;
+			}
+		for (i=0; i<4; i++) { // somme des validations
+			somme += valid[i];
+		}
+		document.getElementById("idMeter").value = somme;
+		document.getElementById("idProgress").value = somme;
+	}
+	function valider() {
+		
+		}
+	function voirStokage () {
+		let i, value, cle; // définition locale avec let
+		let N = window.localStorage.length; // nombre de données
+		
+		if (N == 0) {
+			debug.innerHTML += 
+			"<br/><br/> pas de données locales stockées en ce moment.";
+			}
+		else {
+			for (i=0; i<window.localStorage.length; i++) {
+				cle=window.localStorage.key(i);
+				value=window.localStorage.getItem(cle);
+				if (value.length>50) {
+					value=value.substring(0,50)+"...";
+				}
+				debug.innerHTML += "<br/>Clé N°"+i+" "+cle+" = "+value;
+			}
+		}
+	}
+
+</script>
+</html>

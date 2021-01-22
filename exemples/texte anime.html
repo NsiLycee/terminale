@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title> Un poème dont le texte est animé </title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<!-- Les deux lignes suivantes permettent d'insérer une icône à coté 
+	     de l'onglet de la page -->
+	<link rel="shortcut icon" href="icone.png" type="image/x-icon"/>
+	<link rel="icon" href="icone.png" type="image/x-icon"/>
+	
+<script language="JavaScript">
+	
+	var titrePage = "Poème animé";
+	var aurevoir = "A l'aube de l'espoir, aurevoir !";
+	
+	function titre(texte) 
+	{
+		document.title = texte;
+	}
+	function init() 
+	{
+}
+	var id = setInterval(animInitiales, 1000);
+	var clignote = false;
+	function clignotement(obj) {
+		if (clignote) {
+			obj.value = "arrête le clignotement";
+			id = setInterval(animInitiales, 1000);
+			clignote = false;
+			}
+		else {
+			clearInterval(id); // arrête l'animation
+			obj.value = "lancer le clignotement";
+			clignote = true;
+			}
+	}
+	function arreter() {
+		clearInterval(id); // arrête l'animation
+		
+		}
+		//document.body.innerHTML = "";
+	function animInitiales () {
+	var N = 21;
+	for (var i = 1;i < N+1;i++) {
+		color = "rgb("+Math.floor(Math.random()*255+1)+","+Math.floor(Math.random()*255+1)+","+Math.floor(Math.random()*255+1)+")";
+		backGround = "rgb("+Math.floor(Math.random()*255+1)+","+Math.floor(Math.random()*255+1)+","+Math.floor(Math.random()*255+1)+")";
+		document.getElementById("spL"+i).style.color=color;
+		document.getElementById("spL"+i).style.background = backGround;
+		}
+	}
+	</script>
+	<style>
+		.initiale {
+			
+			color : rgb(0,255,0);
+			}
+	
+	</style>
+</head>
+
+<body onload="init();" onblur="titre(aurevoir);" onfocus="titre(titrePage);">
+
+<h1 id="titrePrincipal"> Le poème "À la musique" d'Arthur RIMBAUD, écrit à l'automne 1870, évoque le mal-être de vivre à Charleville :</h1>
+
+
+<table><caption>Textes</caption>
+	<tbody><tr><th>À la musique</th><th>Mise en forme du texte</th></tr>
+<tr><td>
+<pre onmouseover="this.style.fontSize='200%';" onmouseout="this.style.fontSize='50%';">
+	
+« <span class="initiale" id="spL1" style="color:rgb(255,255,0);">S</span>ur la place taillée en mesquines pelouses,
+<span class="initiale" id="spL2">S</span>quare où tout est correct, les arbres et les fleurs,
+<span class="initiale" id="spL3">T</span>ous les bourgeois poussifs qu’étranglent les chaleurs
+<span class="initiale" id="spL4">P</span>ortent, les jeudis soirs, leurs bêtises jalouses
+– <span class="initiale" id="spL5">L</span>’orchestre militaire, au milieu du jardin,
+<span class="initiale" id="spL6">B</span>alance ses schakos dans la Valse des fifres :
+– <span class="initiale" id="spL7">A</span>utour, aux premiers rangs, parade le gandin ;
+<span class="initiale" id="spL8">L</span>e notaire pend à ses breloques à chiffres
+<span class="initiale" id="spL9">D</span>es rentiers à lorgnons soulignent tous les couacs :
+<span class="initiale" id="spL10">L</span>es gros bureaux bouffis traînent leurs grosses dames
+<span class="initiale" id="spL11">A</span>uprès desquelles vont, officieux cornacs,
+<span class="initiale" id="spL12">C</span>elles dont les volants ont des airs de réclames ;
+<span class="initiale" id="spL13">S</span>ur les bancs verts, des clubs d’épiciers retraités
+<span class="initiale" id="spL14">Q</span>ui tisonnent le sable avec leur canne à pomme,
+<span class="initiale" id="spL15">F</span>ort sérieusement discutent les traités,
+<span class="initiale" id="spL16">P</span>uis prisent en argent, et reprennent : « En somme !… »
+<span class="initiale" id="spL17">É</span>patant sur son banc les rondeurs de ses reins,
+<span class="initiale" id="spL18">U</span>n bourgeois à boutons clairs, bedaine flamande,
+<span class="initiale" id="spL19">S</span>avoure son onnaing d’où le tabac par brins
+<span class="initiale" id="spL20">D</span>éborde - vous savez c’est de la contrebande ;-
+<span class="initiale" id="spL21">L</span>e long des gazons verts ricanent les voyous (…) »
+
+</pre></td>
+<td>
+<input type="button" value="arrête le clignotement" id="idBtClignot" onclick="clignotement(this);"/><br>
+<input type="button" value="tout arrêter" id="idArret" onclick="arreter();"/><br>
+
+
+</td></tr>
+</tbody></table>
+
+
+
+<h1>Sources</h1>
+<ul>
+	<li>Textes libres de droits sur <a href="http://textes.libres.free.fr/auteur_arthur-rimbaud.htm" target="_blank">Arthur </a>Rimbaud</li>
+	<li>Tutoriel pour animer avec les <a href="https://www.w3schools.com/js/js_htmldom_animate.asp" target="_blank">attributs css</a></li>
+	<li></li>
+
+
+
+	<li></li>
+<div id="reglages">
+<table><tbody>
+<tr><td>Animer les initiales ?</td>	<td> <input type="radio" name="lancerAnim" value="Oui" checked 	
+											onclick="clignote=true;clignotement(getElementById('idBtClignot'));"> 
+												Oui</td>
+									<td> <input type="radio" name="lancerAnim" value="Non" 	
+											onclick="clignote=false;clignotement(getElementById('idBtClignot'));"> 
+												Non  </td></tr>
+<tr><td></td><td></td><td></td></tr>
+						   <!-- cocher un de ces boutons radio pour lancer l'animation -->
+					
+
+</tbody></table>
+
+</div>
+
+
+</ul>
+
+<script>
+	
+/*
+  var id = setInterval(fonction_a_faire, 500);
+  
+  arrêt avec :
+		clearInterval(id);
+		*/
+}
+
+</script>
+</body>
+
+

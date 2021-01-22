@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title> Couleurs en RGB </title>
+	<!-- Les deux lignes suivantes permettent d'insérer une icône à coté 
+	     de l'onglet de la page -->
+	<link rel="shortcut icon" href="icone.png" type="image/x-icon"/>
+	<link rel="icon" href="icone.png" type="image/x-icon"/>
+	<script src="./sommaire.js"></script>
+
+	<!-- script pour changer le titre de l'onglet -->
+	<script language="JavaScript">
+		var titrePage = "Utilisation de caractères spéciaux en unicode";
+		var aurevoir = "&Aacute; bientôt, revenez vite !";
+		//var id = setInterval(ma_fontion, 1000);
+		function titre(texte) 
+		{
+			document.title = texte;
+		}
+		var R, V, B; // variables globales des composantes de la couleur 
+		// courante
+		function init() // fonction d'initialisation
+		{
+			 //alert("debug init");
+			 construireListeSommaire ();
+			 construireTabCaracteres();
+		}
+		function hex2unicode(hex) {
+			return "&#x" + hex + ";" ;
+			}
+		function dec2unicode(hex) {
+			return "&#" + dec + ";" ;
+			}
+
+		function dec2hex(dec){
+			//return parseInt(dec, 10).toString(16);
+			return (dec >>> 0).toString(16);
+		}
+		function hex2dec(hex){
+			return parseInt(hex, 16).toString(10);
+		}
+	</script>
+	
+	<meta name="author" content="Joël Dendaletche"/>
+	<meta name="created" content="2019-09-02"/>
+	<meta name="changed" content="2019-09-16"/>
+	<meta name="Company" content="Lycée La Découverte Decazeville 12300 Aveyron Occitanie France Terre"/>
+	<meta name="description" content="Couleurs en RGB">
+	<meta name="keywords" content="Informatique caractères spéciaux unicode">
+	<!-- la méta-donnée suivante rafraichit l'écran toute les minutes 
+	<meta http-equiv="refresh" content="60"> -->
+
+	
+	<!-- feuille de style externe -->
+	<link rel="stylesheet" type="text/css" href="../programme NSI/styleProgramme.css">
+	<!-- Définition du style local de la page : déconseillé ! -->
+	<style>
+		input {
+			border : 1px black solid;
+		}
+		.symbole:hover {
+			font-size:400%;
+			}
+	</style>
+</head>
+<!-- la balise body délimite les instructions qui permettront d'afficher le contenu de la page web à l'écran -->
+<body onload="init();" onblur="titre(aurevoir);" onfocus="titre(titrePage);">
+	<header>
+		<h1>Blog de <abbr title="Joël Dendaletche">jodenda</abbr> : Utilisation de caractères spéciaux en unicode </h1>
+	</header>
+	<section>
+		
+	<article style="background:url('https://cdn.pixabay.com/photo/2016/11/21/13/29/color-1845394_960_720.jpg');">
+	
+	<p onclick="this.style.background='#ff00ff';">Quelle est la 
+	traduction en français du mot dont les 3 caractères chinois 
+	sont &#x661F;&#x671F;&#x56DB; : Xīngqísì  ?</p>
+	<p>D'après <a href="http://translate.google.fr/?hl=fr" 
+				target="_blank">google translate</a> 
+				&#x661F;&#x671F;&#x56DB; signifie jeudi en chinois</p>
+	<table>
+		<tr><th></th><th>Lettre 1</th><th>Lettre 2</th><th>Lettre 3</th></tr>
+		<tr><td>Unicode </td><td>661F</td><td>671F</td><td>56DB </td></tr>
+		<tr><td>Unicode </td><td>&#x661F;</td><td>&#x671F;</td><td>&#x56DB; </td></tr>
+		<tr>
+			<td>Votre code en hexadécimal:</td>
+			<td ><input type="text" value ="ff" id="inpHex"
+						onchange="	document.getElementById('hex2Resultat').innerHTML = hex2unicode(this.value);
+									document.getElementById('inpDec').value = hex2dec(this.value);
+									document.getElementById('dec2Resultat').innerHTML = hex2unicode(this.value);" />
+			</td>
+			<td colspan="2" class="symbole" id="hex2Resultat"></td>
+		</tr>
+		<tr>
+			<td>Votre code en décimal:</td>
+			<td ><input type="text" value ="256" id="inpDec"
+						onchange="	document.getElementById('hex2Resultat').innerHTML = hex2unicode(dec2hex(this.value));
+									document.getElementById('inpHex').value = dec2hex(this.value);
+									document.getElementById('dec2Resultat').innerHTML = hex2unicode(dec2hex(this.value))" />  
+			</td>
+			<td colspan="2" class="symbole" id="dec2Resultat"></td>
+		</tr>
+
+	</table>
+	<p id="debug" hidden></p> <!-- pour afficher des vérifications -->
+	<label>Changer la couleur du fond :</label><input 	type="color" value="choisir une couleur pour le fond" 
+			onchange="	document.getElementById('debug').innerHTML = 'valeur renvoyée = ' + this.value; 
+				 		document.getElementById('hex2Resultat').style.background = this.value;
+						document.getElementById('dec2Resultat').style.background = this.value;"      />        
+	<h2>Table de symboles utiles</h2>
+	<p>Pour afficher sur votre page un caractère spécial, trouver son code est taper &# votreEnDecimal ; ou bien &#x votreEnHexaDecimal ;/p>
+	<table id="symboles" > 
+			<!-- ici la fonction construireTabCaracteres() va placer le code du tableau -->
+	</table>
+	
+	</article>
+	<nav id="listeSommaire" >
+		
+	<!-- Le sommaire sera écrit ici au chargement de la page par une routine en javascript -->
+	
+	</nav>
+	</section>
+	<footer>
+		<h2>Liens utiles :</h2>
+		<ul>
+			<li>tutoriel <a href="https://www.w3schools.com" target="_blank">w3school pour HTML, CSS, JS, Python ;</a></li>
+			<li>bibliothèque d'icones et <a href="https://icon-icons.com" target="_blank">images libres.</a></li>
+			<li><a href="http://www.csszengarden.com/" target="_blank">csszengarden.com</a> le site qui montre une (presque) infinité de styles en css/</li>
+		</ul>
+	</footer>
+	
+<script>
+	
+	function construireTabCaracteres() {
+		// tableau des descriptifs des caractère spéciaux d'unicode 2728 à 9983
+		var descriptif = ['BLACK SUN WITH RAYS','CLOUD','UMBRELLA','SNOWMAN','COMET','BLACK STAR','WHITE STAR','LIGHTNING','THUNDERSTORM','SUN','ASCENDING NODE','DESCENDING NODE','CONJUNCTION','OPPOSITION','BLACK TELEPHONE','WHITE TELEPHONE','BALLOT BOX','BALLOT BOX WITH CHECK','BALLOT BOX WITH X','SALTIRE','UMBRELLA WITH RAIN DROPS','HOT BEVERAGE','WHITE SHOGI PIECE','BLACK SHOGI PIECE','SHAMROCK','REVERSED ROTATED FLORAL HEART BULLET','BLACK LEFT POINTING INDEX','BLACK RIGHT POINTING INDEX','WHITE LEFT POINTING INDEX','WHITE UP POINTING INDEX','WHITE RIGHT POINTING INDEX','WHITE DOWN POINTING INDEX','SKULL AND CROSSBONES','CAUTION SIGN','RADIOACTIVE SIGN','BIOHAZARD SIGN','CADUCEUS','ANKH','ORTHODOX CROSS','CHI RHO','CROSS OF LORRAINE','CROSS OF JERUSALEM','STAR AND CRESCENT','FARSI SYMBOL','ADI SHAKTI','HAMMER AND SICKLE','PEACE SYMBOL','YIN YANG','TRIGRAM FOR HEAVEN','TRIGRAM FOR LAKE','TRIGRAM FOR FIRE','TRIGRAM FOR THUNDER','TRIGRAM FOR WIND','TRIGRAM FOR WATER','TRIGRAM FOR MOUNTAIN','TRIGRAM FOR EARTH','WHEEL OF DHARMA','WHITE FROWNING FACE','WHITE SMILING FACE','BLACK SMILING FACE','WHITE SUN WITH RAYS','FIRST QUARTER MOON','LAST QUARTER MOON','MERCURY','FEMALE SIGN','EARTH','MALE SIGN','JUPITER','SATURN','URANUS','NEPTUNE','PLUTO','ARIES','TAURUS','GEMINI','CANCER','LEO','VIRGO','LIBRA','SCORPIUS','SAGITTARIUS','CAPRICORN','AQUARIUS','PISCES','WHITE CHESS KING','WHITE CHESS QUEEN','WHITE CHESS ROOK','WHITE CHESS BISHOP','WHITE CHESS KNIGHT','WHITE CHESS PAWN','BLACK CHESS KING','BLACK CHESS QUEEN','BLACK CHESS ROOK','BLACK CHESS BISHOP','BLACK CHESS KNIGHT','BLACK CHESS PAWN','BLACK SPADE SUIT','WHITE HEART SUIT','WHITE DIAMOND SUIT','BLACK CLUB SUIT','WHITE SPADE SUIT','BLACK HEART SUIT','BLACK DIAMOND SUIT','WHITE CLUB SUIT','HOT SPRINGS','QUARTER NOTE','EIGHTH NOTE','BEAMED EIGHTH NOTES','BEAMED SIXTEENTH NOTES','MUSIC FLAT SIGN','MUSIC NATURAL SIGN','MUSIC SHARP SIGN','WEST SYRIAC CROSS','EAST SYRIAC CROSS','UNIVERSAL RECYCLING SYMBOL','RECYCLING SYMBOL FOR TYPE-1 PLASTICS','RECYCLING SYMBOL FOR TYPE-2 PLASTICS','RECYCLING SYMBOL FOR TYPE-3 PLASTICS','RECYCLING SYMBOL FOR TYPE-4 PLASTICS','RECYCLING SYMBOL FOR TYPE-5 PLASTICS','RECYCLING SYMBOL FOR TYPE-6 PLASTICS','RECYCLING SYMBOL FOR TYPE-7 PLASTICS','RECYCLING SYMBOL FOR GENERIC MATERIALS','BLACK UNIVERSAL RECYCLING SYMBOL','RECYCLED PAPER SYMBOL','PARTIALLY-RECYCLED PAPER SYMBOL','PERMANENT PAPER SIGN','WHEELCHAIR SYMBOL','DIE FACE-1','DIE FACE-2','DIE FACE-3','DIE FACE-4','DIE FACE-5','DIE FACE-6','WHITE CIRCLE WITH DOT RIGHT','WHITE CIRCLE WITH TWO DOTS','BLACK CIRCLE WITH WHITE DOT RIGHT','BLACK CIRCLE WITH TWO WHITE DOTS','MONOGRAM FOR YANG','MONOGRAM FOR YIN','DIGRAM FOR GREATER YANG','DIGRAM FOR LESSER YIN','DIGRAM FOR LESSER YANG','DIGRAM FOR GREATER YIN','WHITE FLAG','BLACK FLAG','HAMMER AND PICK','ANCHOR','CROSSED SWORDS','STAFF OF AESCULAPIUS','SCALES','ALEMBIC','FLOWER','GEAR','STAFF OF HERMES','ATOM SYMBOL','FLEUR-DE-LIS','OUTLINED WHITE STAR','THREE LINES CONVERGING RIGHT','THREE LINES CONVERGING LEFT','WARNING SIGN','HIGH VOLTAGE SIGN','DOUBLED FEMALE SIGN','DOUBLED MALE SIGN','INTERLOCKED FEMALE AND MALE SIGN','MALE AND FEMALE SIGN','MALE WITH STROKE SIGN','MALE WITH STROKE AND MALE AND FEMALE SIGN','VERTICAL MALE WITH STROKE SIGN','HORIZONTAL MALE WITH STROKE SIGN','MEDIUM WHITE CIRCLE','MEDIUM BLACK CIRCLE','MEDIUM SMALL WHITE CIRCLE','MARRIAGE SYMBOL','DIVORCE SYMBOL','UNMARRIED PARTNERSHIP SYMBOL','COFFIN','FUNERAL URN','NEUTER','CERES','PALLAS','JUNO','VESTA','CHIRON','BLACK MOON LILITH','SEXTILE','SEMISEXTILE','QUINCUNX','SESQUIQUADRATE','SOCCER BALL','BASEBALL','SQUARED KEY','WHITE DRAUGHTS MAN','WHITE DRAUGHTS KING','BLACK DRAUGHTS MAN','BLACK DRAUGHTS KING','SNOWMAN WITHOUT SNOW','SUN BEHIND CLOUD','RAIN','BLACK SNOWMAN','THUNDER CLOUD AND RAIN','TURNED WHITE SHOGI PIECE','TURNED BLACK SHOGI PIECE','WHITE DIAMOND IN SQUARE','CROSSING LANES','DISABLED CAR','OPHIUCHUS','PICK','CAR SLIDING','HELMET WITH WHITE CROSS','CIRCLED CROSSING LANES','CHAINS','NO ENTRY','ALTERNATE ONE-WAY LEFT WAY TRAFFIC','BLACK TWO-WAY LEFT WAY TRAFFIC','WHITE TWO-WAY LEFT WAY TRAFFIC','BLACK LEFT LANE MERGE','WHITE LEFT LANE MERGE','DRIVE SLOW SIGN','HEAVY WHITE DOWN-POINTING TRIANGLE','LEFT CLOSED ENTRY','SQUARED SALTIRE','FALLING DIAGONAL IN WHITE CIRCLE IN BLACK SQUARE','BLACK TRUCK','RESTRICTED LEFT ENTRY-1','RESTRICTED LEFT ENTRY-2','ASTRONOMICAL SYMBOL FOR URANUS','HEAVY CIRCLE WITH STROKE AND TWO DOTS ABOVE','PENTAGRAM','RIGHT-HANDED INTERLACED PENTAGRAM','LEFT-HANDED INTERLACED PENTAGRAM','INVERTED PENTAGRAM','BLACK CROSS ON SHIELD','SHINTO SHRINE','CHURCH','CASTLE','HISTORIC SITE','GEAR WITHOUT HUB','GEAR WITH HANDLES','MAP SYMBOL FOR LIGHTHOUSE','MOUNTAIN','UMBRELLA ON GROUND','FOUNTAIN','FLAG IN HOLE','FERRY','SAILBOAT','SQUARE FOUR CORNERS','SKIER','ICE SKATE','PERSON WITH BALL','TENT','JAPANESE BANK SYMBOL','HEADSTONE GRAVEYARD SYMBOL','FUEL PUMP','CUP ON BLACK SQUARE','WHITE FLAG WITH HORIZONTAL MIDDLE BLACK STRIPE'];
+		
+		var codeHTML = "<thead><tr><th colspan='2'>Unicode</th><th colspan='2'>caractère</th></tr><tr><th>en décimal</th><th>en hexadécimal</th><th colspan='2'>spécial</th></tr></thead><tbody>";
+		
+		for (var i=9312 ; i <9728; i++) { 
+			codeHTML += "<tr><td>"+i+"</td><td>"+dec2hex(i)+"</td><td colspan='2' class='symbole'>&#"+i+";</td></tr>";
+			if (i % 20 == 0) {
+				codeHTML += "<tr><th>unicode en décimal</th><th>en hexadécimal</th><th colspan='2'>caractère spécial</th></tr>";
+				}
+			}
+		for (var i=9728 ; i <9984; i++) { 
+			codeHTML += "<tr><td>"+i+"</td><td>"+dec2hex(i)+"</td><td  class='symbole'>&#"+i+";</td><td>"+descriptif[i-9728]+"</td></tr>";
+			if (i % 20 == 0) {
+				codeHTML += "<tr><th>unicode en décimal</th><th>en hexadécimal</th><th colspan='2'>caractère spécial</th></tr>";
+				}
+			}
+		
+		codeHTML += "</tbody><tfoot><tr><th colspan='2'>Unicode</th><th>caractère</th></tr><tr><th>en décimal</th><th>en hexadécimal</th><th colspan='2'>spécial</th></tr></tfoot>";
+		document.getElementById("symboles").innerHTML = codeHTML;
+	}
+	
+</script>
+</body>
+</html>
+

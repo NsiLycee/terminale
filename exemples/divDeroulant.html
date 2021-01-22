@@ -1,0 +1,109 @@
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title> Blog de Joël Dendaletche </title>
+	<!-- Les deux lignes suivantes permettent d'insérer une icône à coté 
+	     de l'onglet de la page -->
+	<link rel="shortcut icon" href="icone.png" type="image/x-icon"/>
+	<link rel="icon" href="icone.png" type="image/x-icon"/>
+	
+	<script src="./sommaire.js"></script>
+	
+	<!-- deux façons d'inclure jQuery : locale ou à distance : -->
+	 <script src="./JS/jquery-3.4.1.min.js"> </script>
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> -->
+	
+	<script language="JavaScript">
+		var titrePage = "Blog de Joël Dendaletche";
+		var aurevoir = "&Aacute; bientôt, revenez vite !";
+		//var id = setInterval(ma_fontion, 1000);
+		function titre(texte) 
+		{
+			document.title = texte;
+		}
+		function init() 
+		{
+			 // alert("debug init");
+			 construireListeSommaire ();
+		}
+		
+		$(document).ready(function(){ $("#caract1").click( function() { //alert('debug'); // Au clic sur un élément
+				$("#content_caract_1").toggle(400);// chache ou affiche a une vitesse constante (400)
+					});});
+		$(document).ready(function(){ $("#caract2").click( function() { // Au clic sur un élément
+				$("#content_caract_2").toggle(400); // chache ou affiche a une vitesse constante (400)
+		});});
+
+		$(document).ready(function(){ // alert('debug'); le code js classique peut être ajouté dans le code jQuery
+			$("p").click(function(){
+				$(this).toggle(400);// chache ou affiche a une vitesse constante (400)
+				});
+			});
+
+		
+	</script>
+	
+	<meta name="author" content="Joël Dendaletche"/>
+	<meta name="created" content="2019-09-02"/>
+	<meta name="changed" content="2019-09-16"/>
+	<meta name="Company" content="Lycée La Découverte Decazeville 12300 Aveyron Occitanie France Terre"/>
+	<meta name="description" content="programme NSI première">
+	<meta name="keywords" content="Informatique">
+	<!-- la méta-donnée suivante rafraichit l'écran toute les minutes -->
+	<meta http-equiv="refresh" content="60">
+
+	
+	<!-- feuille de style externe -->
+	<link rel="stylesheet" type="text/css" href="./programme NSI/styleProgramme.css">
+	<!-- Définition du style local de la page : déconseillé ! -->
+	<style>
+	 /* Styles appliqués aux portions de code */
+		.attribut { color : black;
+			font-weight: bold; }
+		.balise { color : purple; }
+		.texte { color : blue ; }
+		.commentaire { color : green; }
+		div.codeHTML { 
+			border : 2px solid black;
+			padding : 10px;
+			text-align: left;
+			}
+		.caracteristique {
+			color : red;
+			font-weight: bold; 
+		}
+		.valeur {
+		color : orange;
+		}
+	</style>
+</head>
+<!-- la balise body délimite les instructions qui permettront d'afficher le contenu de la page web à l'écran -->
+<body onload="init();" onblur="titre(aurevoir);" onfocus="titre(titrePage);">
+
+
+
+
+
+
+
+
+  <div id="caract1">
+>     Caractéristique 1
+</div>
+<div id="content_caract_1">
+    Le contenue de caract 1</br>
+    facilement repliable
+</div>
+
+<div style="margin-top:10px" id="caract2">
+  >  Caractéristique 2
+</div>
+<div id="content_caract_2">
+    Le contenue de caract 1</br>
+facilement repliable</br>
+<input type="text" placeholder="du text..."/>
+</div>
+<p>essai cliquer moi</p>
+
+</body>
+
+</html>

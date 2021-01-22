@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" >
+	<link rel="shortcut icon" href="icone.png" type="image/x-icon"/>
+	<link rel="icon" href="icone.png" type="image/x-icon"/>
+	<meta name="author" content="Joël Dendaletche"/>
+	<meta name="created" content="2019-09-02"/>
+	<meta name="changed" content="2019-09-16"/>
+	<meta name="Company" content="Lycée La Découverte Decazeville 12300
+	 Aveyron Occitanie France Terre"/>
+	<meta name="description" content="modifications du style d'un texte">
+	<meta name="keywords" content="Exemples CSS HTML JS">
+	<title>modifications du style d'un texte</title>
+	
+	<!-- feuille de style externe -->
+	<link rel="stylesheet" type="text/css" 
+	        href="../programme NSI/styleProgramme.css">
+
+	<style>
+    	
+    </style>
+	<script src="./sommaire.js"></script>
+	<script language="JavaScript">
+		var titrePage = "Blog de Joël Dendaletche";
+		var aurevoir = "&Aacute; bientôt, revenez vite !";
+		//var id = setInterval(ma_fontion, 1000);
+		function titre(texte) 
+		{
+			document.title = texte;
+		}
+	
+		function init() 
+		{
+			 // alert("debug init");
+			 construireListeSommaire ();
+			 
+			 for (var i = 0 ; i<nTitres ; i++) { 
+				document.getElementById("content_item_"+ parseInt(i+1)).hidden = true;
+			 }
+		}	 
+	</script>
+
+</head>
+<body onload="init();";>
+	<section>
+		<article>
+			<h1>Une carte google map de l'IUT </h1><a href="http://jodenda.free.fr">Accueil</a>
+
+			<div id="googleMap" style="width:100%;height:400px;"></div>
+		</article>
+	<script>
+		function myMap() 
+		{
+			var mapProp= {
+			center:new google.maps.LatLng(51.508742,-0.120850),
+			zoom:5,
+		};
+		var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+		}
+	</script>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+	<nav id="listeSommaire" >
+		
+	<!-- Le sommaire sera écrit ici au chargement de la page par la
+	 procedure (fonction en javascript qui ne renvoie rien ) 
+	 construireListeSommaire ();                                     -->
+	
+	</nav>
+	</section>
+	<footer>
+		<h2>Liens utiles :</h2>
+		<ul>
+			<li>tutoriel w3school pour<a href="https://www.w3schools.com" target="_blank"> HTML, CSS, JS, Python ;</a></li>
+			<li>section "how to" du tutoriel w3school<a href="https://www.w3schools.com/css/css_howto.asp" target="_blank"> pour <strong title="Cascade Style Sheet">CSS</strong> ;</a></li>
+			<li><a href="https://icon-icons.com" target="_blank">bibliothèque d'icones et images libres.</a></li>
+			<li>Site de M Markey : <a href="http://markey.free.fr/" target="_blank">cours tableur et éditeur HTML en ligne</a></li>
+			
+		</ul>
+		<p id="debug"></p>
+	</footer>
+
+</body>
+</html> 

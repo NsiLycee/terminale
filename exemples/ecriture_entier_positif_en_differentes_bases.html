@@ -1,0 +1,91 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Nombres et bases 2, 8 , 10 , 16, ...</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	
+</head>
+<body onload="init();" onblur="titre(aurevoir);" onfocus="titre(titrePage);">
+
+<h1>Représentation des nombres</h1>
+<h2>Qu'est ce qu'une base ? exemple de la base 10</h2>
+Saisir ci-devant un nombre réel positif et valider par la touche entrée :
+<input type="text" value="72.125" onchange="changeNombre(this.value);" onmousemove="" id="nbInput"/><br/>
+Nombre maximum de chiffres après la virgule : <input type="number" value="20" min="0" max = "50" 
+												onchange="nbChifApVirgule = eval(this.value+1);changeNombre(nombre);" 
+												id ="nbCAV" />
+
+<div id="base10" onmouseover ="DecToBase(this,10);">base 10</div>
+<div id="base8" onmouseover ="DecToBase(this,8);">base 8</div>
+<div id="base2" onmouseover ="DecToBase(this,2);">base 2</div>
+
+<script type="text/javascript">
+	// variables globales  : à éviter si possible
+	var nombre = 72.125;
+	var 	titrePage = "Nombres et bases 2, 8 , 10 , 16, ...";
+			aurevoir = "Aurevoir !";
+	var nbChifApVirgule = 20;
+	
+	function DecToBase(obj,base)
+	{
+		var i;
+		var n = Math.floor(Math.log(nombre) / Math.log(base));
+		var contenu = "nombre = " + nombre + "= "+base+"<sup>" + n + "</sup> + epsilon <br/>";
+		var reste = nombre;
+		var chiffre = 0;
+		var nBin = "";
+		
+		for (i=n; i>-1 ;i--) 
+		{
+			chiffre = Math.floor(reste / base**i);
+			nBin += "" + chiffre; 
+			reste = reste - chiffre * base ** i;
+			
+			contenu += "chiffre : " + chiffre + "x "+base+"<sup>"+i+"</sup>"+" = "+base**i+" +<br/>"; 
+		}
+		nBin += ",";
+		if (i == 0) { nBin += ","; }
+		while (reste !=0 & i>-nbChifApVirgule) {
+			
+			chiffre = Math.floor(reste / base**i);
+			nBin += "" + chiffre;
+			reste = reste - chiffre * base ** i;
+			contenu += "chiffre : " + chiffre + "x "+base+"<sup>"+i+"</sup>"+" = "+base**i+" +<br/>";
+			i--; 
+			}
+		obj.innerHTML = contenu + "<br/> donc "+ nombre + " = " + nBin + " en base " + base;
+	}
+	
+	function changeNombre(txtNombre) // réactualise les calculs si le nombre est changé
+	{
+		nombre = parseFloat(eval(txtNombre));
+		
+		DecToBase(document.getElementById("base10"),10);
+		DecToBase(document.getElementById("base8"),8);
+		DecToBase(document.getElementById("base2"),2);
+	
+	}
+	function titre(texte) 
+	{
+		document.title = texte;
+	}
+	function init() { // ces paramètres pourraient être récupérés par lecture d'un fichier de valeurs
+		var nombreExemple = nombre; //attention le signe de la virgule décimale est le point chez les anglosaxons.
+		
+		document.getElementById("nbInput").value=nombreExemple;
+		document.getElementById("spNb").innerHTML = nombreExemple;
+		document.getElementById("nbCAV").value= nbChifApVirgule;
+		changeNombre(nombreExemple);
+		}
+// sources des deux fonctions suivantes : https://www.w3schools.com/js/js_bitwise.asp
+function dec2bin(dec){
+  return (dec >>> 0).toString(2);
+}
+function bin2dec(bin){
+  return parseInt(bin, 2).toString(10);
+}
+</script>
+
+
+</body>
+</html>

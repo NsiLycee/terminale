@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>Chapitre 4 – Les formulaires, DUT Informatique, saison 2018 2019</title>
+	<meta name="generator" content="LibreOffice 6.0.3.2 (Linux)"/>
+	<meta name="author" content="Daniel Pelissier"/>
+	<meta name="created" content="2018-09-20T15:31:00"/>
+	<meta name="changedby" content="Joël Dendaletche"/>
+	<meta name="changed" content="2019-10-20 T11:00:00"/>
+	<meta name="AppVersion" content="16.0000"/>
+	<meta name="Company" content="IUT Rodez"/>
+	<meta name="DocSecurity" content="0"/>
+	<meta name="HyperlinksChanged" content="false"/>
+	<meta name="LinksUpToDate" content="false"/>
+	<meta name="ScaleCrop" content="false"/>
+	<meta name="ShareDoc" content="false"/>
+	
+	<!-- Pour utiliser les gadgets jQuery : dans cette page les div toggle-->
+	<script src="../../JS/jquery.min.js"></script>
+	<!-- Construction du sommaire dans nav -->
+	<script src="./sommaire.js"></script>
+	
+	<!-- feuille de style externe -->
+	<link rel="stylesheet" type="text/css" href="./programme NSI/styleProgramme.css">
+
+	<!-- feuille de style externe -->
+	<link rel="stylesheet" type="text/css" href="../IUT/CSS/coursDP.css">
+	<style type="text/css"> 
+	label:hover {
+		color:black;
+	}
+	.fondBlanc {
+		color : black;
+		background-color : white;
+	}
+	.red {
+		color : red;
+	}
+	.saisie {
+		  border : 1px solid #c9b7a2;
+		  background : #e4d5c3;
+		  color : #c9b7a2;
+		  padding:8px;
+		  width:100px;
+	}
+	.saisie:focus{
+		  background : #ffffff;
+		  color :#725129;
+	}
+	input[type=text] {
+		width: 50%;
+		padding: 12px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+	}
+
+	.fondformulaire {
+		border-radius: 5px;	
+
+		background-color: #f2f2f2;
+		padding: 20px;
+	}
+	input.ex1[type=search] {
+		width: 90%;
+		border: 2px solid #c0c;
+		border-radius: 10px;
+		font-size: 18px;
+		background-color: white;
+		background-image: url('search-icon.jpg');
+		background-position: 10px 10px;
+		background-repeat: no-repeat;
+		padding: 12px 20px 12px 40px;
+	}
+	input.ex1[type=search]::placeholder {
+		background-color : rgb(128,55,55);
+		color: black;
+	}
+	</style>
+
+	<!-- biliothèque jQuery pour les parties déroulantes -->	
+	</script>
+	<script language="JavaScript">
+		var titrePage = "Blog de Joël Dendaletche : cours sur les cookies";
+		var aurevoir = "&Aacute; bientôt, revenez vite !";
+		var couleurTexte = "rgb(130,230,100)", couleurFond = "rgb(125,25,155)";
+
+		function titre(texte) 
+		{
+			document.title = texte;
+		}
+		var nTitres = 8;
+		function init() 
+		{
+			 construireListeSommaire ();
+			 document.body.style.color = couleurTexte;
+			 document.body.style.backgroundColor = couleurFond;
+			 
+			 /*for (var i = 0 ; i<nTitres ; i++) { 
+				document.getElementById("item_content"+ parseInt(i+1)).hidden = true;
+				//document.getElementById("item_content"+ parseInt(i+1)).style.color = 'yellow';
+			 }*/
+			 document.getElementById("contenuCookie").innerHTML = "<h2>Contenu du cookie de cette page :</h2>";
+			 checkCookie();
+		}
+		function setCookie(cname, cvalue, exdays) {
+			var d = new Date();
+			d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+			var expires = "expires="+d.toUTCString();
+			document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+		}
+
+		function getCookie(cname) {
+			var name = cname + "=";
+			var ca = document.cookie.split(';'); // récupère le contenu du cookie du document et le scinde en liste d'éléments séparés par ;
+			for(var i = 0; i < ca.length; i++) { // boucle qui parcour la liste des éléments du cookie
+				var c = ca[i]; // c est i ième élément du cookie
+				while (c.charAt(0) == ' ') {
+					c = c.substring(1);
+				}
+				if (c.indexOf(name) == 0) {
+					return c.substring(name.length, c.length);
+				}
+			}
+			return "";
+		}
+
+		function checkCookie() {
+			var user = getCookie("username");
+			if (user != "") {
+				alert("Re-bonjour " + user + " !");
+				document.body.style.color = couleurTexte;
+			    document.body.style.backgroundColor = couleurFond;
+			} else {
+				user = prompt("Bonjour, quel est votre prénom SVP ? ", "");
+				if (user != "" && user != null) {
+					setCookie("username", user, 365);
+				}
+			}
+			document.getElementById("contenuCookie").innerHTML +="<br/>" + document.cookie;
+
+		} 
+	</script>
+</head>
+<body lang="fr-FR" onload="init();">
+	<header>
+		<h1>Blog de <abbr title="Joël Dendaletche">jodenda</abbr> </h1>
+	</header><section>
+<main>
+<section>
+<article onload="">
+	
+	<h1>Les <i>cookies</i> ou comment mémoriser le passage d'un client sur son ordinateur</h1>
+	
+	<p></p>
+	
+	<form id="formulaire">
+		<table>
+			<thead>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<label for="couleurTexte">Couleur du texte : valeur = <span id="spCoulTexte"></span></label>
+					</td>
+					<td>
+						<input type="color" value="" id="couleurTexte"  
+						       onchange="couleurTexte = this.value;
+						                 this.style.color = this.value;
+						                 document.getElementById('spCoulTexte').innerHTML= this.value;
+						                 document.body.style.color = this.value;"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="couleurFond">Couleur du fond : valeur = <span id="spCoulFond"></span></label>
+					</td>
+					<td>
+						<input type="color" value="" id="couleurFond" 
+						       onchange="couleurFond = this.value; 
+						                 this.style.backgroundColor = this.value;
+						                 document.getElementById('spCoulFond').innerHTML= this.value;
+						                 document.body.style.backgroundColor = this.value;"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="couleurFond">Valider les changements :</label>
+					</td>
+					<td>
+						<input type="button" value="valider" id="valider" onclick="checkCookie();"/>
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<label for="inititialisation">Ré-initialiser :</label>
+					</td>
+					<td>
+						<input type="reset" value="ré-init" id="inititialisation" />
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+			</tfoot>
+		</table>
+	</form>
+	<h2>Contenu du cookie :</h2>
+	<p id="contenuCookie">
+	
+	</p>
+</article>
+	<!---------------------------------------------------------------->
+	<!------------       Partie navigation, menus    ----------------->
+	<!---------------------------------------------------------------->
+	<nav id="listeSommaire" >
+		
+	<!-- Le sommaire sera écrit ici au chargement de la page par la
+	 procedure (fonction en javascript qui ne renvoie rien ) 
+	 construireListeSommaire ();                                     -->
+	
+	</nav>
+<aside>
+	<h2>JavaScript String Methods</h2>
+
+	<p>The indexOf() method returns the position of the first occurrence of a specified text:</p>
+
+	<p id="demo"></p>
+
+	<script>
+		var str = "Please locate where 'locate' occurs!";
+		var pos = str.indexOf("locate");
+		document.getElementById("demo").innerHTML = 
+		"str = 'Please locate where 'locate' occurs! -> str.indexOf('locate') = " + pos + "<br/>" +
+		".......0____5____0____5____0____5____0____5<br/>" +
+		" cookie : " + document.cookie +
+		"<br/> str.indexOf('locate',15) = " + str.indexOf("locate",15) +
+		" le premier 'locate' est ignoré car il est positionné avant l'index 15, " +
+		"<br/> str.lastIndexOf('locate',15) = " + str.lastIndexOf('locate',15)+
+		"lastIndexOf démarre de la fin ..."
+		"<br/> str.lastIndexOf('locate') = " + str.lastIndexOf('locate') +
+		"<br/> str.search('locate') = " + str.search('locate');
+	</script
+</aside>
+</section>
+<footer>
+	<h2>Sources et liens utiles</h2>
+	<ul>
+		<li><a href="https://www.w3schools.com/js/js_cookies.asp" target="_blank">Les cookies</a> expliqués dans w3school ;</li>
+	
+	</ul>
+</footer>
+</main>
+</body>
+</html>

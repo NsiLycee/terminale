@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<!-- Feuille de style en CSS ------------------------------>
+	<link rel="stylesheet" type="text/css" href="./style.css">
+	
+	<title>Représenter des nombres dans différentes bases</title>
+	<link rel="shortcut icon" href="icone.png" type="image/x-icon"/>
+	<link rel="icon" href="icone.png" type="image/x-icon"/>
+
+	<style>
+				}
+	</style>
+</head>
+<!-- ###################################################################################### -->
+<body onload="init();" onblur="titre(aurevoir);" onfocus="titre(titrePage);">
+
+<h1>Comment sont écrits les nombres</h1>
+
+<h1>Comment sont construits les nombres en bases 10</h1>
+<p>Tableau horizontal avec chiffres, en cliquant sur une case un menu déroulant permet de choisir un chiffre de 0 à 9 ; le nombre obtenu apparaît. <br>
+C'est évident ?<br>Surtout avec dix doigts !<br>
+Et si on comptait avec un seul doigts</p>
+<h1>Comment sont construits les nombres en bases 2 : le binaire</h1>
+<p>Tableau horizontal avec chiffres, en cliquant sur une case un menu déroulant permet de choisir un chiffre de 0 à 1 ; le nombre obtenu apparaît. <br>
+<p>Tableau horizontal avec groupes de points représentant le nombre binaire, en cliquant sur une case, 1 apparait sur la ligne suivante en dessous et le nombre décimal obtenu apparaît. <br>
+
+
+<h1>Pour aller plus loin : comment sont construits les nombres en bases 16 : l'hexa-décimal</h1>
+
+<h1>Comment sont construits les nombres en bases n</h1>
+
+<h1>Comment convertir un nombre d'une base dans une autre</h1>
+<h2>Exemple de la conversion d'un nombre décimal en binaire</h2>
+<h2>Exemple de la conversion d'un nombre binaire en décimal</h2>
+
+<table><tbody>
+	<tr><th></th><th></th><th></th></tr>
+ <tr>	<td>
+			<svg width="50" height="50"><!-- Dessin du nombre de points sous forme d'objets SVG en javascript-->
+				<circ width="300" height="100" x="20" y="30" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
+			</svg> 
+</td>
+		<td></td>
+		<td></td> 
+ </tr>
+ 
+</tbody></table> 
+
+
+<button onclick="init();">Remise à zéro</button>
+
+
+<div id="debug"></div>
+<hr><!-- Ligne de séparation horizontale-->
+<h2>Référence et aides</h2>
+<ul>
+	<li><a href="https://www.jchr.be/html/caracteres.htm">Expression des caractères spéciaux</a></li>
+	<li><a href="https://www.w3schools.com/graphics/svg_rect.asp">Rectangles en mode SVG</a></li>
+	<li><a href="https://www.w3schools.com/graphics/tryit.asp?filename=trysvg_animatemotion2">Animation de texte</a></li>
+	
+	
+	
+
+</ul>
+
+<p id="test" style="font-size: 50%;color : black;background:white;"></p>
+
+<!-- Ici commence le script en javascript ----------------------------->
+<script >
+	// Dimension de l'écran container
+	var l = window.innerWidth;
+	var h = window.innerHeight;
+	var titrePage = "Représenter des nombres dans différentes bases";
+	var aurevoir = "à bientôt, revenez vite !";
+
+	function titre(texte) { document.title = texte; }
+	function init()
+	{
+		document.title = titrePage;
+		document.getElementById("test").innerHTML = "dimension de l'écran : "+ l + " x " + h;
+		document.getElementById("test").style.width = l;
+		document.getElementById("test").style.height = h/10;
+		document.getElementById("test").style.background = "black";
+	}
+</script>
+
+</body><!-- Fin du corps la page HTML --></html><!-- Fin de la page HTML -->

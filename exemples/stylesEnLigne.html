@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html>
+	<!-- Les deux lignes suivantes permettent d'insérer une icône à coté 
+	     de l'onglet de la page -->
+	<link rel="shortcut icon" href="icone.png" type="image/x-icon"/>
+	<link rel="icon" href="icone.png" type="image/x-icon"/>
+		
+	<!-- contenu et construction du sommaire -->
+	<script src="./sommaire.js"></script>
+	<script src="../JS/graphiques.js"></script>
+
+	<!-- chargement à distance des fonctions de jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<script language="JavaScript">
+		var titrePage = "Blog de Joël Dendaletche";
+		var aurevoir = "À bientôt, revenez vite !";
+		//var id = setInterval(ma_fontion, 1000);
+		function titre(texte) 
+		{
+			document.title = texte;
+		}
+		var tab_content = new Array(); // stoque les contenus HTML
+		var replie = new Array(); // stoque l'état ouvert ou replié
+		
+		var nTitres = 11;
+		function init() 
+		{
+			 // alert("debug init");
+			 construireListeSommaire ();
+			 
+			 for (var i = 0 ; i<nTitres ; i++) { 
+				document.getElementById("content_item_"+ parseInt(i+1)).hidden = true;
+			 }
+		}	 
+	</script>
+	
+	<meta charset="utf-8" />
+	<title>
+		Les balises en ligne ou de blocs ; style et utilité
+	</title>
+	
+	<meta name="author" content="Joël Dendaletche"/>
+	<meta name="created" content="2019-09-02"/>
+	<meta name="changed" content="2019-09-16"/>
+	<meta name="Company" content="Lycée La Découverte Decazeville 12300 Aveyron Occitanie France Terre"/>
+	<meta name="description" content="programme NSI première">
+	<meta name="keywords" content="Informatique">
+	<!-- la méta-donnée suivante rafraichit l'écran toute les minutes 
+	<meta http-equiv="refresh" content="60"> désactivé car pénible quand on souhaite conserver l'affichage statique -->
+
+	
+	<!-- feuille de style externe -->
+	<link rel="stylesheet" type="text/css" href="../programme NSI/styleProgramme.css">
+	
+	<!-- feuille de style externe -->
+	<link rel="stylesheet" type="text/css" 
+	      href="../CSS/numerotationTitres.css">
+	<!-- feuille de style interne -->
+   	<style>
+		body {
+				color : rgb(20,20,20);
+				background : rgb(55,55,55);
+		} 
+		table, td {
+			border-collapse : collapse;
+			border : solid black 2px;
+			}
+		/* https://www.w3schools.com/css/css3_border_images.asp */
+		.jolieBordure { 
+				border: 10px solid transparent;
+				padding: 15px;
+				border-image: url(../images/texture/border.png) 30 round;
+		}
+		.jolieBordure:hover {
+			border: 10px solid transparent;
+			padding: 15px;
+			border-image: url(../images/texture/border.png) 30 stretch;
+		}
+		.cadre {
+			border: 10px solid transparent;
+			padding: 15px;
+			border-image: url(../images/texture/border.png) 20% round;
+		}
+		.info {
+			overflow : auto;
+			height : 3%;
+		}
+		.demo + p, .demo + div { /* blocs invisibles sauf ...*/
+			display : none;
+		}
+		 .demo:hover + p, .demo:hover + div /* si survolés par le 
+		 curseur de la souris                        */
+		 {  
+			display : block;
+			color : rgb(55,55,55);
+			background : rgb(200,200,200);
+		}
+		p {
+				width 		: 50%	;
+				height 		: 3%	;
+				overflow 	: auto	; /* idem que scroll */
+		}
+		kbd {
+			border : white 2px solid;
+			border-radius 	: 10px;
+			background 	:	rgba(220,120,120,0.5);
+			color 		: 	rgba(25,135,135,0.5);
+			padding :5px;
+			margin  :5px;
+		}
+		kbd:before, kbd:after {
+			content : "_";
+		}
+		kbd:active {
+			background 	:	rgba(55,235,235,0.5);
+			color 		:	rgba(200,20,20,0.5);
+		}
+		.balise 
+		{
+			color : rgb(20,20,235);
+				}
+		p:hover + .balise
+		{
+			color : rgba(20,20,235,0.2);
+				}
+  		.balise::before {
+			content : "<";
+		}
+		.balise::after {
+			content : ">";
+		}
+		/* donne un style au texte en cours de sélection */
+		::-moz-selection { /* Code for Firefox */
+		  color: red;
+		  background: yellow;
+		}
+		::selection {
+		  color: red;
+		  background: yellow;
+		}
+      </style>
+    </head>
+<!-- la balise body délimite les instructions qui permettront d'afficher le contenu de la page web à l'écran -->
+<body onload="init();" onblur="titre(aurevoir);" onfocus="titre(titrePage);">
+
+	<header class="jolieBordure"> 
+		<p>Travail de Dark Vadoc du groupe de TD n°4, IUT de Tatawin</p>
+	</header>
+	<section><article>
+	<u>Rappel de syntaxe :</u>	
+<span class="balise">une_balise_ouvrante</span> contenu HTML 
+<span class="balise">/une_balise_fermante</span>
+
+<h1>Les balises en ligne (<i>on line</i>)</h1>
+<i>Online Tag :</i> <dfn title="ceci est ma définition encadrée par la 
+balise <dfn></dfn> de ce qu'est une balise en ligne"> Ce sont des 
+balises qui encadrent du texte afin de lui attribuer un 
+sens particulier et ou un aspect typique</dfn>
+<div class="cadre">
+	<table><caption title="les balises rayées sont obsolètes en HTML5">
+		Liste des éléments (balises) en ligne :</caption>
+<tr><td>
+<span class="balise" title="hyper-lien">a</span></td><td>
+<span class="balise" title="abréviation ou acronyme">abbr</span></td><td>
+<span class="balise"><del>acronym</del></span></td>
+<td>
+<span class="balise" title="bold : texte en gras">b</span></td><td>
+<span class="balise" title="sens/orientation de lecture du texte">bdo</span></td><td>
+<span class="balise" title="obsolète en HTML5 ; utiliser abbr"><del>big</del></span></td>
+</tr>
+
+<tr><td>
+
+<span class="balise" 
+	title="balise orpheline break row de retour à la ligne">br</span>
+	</td><td>
+<span class="balise" title="bouton">button</span></td><td>
+<span class="balise" title="citation">cite</span></td>
+<td>
+
+<span class="balise" title="inlineblock de code">code</span></td><td>
+<span class="balise" title="définition" >dfn</span></td><td>
+<span class="balise" 
+	title="emphasized : ce qui est important en italique">em</span></td>
+</tr>
+
+<tr><td>
+
+<span class="balise" title="italique" >i</span></td><td>
+<span class="balise" title="image" >img</span></td><td>
+<span class="balise" title="entrée de données" >input</span></td>
+<td>
+
+<span class="balise" title="référence aux touches du clavier">kbd</span>
+	</td><td>
+<span class="balise" title="étiquette d'un input">label</span></td><td>
+<span class="balise" title="carte associée à une image">map</span></td>
+</tr><tr><td>
+
+<span class="balise">object</span></td><td>
+<span class="balise" title="sortie de données" >output</span></td><td>
+<span class="balise">q</span></td>
+
+<td>
+<span class="balise" title="échantillon (sample) de code">samp</span>
+	</td><td>
+<span class="balise" title="code par défaut en javascript">script</span>
+	</td><td>
+<span class="balise" title="permet de créer une liste déroulante">select
+	</span></td>
+<td></tr>
+
+<tr><td>
+<span class="balise" title="met le texte en taille inférieure">small</span></td><td>
+<span class="balise"title="délimite un morceau de texte pour lui appliquer un style associé à un id ou une classe">span</span></td><td>
+<span class="balise">strong</span></td>
+
+<td>
+<span class="balise" title="pour mettre en indice le texte encadré par la balise <sub> texte </sub>">sub</span></td><td>
+<span class="balise" title="pour mettre en exposant le texte encadré par la balise <sup> texte </sup>">sup</span></td><td>
+<span class="balise" title=" zone de texte sur plusieurs colonnes et lignes, en entrée, modifiable en taille">textarea</span></td>
+
+</tr><tr>
+<td>
+<span class="balise" title="donne une heure">time</span></td><td>
+<span class="balise" title="b pour bold : en gras, utiliser plutôt strong">b</span></td><td>
+<span class="balise" title="">tt</span></td>
+
+<td>
+<span class="balise" title="soulignement: u pour underline">u</span></td><td>
+<span class="balise" title="précise que le contenu concerne une variable">var</span></td><td>
+<span class="balise" title="">wbr</span></td>
+<!-- <td colspan="3"></td> -->
+</tr>
+
+</table>
+
+</div>
+
+<h2>Balises utilisées dans les paragraphes</h2>
+<h3>Pour en indiquer le sens et en modifier l'aspect</h3>
+<h4>couples de balises faussement identiques :</h4>
+<ul>
+	<li><em>Emphasized text :</em> <span class="balise demo">em</span>
+<p> La différence entre <strong>emphasized</strong> et 
+<strong>italic</strong> est de nature sémantique ; c'est à dire que 
+l'emphase est clairement exprimée lorsque l'on utilise 
+<b>&lt;em&gt;</b> plutôt que &lt;<b>i</b>&gt; ; les analyseurs de sites 
+que sont les moteurs de recherche peuvent donc faire la nuance entre un 
+terme important du site et un mot en latin (ou dans n'impporte quelle 
+langue étrangère) que l'on doit mettre en italique !</p>
+<i>Italic text : <span class="balise">i</span> tag</i> ; 
+	</li>
+<li>
+<strong>Strong text : </strong><span class="balise demo">strong</span> tag
+<p> Strong apporte l'idée que le mot est important ; <b>bold</b> n'indique
+qu'une mise en forme que l'on peut d'ailleurs obtenir en CSS avec
+l'expression : font-weight: bold; </p>
+<b> <i>vs</i> bold text : <span class="balise">b</span> tag</b>
+	</li>
+</ul>
+<h4>modification d'aspect</h4>
+<ul>
+	<li><bdo dir="ltr" style="background:pink;color:black;"
+		     onclick="if(this.dir=='ltr') {this.dir='rtl'} else {this.dir='ltr'};">
+		cliquer ici : &nbsp; elu par cette crapule &nbsp;</bdo> ; la balise 
+		<span class="balise demo">bdo</span> ;
+		<p>la balise bdo signale l'orientation de lecture, elle est
+		obligatoirement pourvue de l'<b>attribut dir</b> qui peu prendre soit la 
+		<b>valeur ltr</b> (sens normal) soit la valeur <b>rtl</b> : verlant. 
+		</p>
+	</li>
+	<li>Underline text : <span class="balise demo">u</span>
+		<p>
+			Ce texte est <u>souligné dans certaines parties avec la 
+			balise	<span class="balise">u</span></u>
+		</p>
+	</li>
+	<li>
+		la balise <span class="balise demo">mark</span> permet de 
+		surligner un texte ; en CSS, background-color est à 
+		yellow par défaut ; 
+		<p> La propriété CSS background permet de changer la couleur du 
+		surlignage <mark style="background:orange;">en orange</mark> par
+		exemple.</p>
+	</li>
+	<li>
+		 La balise <span class="balise demo">del</span> permet de rayer du 
+		 texte ;<p> cela permet de montrer le texte de la 
+		 <del>vrresssion</del>version précédent une 
+		<del>grosrequsion</del>correction, ...</p>
+	</li>
+	<li>
+		La balise <span class="balise demo">small</span> permet d'obtenir 
+		un texte de petite taille ;
+		<p>Vous connaissez l'expression : "<i><small><span class="balise">small</span> is beautifull</small></i>" ;</p>
+	</li>
+</ul>
+<h2>Balises sémantiques plus rares (moins usitées)</h2>
+<p>Un grand nombre de balises sont très peu utilisées et c'est un tort ; 
+elles permettent de préciser le rôle du texte qui est encadré par ces balises.</p>
+<p>Quelques exemples :</p>
+<ul>
+	<li>
+		la balise <span class="balise demo">abbr</span> ;
+		<p><strong>abbr</strong> signifie <i>abbreviation</i>, cette 
+		balise doit remplacer la balise <del>acronym</del> qui est 
+		obsolète ; elle sert à préciser à l'aide de l'attribut <strong>
+		title</strong> à partir de quel(s) mot(s) l'abréviation ou
+		l'acronyme est (sont) construits ; exemple 
+		&lt;abbr title="HyperText Markedup Langage"&gt;HTML&lt;/abbr&gt;</p>
+	</li>
+	<li>
+		la balise <span class="balise demo">cite</span> ;
+		<p>permet de baliser une citation ; on peut lui associer en CSS
+		les	pseudo-classes ::before et ::after pour lui ajouter 
+		systématiquement des guillemets </p>
+	</li>
+	<li>
+		la balise précisant une définition <span class="balise demo">dfn
+		</span> <p>elle permet aux moteur de recherche de recenser les
+		définitions d'<strong>une expression ou d'un terme</strong> et 
+		de l'afficher dans les résultats de la requète : definition:
+		<strong>une expression ou un terme</strong></p>	
+	</li>
+</ul>
+
+<h2>Balises spécifiques au thème de l'informatique</h1>
+<ul>
+	<li>
+		La balise <span class="balise">code</span> permet de signaler un
+		code dans n'importe quel langage informatique ; exemple :
+		<br/><code> &lt!-- ceci est un commentaire en HTML --></code>
+	</li>
+	<li>
+		La balise <span class="balise">samp</span> permet de proposer un
+		échantillon (<i>sample</i>) de code dans n'importe quel langage 
+		; exemple :
+		<br/><samp> &lt!-- ceci est un échantillon de commentaire en HTML 
+		--></samp>
+	</li>
+	<li>
+		La balise <span class="balise demo">kbd</span> <p> 
+		<span class="balise demo">kbd</span> (<i>keyboard</i>) permet
+		de signaler une touche ou combinaison de touches du clavier ;
+		par exemple <kbd>Ctrl</kbd>+<kbd>C</kbd> permet de copier ;</p>
+	</li>
+	<li>
+		La balise <span class="balise"><var>Variable</var></span> permet
+		d'indiquer une variable, le style reste à préciser en css ...
+	</li>
+</ul>
+
+ 
+
+<h1> Les balises de blocs (<i>block</i>)</h1>
+<dfn title="ceci est ma définition d\'une balise qui délimite un bloc">
+Un bloc est une groupe d'instructions et il est traité comme un tout ; 
+la balise qui définit le début et la fin du bloc est appelée le container ou parent des
+éléments du bloc appelés enfants (<i>child</i>).</dfn>
+
+<h2>Les blocs utilisés pour partitionner la page web : mise en page 
+(<i>layout</i>)</h2>
+<small>voir <a href="https://www.w3schools.com/html/html_layout.asp" 
+               target="_blank"><i>layout</i></a></small>
+<h3>les blocs de partition globale avec un sens affirmé</h3>
+<ul>
+	<li> la balise <span class="balise demo">article</span> 
+		<div class="info"> la balise <span class="balise demo">article
+		</span> permet		de préciser que son contenu est une 
+		production d'information 
+		telle que celle d'un article de blog, ou une nouvelle, c'est 
+		donc un bloc qui contient une information développée et pas
+		résumée. Ce n'est pas un sommaire, ni un menu, ni un élément 
+		stable du site ; l'article peut être remplacé par un autre ou
+		s'ajouter à d'autres, coomme dans un journal ...
+		</div>
+	</li>
+	<li> la balise <span class="balise demo">aside</span> 
+		<div class="info">en construction</div>
+	</li>
+	<li> la balise <span class="balise demo">footer</span> 
+		<div class="info">en construction</div>
+	</li>
+	<li> la balise <span class="balise demo">header</span> 
+		<div class="info">en construction</div>
+	</li>
+	<li> la balise <span class="balise demo">main</span> 
+		<div class="info">en construction</div>
+	</li>
+	<li> la balise <span class="balise demo">nav</span> 
+		<div class="info">en construction</div>
+	</li>
+	<li> la balise <span class="balise demo">section</span> 
+		<div class="info">en construction</div>
+	</li>
+</ul>
+<h3>les sous blocs : importance moindre</h3>
+<p>Certains blocs ne structurent pas la totalité de la page et peuvent 
+donc être considérés comme des
+sous parties ou sous-blocs eux même inclus dans des blocs majeurs tels 
+que <span class="balise">header</span>
+ou  <span class="balise">nav</span> par exemple.</p>
+<ul>
+	<li>
+		la balise <span class="balise demo">address</span>
+		<div class="info" title="définition de la balise address tirée de https://www.w3schools.com/tags/tag_address.asp">The <span class="balise">address</span> tag defines the contact information for the author/owner of a document or an article.<br/>
+		If the <span class="balise">address</span> element is inside the <span class="balise">body</span> element, it represents contact information for the document.<br/>
+		If the <span class="balise">address</span> element is inside an <span class="balise">article</span> element, it represents contact information for that article.<br/>
+		The text in the <span class="balise">address</span> element usually renders in italic. Most browsers will add a line break before and after the address element.<br/>
+		Source de cette citation : <a href="https://www.w3schools.com/tags/tag_address.asp" target="_blank">w3school -> address tag</a></p>
+	</li>
+	<li> la balise <span class="balise demo">div</span> 
+		<div class="info" title="la balise div pour division, sert à tout et trop souvent n'importe quoi !">
+		<p>La balise div pour <mark><b><u>div</u></b>ision</mark>, sert à tout et trop souvent n'importe quoi !<br/>
+		Elle permet de délimiter un bloc de n'importe quoi, et c'est la classe associée qui précise le sens (sémantique)
+		et le style de ce que l'on y met. Ne pas en abuser et privilégier les balises sémantiques telles que <span class="balise">nav</span>
+		au lieu de créer une classe "nav-bar" ou "menu" dans un div.</p>
+		</div>
+	</li>
+	<li> la balise <span class="balise demo">form</span> 
+		<div class="info">en construction</div>
+	</li>
+
+</ul>
+<h4>les balises liées aux listes : ul, ol, li, dl, dt, dd</h4>
+<p>Les listes sont non ordonnées, avec puces 
+(<abbr title="Unordered List">ul</abbr>) ou non 
+(<abbr title="Description List">dl</abbr>), ou bien
+ordonnées (<abbr title="Ordered List">ol</abbr>). Chaque élément de 
+liste peut contenir tout et n'importe quoi, attention à respecter une
+certaine cohérence (pas de listes de listes de listes de photos).</p>
+
+<h5>les listes non ordonnées</h5>
+<p>Les listes non ordonnées sont utilisées lorsqu'il n'y a pas d'ordre 
+chronologique (donc pas pour des <del>procédures</del> ou des 
+<del>recettes</del>). </p>
+<h6>Avec puces : <abbr title="Unordered List">ul</abbr></h6>
+<ul>
+	<li>
+		la balise <span class="balise demo">en construction</span>
+		<div class="info" title="">
+			en construction
+		</div>
+	</li>
+	<li>
+		la balise <span class="balise demo">en construction</span>
+		<div class="info" title="">
+			en construction
+		</div>
+	</li>
+</ul>
+<h6>Sans puces : <abbr title="Description List">dl</abbr></h6>
+<p>exemple tiré de w3school :</p>
+<dl>
+  <dt>Coffee</dt>
+  <dd>Black hot drink</dd>
+  <dt>Milk</dt>
+  <dd>White cold drink</dd>
+</dl>
+<ul>
+	<li>
+		la balise <span class="balise demo" title="liste de description
+		sans puces ni numérotation">dl</span>
+		<div class="info" title="">
+			<abbr title="Description List">dl</abbr> = liste de description
+		sans puces ni numérotation
+		</div>
+	</li>
+	<li>
+		la balise <span class="balise demo">dt</span>
+		<div class="info" title="">
+			<abbr title="Description Term">dt</abbr> sert à donner un 
+			terme (à définir avec un dd).
+		</div>
+	</li>
+	<li>
+		la balise <span class="balise demo">dd</span>
+		<div class="info" title="">
+			<abbr title="Description Data">dt</abbr> sert à donner une 
+			description ou définition d'un terme donné par dt.
+		</div>
+	</li>
+</ul>
+
+<h5>les listes ordonnées : ol avec un bloc de li</h5>
+<ul>
+	<li>
+		la balise <span class="balise demo">en construction</span>
+		<div class="info" title="">
+			en construction
+		</div>
+	</li>
+	<li>
+		la balise <span class="balise demo">en construction</span>
+		<div class="info" title="">
+			en construction
+		</div>
+	</li>
+</ul>
+
+<h2>Les blocs liés aux tableaux :</h2>
+<ul>
+	<li> la balise <span class="balise demo">fieldset</span> 
+		<div class="info">
+			<p><br/><br/></p>
+			<fieldset style="margin:30px;borer: groove 5px yellow;">
+				<legend>Titre défini avec la balise <span 
+		               class="balise">legend</span></legend>
+				<p>Ici se place souvent ...<br/> 
+				<p></p>un formulaire</p>          <hr>    
+		               
+			</fieldset>
+			<p><br/><br/></p>
+		</div>
+	</li>
+	<li> la balise <span class="balise demo" 
+	            title="sert de titre généralaux tableaux">caption</span> 
+		<div class="info">
+			<table><caption>Mini tableau</caption>
+				<tr></tr>
+			</table>
+		</div>
+	</li>
+	<li> la balise <span class="balise demo">table</span> 
+		<div class="info">
+		</div>
+	</li>
+	<li> la balise <span class="balise demo">tbody</span> 
+		<div class="info">
+		</div>
+	</li>
+	<li> la balise <span class="balise demo">td</span> 
+		<div class="info">
+			<p>C'est la balise qui défini une cellule de données (<i>d 
+			as 	data</i> ou case banale du tableau</p>
+			<p><strong>N.B. : </strong> sur une ligne (<i>row</i>)
+			encadrée par <span class="balise">tr</span>, toutes les 
+			balises de cellules doivent être identiques (soit que des
+			td soit que des th) ;</p>
+		</div>
+	</li>	
+	<li> la balise <span class="balise demo">th</span> 
+		<div class="info">
+			<p>C'est la balise qui défini une cellule de titre (<i>h as 
+			head</i> ou case de titre du tableau</p>
+			<p><strong>N.B. : </strong> sur une ligne (<i>row</i>)
+			encadrée par <span class="balise">tr</span>, toutes les 
+			balises de cellules doivent être identiques (soit que des
+			td soit que des th) ;</p>
+		</div>
+	</li>
+	<li> la balise <span class="balise demo">tr</span> 
+		<div class="info">
+			<p>C'est la balise qui défini une ligne (<i>r as 
+			row</i> </p>
+			<p><strong>N.B. : </strong> sur une ligne (<i>row</i>)
+			encadrée par <span class="balise">tr</span>, toutes les 
+			balises de cellules doivent être identiques (soit que des
+			td soit que des th) ;</p>
+		</div>
+	</li>	
+	<li> la balise <span class="balise demo">thead</span> 
+		<div class="info">
+		</div>
+	</li>
+	<li> la balise <span class="balise demo">tfoot</span> 
+		<div class="info">
+		</div>
+	</li>
+	
+<</ul>
+<h2>Les blocs de titres et légendes</h2>
+	<ul>
+		<li>
+			Les balises <span class="balise demo">hn</span> avec n valant de 
+			1 à 6 ;
+			<p><span class="balise">h1</span>Plan caché<span 
+			class="balise">/h1</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<span class="balise">h2</span>sous titre de niveau 1
+			<span class="balise">/h2</span>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<span class="balise">h2</span>sous titre de niveau 1
+			<span class="balise">/h2</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<span class="balise">h3</span>sous titre de niveau 2
+			<span class="balise">/h3</span></p>
+		</li>
+	<li> la balise <span class="balise demo">blockquote</span> 
+		<div class="info">
+		</div>
+	</li>
+	<li> la balise <span class="balise demo">figcaption</span> 
+		<div class="info">
+		</div>
+	</li>
+	<li> la balise <span class="balise demo">figure</span> 
+		<div class="info">
+		</div>
+	</li>
+	<li> la balise <span class="balise demo">en construction</span> 
+		<div class="info">
+		</div>
+	</li>
+	</ul>
+
+
+<!-- reste à traiter
+<audio></audio>
+<blockquote>
+<>
+<>
+<hr>
+<>
+<noscript>
+<p>
+<pre>
+<canvas>
+<svg></svg>
+<video>
+
+-->
+
+ <details>
+  <summary>Ici c'est le résumé de ...</summary>
+  <h2>Un mini exposé sur ...</h2>
+  <img src="../images/divers/clown-630883_960_720.jpg" />
+  <p> bla bla bla</p>
+  <p>All content and graphics on this web site are the property of the 
+  company RodezData.</p>
+</details>
+
+	</article>
+	<!---------------------------------------------------------------->
+	<!------------       Partie navigation, menus    ----------------->
+	<!---------------------------------------------------------------->
+	<nav id="listeSommaire" >
+		
+	<!-- Le sommaire sera écrit ici au chargement de la page par la
+	 procedure (fonction en javascript qui ne renvoie rien ) 
+	 construireListeSommaire () est appelée par init() lui même
+	 déclenché au chargement de la page : body onload="init();";     -->
+	
+	</nav>
+	</section>
+	<footer>
+		<h2><a id="incognito" href="./IUT/QCM/exoQCM1.html">Liens utiles :</a></h2>
+		<ul>
+			<li>tutoriel w3school pour<a href="https://www.w3schools.com" 
+			                             target="_blank"> 
+			                             HTML, CSS, JS, Python ;</a></li>
+			<li>section "how to" du tutoriel w3school
+			   <a href="https://www.w3schools.com/css/css_howto.asp" 
+			      target="_blank"> pour <abbr
+			                              title="Cascade Style Sheet">
+			                              CSS</abbr> ;</a></li>
+			<li><a href="https://icon-icons.com" target="_blank">
+				bibliothèque d'icones et images libres.</a></li>
+			<li>Site de M Markey : <a href="http://markey.free.fr/" 
+			    target="_blank">cours tableur et éditeur HTML en ligne
+			    </a></li>
+			<li><a href="https://www.jchr.be/html/caracteres.htm" 
+			target="_blank">Caractères spéciaux utiles</a> </li>
+			<li>un cours complet de <a 
+			    href="https://www.pierre-giraud.com/html-css-apprendre-coder-cours/" 
+			    target="_blank">Pierre Giraud</a> </li>
+			
+		</ul>
+		<p id="debug"></p>
+	</footer>
+
+	
+</body>
+</html>

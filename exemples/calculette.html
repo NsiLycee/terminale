@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<!--  -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="author" content="Joël Dendaletche"/>
+	<meta name="created" content="2019-09-02"/>
+	<meta name="changed" content="2019-09-16"/>
+	<meta name="Company" content="Lycée La Découverte Decazeville 12300 Aveyron Occitanie France Terre"/>
+	<meta name="description" content="programme NSI première">
+	<meta name="keywords" content="Informatique">
+	<!-- la méta-donnée suivante rafraichit l'écran toute les minutes 
+	<meta http-equiv="refresh" content="60"> désactivé car pénible quand on souhaite conserver l'affichage statique -->
+
+	
+	<!-- feuille de style externe -->
+	<link rel="stylesheet" type="text/css" href="./css/calculette.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/numerotationTitres.css">
+	
+	<title>calculatrice</title>
+	<style>
+
+	</style>
+</head>
+<body>
+	<nav>
+		<ul>
+			<li>
+				<a href="javascript:alert('Aide à construire');">Home</a>
+			</li>
+			<li class="dropdown">
+				<a href="javascript:void(0)" class="dropbtn">Afficher/Cacher</a>
+				<div class="dropdown-content">
+					<a href="javascript:rendVisible('','reglages');">Réglages de l'aspect</a>
+					<a href="javascript:rendVisible('','echiquier');rendVisible('','calculette');">Échiquier</a>
+					<a href="javascript:rendVisible('','calculette');rendVisible('','echiquier');">Calculette</a>
+				</div>
+			</li>
+			<li class="dropdown">
+				<a href="javascript:void(0)" class="dropbtn">En construction</a>
+				<div class="dropdown-content">
+					<a href="#">En construction</a>
+					<a href="#">En construction</a>
+					<a href="javascript:alert('debug');">debug</a>
+				</div>
+			</li>
+			<li>
+				<a href="javascript:rendVisible('','idAide');">Aide</a>
+			</li>
+		</ul>
+	</nav>
+	
+	<section>
+	<article id="echiquier" hidden>
+		<table>
+			<tr><td>&#9814;</td><td>&#9816;</td><td>&#9815;</td><td>&#9819;</td><td>&#9812;</td><td>&#9815;</td><td>&#9816;</td><td>&#9814;</td></tr>
+			<tr><td>&#9817;</td><td>&#9817;</td><td>&#9817;</td><td>&#9817;</td><td>&#9817;</td><td>&#9817;</td><td>&#9817;</td><td>&#9817;</td></tr>
+			<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>&#9823;</td><td>&#9823;</td><td>&#9823;</td><td>&#9823;</td><td>&#9823;</td><td>&#9823;</td><td>&#9823;</td><td>&#9823;</td></tr>
+			<tr><td>&#9820;</td><td>&#9822;</td><td>&#9821;</td><td>&#9819;</td><td>&#9818;</td><td>&#9821;</td><td>&#9822;</td><td>&#9820;</td></tr>			
+		</table>
+	</article>
+	<article id="calculette">
+	<table>
+		<thead>
+			<tr><th colspan="6"><input id="affichage" type="text" placeholder="votre calcul ici"/></th></tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td onclick="calcul = '';document.getElementById('affichage').value = calcul;"><input type="reset" value="Raz" /></td>
+				<td onclick="add(this);">/</td>
+				<td onclick="add(this);">*</td>
+				<td onclick="add(this);">-</td>
+				<td onclick="calcul='('+calcul+')**.5';aff.value = eval(calcul);">racine<sup>2</sup></td>
+				<td onclick="calcul+='Math.PI';aff.value = calcul;">&pi;</td>
+			</tr>
+			<tr>
+				<td onclick="add(this);">7</td>
+				<td onclick="add(this);">8</td>
+				<td onclick="add(this);">9</td>
+				<td onclick="add(this);" rowspan="2">+</td>
+				<td onclick="add(this);">(</td>
+				<td onclick="calcul+='log(';aff.value = calcul;">log(</td>
+			</tr>
+			<tr>
+				<td onclick="add(this);">4</td>
+				<td onclick="add(this);">5</td>
+				<td onclick="add(this);">6</td>
+				<td onclick="add(this);">)</td>
+				<td onclick="calcul+='ln(';aff.value = calcul;">ln(</td>
+			</tr>
+			<tr>
+				<td onclick="add(this);">1</td>
+				<td onclick="add(this);">2</td>
+				<td onclick="add(this);">3</td>
+				<td rowspan="2" onclick="calculer();">Entr</td>
+				<td onclick="calcul += '**';aff.value = calcul;">x<sup>y</sup></td>
+				<td onclick="calcul+='Math.tan(';aff.value = calcul;">tan(</td>
+			</tr>
+			<tr>
+				<td onclick="add(this);" colspan="2">0</td>
+				<td onclick="add(this);">.</td>
+				<td onclick="calcul+='Math.sin(';aff.value = calcul;">sin(</td>
+				<td onclick="calcul+='Math.cos(';aff.value = calcul;">cos(</td>
+			</tr>
+		</tbody>
+	</table>
+	</article>
+	<article id="idAide" hidden>
+		<h1>Aide générale : </h1>
+		<p>bla bla</p>
+		<h2>À propos de l'auteur 1 : </h2>
+		<h3>biographie</h3>
+		<p>bla bla</p>
+		<h3>carrière</h3>
+		<p>bla bla</p>
+		<h3>réseaux</h3>
+		<p>bla bla</p>
+		<h2>À propos de l'auteur 2 : </h2>
+		<h3>biographie</h3>
+		<p>bla bla</p>
+		<h3>carrière</h3>
+		<p>bla bla</p>
+		<h3>réseaux</h3>
+		<p>bla bla</p>
+		<h2>À propos de l'auteur 3 : </h2>
+		<p>bla bla</p>
+		<h3>biographie</h3>
+		<p>bla bla</p>
+		<h3>carrière</h3>
+		<p>bla bla</p>
+		<h3>réseaux</h3>
+		<p>bla bla</p>
+		<hr/>
+		<h2>Sources :</h2>
+	
+	</article>
+	<aside id="reglages" hidden>
+		<h2>Réglages de l'aspect :</h2>
+		<ul>
+			<li>
+				<a href="#home">home</a>
+			</li>
+			<li class="dropdown">
+				<a href="javascript:void(0)" class="dropbtn">body : toute cette page</a>
+				<div class="dropdown-content">
+					<a href="#">Margin : marge extérieure de <span id="spBodyMargin">0</span></a><input type="range" min="0" max="20" value="0" oninput="document.getElementById('spBodyMargin').innerHTML = document.body.style.margin = this.value + 'px';" />
+					<a href="#">Border : épaisseur de la bordure de <span id="spBodyBorder">0</span></a><input type="range" min="0" max="20" value="0" oninput="document.getElementById('spBodyBorder').innerHTML = document.body.style.borderWidth = this.value + 'px';" />
+					<a href="#">Padding : marge intérieure de <span id="spBodyPadding">0</span></a><input type="range" min="0" max="20" value="0" oninput="document.getElementById('spBodyPadding').innerHTML = document.body.style.padding = this.value + 'px';" />
+					<a href="https://www.w3schools.com/css/css_boxmodel.asp" target="_blank">le modèle "box model"</a>
+				</div>
+			</li>
+			<li>
+				<a href="#news">News</a>
+			</li>
+			<li class="dropdown">
+				<a href="javascript:void(0)" class="dropbtn">Bordures</a>
+				<div class="dropdown-content">
+					<a href="#">Link 1</a>
+					<a href="#">Link 2</a>
+					<a href="#">Link 3</a>
+				</div>
+			</li>
+			<li class="dropdown">
+				<a href="javascript:void(0)" class="dropbtn">Couleurs</a>
+				<div class="dropdown-content">
+					<a href="#">Link 1</a>
+					<a href="#">Link 2</a>
+					<a href="#">Link 3</a>
+				</div>
+			</li>
+			<li class="dropdown">
+				<a href="javascript:void(0)" class="dropbtn">Animations</a>
+				<div class="dropdown-content">
+					<a href="#">Link 1</a>
+					<a href="#">Link 2</a>
+					<a href="#">Link 3</a>
+				</div>
+			</li>
+		</ul>
+	</aside>
+	</section>
+</body>
+<script>
+	var calcul = ""; // rien encore
+	var aff = document.getElementById("affichage") ;
+	
+	function calculer () {
+		aff.value = eval(calcul);
+	}
+	function add (obj) {
+		calcul += obj.innerHTML;
+		aff.value = calcul;
+	}
+	function log (x) {
+		return Math.log(x)/Math.LN10;
+	}
+	function ln (x) {
+		return Math.log(x);
+	}
+		
+	var INVISIBLE = 'none', VISIBLE = 'block';
+	var visibilite = INVISIBLE;
+	// fonction qui rend visible/invisible tout le contenu
+	// de la balise d'id = idCible, sous l'action
+	// d'un bouton ou autre d'id = idOrdre
+	function rendVisible(idOrdre, idCible){	
+		if (idOrdre != "") {
+			let obj = document.getElementById(idOrdre);
+		}
+		if (visibilite == INVISIBLE) {
+			if (idOrdre != "") { obj.value = "Cacher";}
+			visibilite = VISIBLE;
+		}
+		else {
+			if (idOrdre != "") {obj.value = "Afficher";}
+			visibilite = INVISIBLE
+		}
+		document.getElementById(idCible).style.display = visibilite;
+	}
+</script>
+</html>

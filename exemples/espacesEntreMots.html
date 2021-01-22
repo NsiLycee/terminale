@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" >
+	<link rel="shortcut icon" href="icone.png" type="image/x-icon"/>
+	<link rel="icon" href="icone.png" type="image/x-icon"/>
+	<meta name="author" content="Joël Dendaletche"/>
+	<meta name="created" content="2019-09-02"/>
+	<meta name="changed" content="2019-09-16"/>
+	<meta name="Company" content="Lycée La Découverte Decazeville 12300 Aveyron Occitanie France Terre"/>
+	<meta name="description" content="modifications du style d'un texte">
+	<meta name="keywords" content="Exemples CSS HTML JS">
+	<title>modifications du style d'un texte</title>
+	
+	<!-- feuille de style externe -->
+	<link rel="stylesheet" type="text/css" href="../programme NSI/styleProgramme.css">
+
+	<style>
+    	body {
+        	background : url('https://cdn.pixabay.com/photo/2019/09/19/17/40/insects-4489864_960_720.jpg') ; // no-repeat ;
+        	/* image de fond jaune : https://cdn.pixabay.com/photo/2016/11/21/13/29/color-1845394_960_720.jpg*/ 
+        }
+        h1 {
+			text-align: center;
+		}
+    	input {
+        	border:1px dotted black;
+            background : lightblue;
+        }
+        p {
+        	color : darkblue;
+            text-decoration : none;		// pas sous ou sur-ligné
+            font-weight: bold;			//en gras
+        }
+    </style>
+    <script>
+		var nbSpace;
+		function initialisation () {
+			nbSpace = 2;
+			document.getElementById("myP").style.wordSpacing = 	"2px";
+           	document.getElementById("spNSpace").innerHTML =     2;
+           	document.getElementById("myP").style.fontSize =    "100%";
+           	document.getElementById("spTaille").innerHTML =    "100%";
+           	document.getElementById("myP").style.color = 	   "#0000ff";
+           	document.getElementById("spCouleur").innerHTML =   "#0000ff";
+           	document.getElementById("inCouleurTexte").value =   "#0000ff";;
+           	document.getElementById("myP").style.backgroundColor 	= 	"#ffff00";
+           	document.getElementById("spFond").innerHTML 			= 	"#ffff00";
+           	document.getElementById("inFond").value					= 	"#ffff00";;
+		}
+		function changeNSpace() {
+        	nbSpace = document.getElementById("inNSpace").value;
+  			document.getElementById("myP").style.wordSpacing = 	nbSpace + "px";
+           	document.getElementById("spNSpace").innerHTML = 	nbSpace;
+		}
+		function  changeTailleTexte() {
+        	var taille = document.getElementById("inTailleTexte").value;
+  			document.getElementById("myP").style.fontSize = 	taille + "%";
+           	document.getElementById("spTaille").innerHTML = 	taille + "%";
+		}
+		function  changeCouleurTexte() {
+        	var couleur = document.getElementById("inCouleurTexte").value;
+  			document.getElementById("myP").style.color = 		couleur;
+           	document.getElementById("spCouleur").innerHTML = 	couleur;
+		}
+		function  changeFond() {
+        	var couleur = document.getElementById("inFond").value;
+  			document.getElementById("myP").style.backgroundColor 	= 	couleur;
+           	document.getElementById("spFond").innerHTML 			= 	couleur;
+		}
+		function  changeCasse() {
+        	var casse = document.getElementByName("minusMaj").value;
+  			document.getElementById("myP").style.fontVariant 	= 	casse;
+           	document.getElementById("spCasse").innerHTML 		= 	casse;
+		}
+	</script>
+</head>
+<body onload="initialisation ();";>
+	
+    <h1>Exemple de modifications <br/> du style d'un texte</h1><a href="http://jodenda.free.fr">Accueil</a>
+	<p id="myP">This is  an example    paragraph     :<br/>
+       les mots sont écartés de <span id="spNSpace">2</span> 			pixels sont affichés en proportion : <span id="spTaille"></span>.<br/>
+       La couleur du texte a pour code <span id="spCouleur"></span><br/>
+       La couleur du fond a pour code <span id="spFond"></span><br/>
+       La casse du texte (fontVariant) est : <span id="spCasse"></span></p>
+
+	<table style="border: 0px;">
+		<thead></thead>
+		<tbody>
+			<tr>
+				<td><label>Nombre de pixels pour l'espace entre les mots de 1 			:</label></td>
+				<td><input type="range" min="1" max="100" value="2" 					id="inNSpace" onchange="changeNSpace();"/> à 100</td>
+			</tr>
+			<tr>
+				<td><label>Taille du texte de 25% </label></td>
+				<td><input type="range" min="25" max="1000" value="100" 					id="inTailleTexte" onchange="changeTailleTexte();"/> à 1000 %</td>
+			</tr>
+			<tr>
+				<td><label>Couleur du texte </label></td>
+				<td><input type="color"  value="red"  onchange="changeCouleurTexte();" id="inCouleurTexte"/> </td>
+			</tr>
+			<tr>
+				<td><label>Couleur du fond </label></td>
+				<td><input type="color"  value="red"  onchange="changeFond();" id="inFond"/> </td>
+			</tr>
+			<tr>
+				<td><label>minuscules / majuscules </label></td>
+				<td> <form>
+						<input type="radio" name="minusMaj" value="normal" checked onchange="changeCasse();"	> normal 		<br/>
+						<input type="radio" name="minusMaj" value="small-caps"	   onchange="changeCasse();"		> en majuscules	<br/>
+					</form> </td>
+			</tr>
+
+
+		</tbody>
+		<tfoot></tfoot>
+	</table>
+	
+    <h2>Pour voir tout le code de la page, taper Ctrl + U</h2>
+	<code title="code js de la page">
+    	<pre>
+	&lt;script&gt;
+		var nbSpace; // déclaration de la variable
+        
+		function changeNSpace() {
+			
+			// actualisation de la valeur du nombre d'espaces
+			nbSpace = document.getElementById("inNSpace").value;
+			
+			// application du changement de style sur le paragraphe myP
+			document.getElementById("myP").style.wordSpacing = 	nbSpace + "px";
+			
+			// actualisation de l'affichage du nombre d'espace dans le span spNSpace du paragraphe myP
+			document.getElementById("spNSpace").innerHTML = nbSpace;
+		}
+	&lt;/script&gt;
+        </pre>
+    </code>
+</body>
+</html>
