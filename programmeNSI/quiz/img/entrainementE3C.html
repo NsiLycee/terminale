@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title> Quiz E3C NSI </title>
+<!-- ------------------------------------------------------------------>
+    <link rel="stylesheet" type="text/css" 
+          href="../../CSS/style.css">
+    <link rel="stylesheet" type="text/css" 
+          href="../../CSS/numerotationTitres.css">
+    <link rel="stylesheet" type="text/css" 
+          href="../../CSS/ressourcesCachees.css">
+	<link rel="stylesheet" type="text/css" 
+	      href="../../CSS/styleQuiz.css">
+    <link rel="stylesheet" type="text/css" 
+          href="../../CSS/simpleMenuHorizontal.css">
+	<style>
+		.sticky {
+		position: -webkit-sticky;
+		position: sticky;
+		top : 0;
+		width : 80%;
+		text-align : center;
+		background-color: rgb(100,100,50);
+		padding: 15px;
+		font-size: 20px;
+		}	
+		details:nth-child(2) {
+			border : green 2px solid;
+		}
+		td {
+			width : 20%;
+		}
+	</style>
+<!-- ------------------------------------------------------------------>
+	<!-- Les deux lignes suivantes permettent d'insérer une icône à coté 
+	     de l'onglet de la page -->
+	<link rel="shortcut icon" href="../../icone.ico" type="image/x-icon"/>
+	<link rel="icon" href="../../icone.ico" type="image/x-icon"/>    
+	
+<!--script language="JavaScript" src="../../JS/moteurQuiz.js"></script-->
+	<script language="JavaScript" src="../../JS/affichages.js"></script>
+	<script language="JavaScript" src="quizE3C_NSI_global.js"></script> 
+<script>
+var titrePage = "Quiz E3C NSI ";
+	var aurevoir = "À bientôt, revenez vite !";   //À = Alt + 0192
+	//var id = setInterval(ma_fontion, 1000);
+	
+function titre(texte) 
+{
+	document.title = texte;
+}	
+
+var nT = Q.length; //constante
+var nE = []; // effectifs des questions ; tableau 2D [theme][serie]
+var nQ = [];
+var nS = []; // nombre de séries dans chaque thème ; tableau 1D [theme]
+var themes = ['A','B','C','D','E','F','G'];
+var descriptionThemes = [
+	"types de base: nombres entiers, flottant, string", 
+	"types construits",
+	"données en table",
+	"web 2.0, HTML, CSS et JS",
+	"architecture matérielle et système",
+	"langages de programmation",
+	"algorithmique"];
+var series = ['S1','S2','S3','S4','S5','S6'];
+var questFaites = []; // liste des liste de questions faites
+var totauxParTheme = new Array(themes.length); // liste des totaux de questions faites par thème
+
+function init () {
+	affScore ();
+	affQuiz ();
+}
+function affQuiz () {
+	let zoneQ = document.getElementById("zoneQuestions");
+	let theme, serie, reponse;
+	let temp1, temp2;
+	////////////////////////////////////////////////////////////////////
+	let numQ = 0; // pour l'instant il n'y a pas de choix dans le nombre
+	/////////////////// de questions possibles (pas de tirage aléatoire)
+	//// ensuite numQ sera tiré au hasard entre 0 et nE[theme][serie]-1
+	
+	/* Construction du questionnaire en HTML */
+	contenuHTML = "<p>Questionnaire à faire en 2 h</p>";
+
+	// nombre de questions par séries (nE) et de séries par thèmes (nS)
+	for (theme = 0; theme < nT; theme++ ) {
+		nS.push(Q[theme].length);
+		totauxParTheme [theme] = 0;
+		temp1 = [];
+		temp2 = [];		
+		for (serie = 0; serie < nS[theme]; serie++ ) {
+			temp1.push(Q[theme][serie].length);
+			temp2.push(1);
+		}
+		nE.push(temp1);
+		nQ.push(temp2);
+		questFaites.push([0,0,0,0,0,0]);
+	}
+		
+	for (theme = 0; theme < nT; theme++ ) {
+		contenuHTML += "<h1>Thème "+themes[theme]+
+		"</h1><div>" ; 	
+		for (serie = 0; serie < nS[theme]; serie++ ) {
+			// tirage aléatoire des questions dans le stock
+			nQ [theme][serie] = Math.floor(Math.random() * 
+								nE [theme][serie]) + 1; 
+			numQ = nQ [theme][serie] - 1;
+			contenuHTML += "<details><summary>Q" + themes[theme] + "." + 
+			eval(serie + 1) + " :<br/>  " +
+				Q[theme][serie][numQ].Question +
+				"</summary><table><tbody>";
+			// éventuellement une image en titre de tableau
+			contenuHTML += "<tr><td colspan='2'><img src='"+
+			Q[theme][serie][numQ].linkImage + 
+				"'/></td></tr>"; 
+			
+			for (reponse = 0; 
+			     reponse < Q[theme][serie][numQ].nb_rep; 
+			     reponse++ ) {
+				contenuHTML += "<tr><td><input type='radio' id='r"+
+				theme+"_"+serie+"_"+reponse+"' "+
+				"onclick='corriger(this,"+theme+","+serie+","+reponse+
+			    ");'><label for='r"+ theme+"_"+serie+"_"+reponse+"' >" +
+			   Q[theme][serie][numQ].propositions[reponse]+
+				"</label></td>"+
+				
+				"<td class='correction' id='corr"+
+				theme+"_"+serie+"_"+reponse+"' >  </td></tr>";
+			}
+			contenuHTML += "</tbody></table></details></div>";
+		}
+		
+	}	
+	zoneQ.innerHTML = contenuHTML; ;
+}
+
+var score = 0;
+
+var numPropPreced = 0;
+var numObj = 0;
+var couleurRep = ["red", "blue","orange"];
+var Faux = 0;
+var Vrai = 1;
+var Neutre = 2;
+var nEssais = 1;
+var scoreNFaits = [0,0,0,0,0,0,0];
+var start = false;
+
+function corriger(obj, t, s, r) { 
+		
+		var valeurRep = Vrai;
+		var numQ = nQ [t][s] - 1;
+		// efface la réponse précédente
+		var objPrecedent = document.getElementById("corr"+t+"_"+s+
+							"_"+numPropPreced+"");
+		
+		objPrecedent.style.border = "solid 1px black";
+		objPrecedent.innerHTML = ""; // déja vu 
+		
+		var rep = document.getElementById("corr"+t+"_"+s+"_"+r+"");
+		//rep.style.border = "groove 5px " + couleurRep;
+		var affichage = Q[t][s][numQ].correction[r];
+		rep.innerHTML = affichage;
+		
+		// Style d'affichage des réponses
+		//rep.style.width = "300%";
+		if (Q[t][s][numQ].justesse[r] == 0) {
+			valeurRep = Neutre;
+			}
+		else if (Q[t][s][numQ].justesse[r] < 0) {
+			valeurRep = Faux;
+			}
+		else {
+			valeurRep = Vrai;
+		}
+		rep.style.border = "groove 5px " + couleurRep[valeurRep];
+		
+		numPropPreced = r;
+		
+		if ( questFaites [t][s] == 0 ) { 
+			score += parseInt(Q[t][s][numQ].justesse[r]);
+			questFaites [t][s] = 1;
+					
+			var i;
+			totauxParTheme [t] = 0;
+			for (i = 0; i < nS[t]; i++) {
+				totauxParTheme [t] += questFaites [t][i];
+		}
+		// affichage du score
+		affScore ();
+		}
+}
+function affScore () {
+		// affichage du score
+		var i, j, contenu = "";
+		var affScore = document.getElementById("score"), croix = "";   
+		var nT = themes.length;
+		         
+	//contenu += debugQ ();
+	
+	contenu += "<table><tr><td rowspan='3'>votre score actuel est de " +
+	    score + " sur " + nEssais + " --&gt;" + 
+	    eval(score*20/nEssais).toString().slice(0,4) + " sur 20" +
+		"</td>"; 
+		nEssais += 1;
+		for (i = 0; i < nT; i++)
+		{
+		contenu += "<td><label for='theme"+themes[i]+"'>"+themes[i]+
+		" :</label><meter id='"+	"theme"+themes[i]+ 
+		"title ='"+descriptionThemes [i]+"'" +
+		"' value='"+totauxParTheme [i]+"' max='6'> 100% </meter>"; <!-- progress s meter-->
+			for (j = 0; j < nS[i]; j++)
+			{
+				if ( questFaites [i][j] ) { croix = "x"; } else { croix = "_";}
+				contenu += croix + " ";
+			};
+		contenu += "</td>";
+		if (i == 2 || i == 5) {
+			contenu += "</tr><tr>";};
+		}; 
+		contenu += "<td></td><td></td></tr></table>";
+		
+		affScore.innerHTML = contenu;
+}
+function debugQ () {
+	var texteHTML ="<p>", i, j;
+	
+/*
+	"Nb thèmes = " + nT + "<br/>" +
+		"Nb séries = " + nS + "<br/>" +
+		"Nb quest = "  + nE + "<br/>" +
+		"A = "  + A + "<br/>"*/
+	
+	texteHTML += nQ + "<br/>" + nE;
+	/*
+	for (i = 0; i < 7; i++)
+	{			
+		texteHTML += "totauxParTheme ["+i+"]: "+ totauxParTheme [i];
+		for (j = 0; j < 6; j++)
+		{
+		texteHTML += "  questFaites ["+i+", "+j+"] : " +  
+					  questFaites [i, j] ;
+		}
+		texteHTML += "<br/>";
+	}
+	*/
+	return texteHTML + "</p>";
+}
+</script>
+</head>
+<!-- ------------------------------------------------------------------>
+
+<body onload="init();" onblur="titre(aurevoir);" 
+      onfocus="titre(titrePage);">
+<!-- ------------------------------------------------------------------>
+<nav>
+	<ul class="menu">
+		<li><a href="../../index.html">retour à la page d'accueil</a>
+		</li>
+		<li><a href="../../niveau_1.html">retour à la page NSI</a></li>
+		<li><a href="../../programmeNSI/ressources/ressource_0.html">
+			bonnes pratiques</a>
+		</li> 
+	</ul>
+</nav>
+<header>
+	<p id="titrePrincipal">Partie entraînement : dérouler (et enrouler) 
+	les questions ;  </p>
+	<p>	essayez de battre votre record !</p>
+	<p>Le programme de première peut se découper en sept parties et 
+	l'examen E3C propose différents sujets constitués par <mark>sept QCM 
+	de six questions</mark> chacun, soit 42 questions en tout, en moins 
+	de deux heures.<br/>Cela fait donc en moyenne 2 à 3 minutes par 
+	question, il y a donc intérêt à être entraîné !</p>
+	
+</header>
+<div class="sticky" id="score">
+	<table>
+		<tr><td rowspan="3" >Votre score : 0</td>
+		    <td><label for="themeA">A :</label>
+<progress id="tAP" value="0" max="6"> 100% </progress></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td></tr>		
+		<tr><td></td><td></td><td></td></tr>
+	</table>
+</div>
+<!-- ------------------------------------------------------------------>
+<!-- --------------------     zone des questions   -------------------->
+<section>
+	<article id="zoneQuestions">
+	
+	</article>
+	
+	<aside>
+<!-- ------------------------------------------------------------------>
+<!-- --------------------    Menu latéral    -------------------------->
+<p id="titrePrincipal">Choix de la partie :</p>
+<nav>
+	<ol onclick="afficheItem();" type="A">
+		<li>représentation des données : types et valeurs de base ;</li>
+		<li>représentation des données : types construits ;</li>
+		<li>traitement de données en tables ;</li>
+		<li>interactions entre l’homme et la machine sur le Web ;</li>
+		<li>architectures matérielles et systèmes d’exploitation ;</li>
+		<li>langages et programmation. </li>
+		<li>algorithmique	</ol>
+</nav>
+	</aside>
+</section>
+
+<p id="debug">------------</p>
+
+<footer>
+	<p> <u>Sources et liens utiles vers d'autres sites d'entraînement :
+		</u></p>
+	<ul class="menu">
+		<li><a href="https://stephane-bonnaud.fr/qcm-e3c-nsi/"  
+		       target="_blank"
+		       title = "complement à 2, hexadécimaux, ...">
+		       thème A</a> 
+		       </li>
+		       
+		<li><a href=""  
+		       target="_blank"
+		       title = "">
+		    rappels sur les thèmes &gt;
+		    </a>
+		</li>
+		<li><a href="javascript:voir('typeBase');"  
+		       title = "types de base">
+				A
+		    </a>
+		</li>
+		<li><a href="javascript:voir('typeConstruits');"  
+		       title = "types construits">
+				B
+		    </a>
+		</li>
+		<li><a href="javascript:voir('donneesTables');"  
+		       title = "traitement des données en tables">
+				C
+		    </a>
+		</li>
+		<li><a href="javascript:voir('interactionWeb');"  
+		       title = "interaction homme machine Web">
+				D
+		    </a>
+		</li>
+		<li><a href="javascript:voir('systExploitation');"  
+		       title = "architecture matérielle et système d'exploitation">
+				E
+		    </a>
+		</li>
+		<li><a href="javascript:voir('langageProgrammation');"  
+		       title = "langage et programmation">
+				F
+		    </a>
+		</li>
+		<li><a href="javascript:voir('algorithmique');"  
+		       title = "algorithmique">
+				G
+		    </a>
+		</li>
+	</ul>
+</footer>
+<!-- --------------------------------------------------------------- -->
+<!-- --------------     -------------- -->
+
+<article id="typeBase" class="ressourceCachee" >
+ 	<button class="btnQuitter" onclick="voir('typeBase');" >X
+	</button>
+	<h1>Rappels sur les types de base :</h1>
+	<h2>les nombres : binaires, hexadécimaux, entier, flotants</h2>
+	<p>Le principe d'écriture est le même pour tous les nombres 
+		en chiffres arabes (écriture du <mark>plus petit à droite</mark> 
+		et du plus grand à gauche) ; s'il y a <mark>N chiffres</mark>, 
+		le nombre est la somme
+		de tous ses chiffres que multiplie sa base élevée à la puissance
+		N-n-1 pour n allant de 0 à N-1<br/>Cela donne par exemple pour
+		la base 2 : le nombre décimal 137 s'écrit en binaire 10001001 
+		car 10000101 = 2<sup>7</sup> + 2<sup>3</sup> + 1<sup>0</sup> 
+		= 1 x 128 + 1 x 8 + 1 x 1
+		<br/>
+		Cela donne par exemple pour la base 16 (hexadécimale) : <br/>le 
+		nombre décimal 133 s'écrit en hexadécimal 85 
+		car 133 = 8 x 16<sup>1</sup> + 5 x 16<sup>0</sup>
+		<br/>le nombre décimal 195829793 s'écrit en hexadécimal bac2021
+		<br/> en notant A = 10, B = 11, etc &hellip;<br/>
+		car 195829793 = 11 x 16<sup>6</sup>+ 10 x 
+		16<sup>5</sup>+ 12 x 16<sup>4</sup>+ 2 x 16<sup>3</sup>+ 2 x 16
+		<sup>1</sup>+ 1 x 16<sup>0</sup>
+	</p>
+		<h3>Les nombres en binaire :</h3>
+	<details><summary>binaires</summary>
+		<p>La base deux utilise uniquement les symboles 0 et 1 pour 
+		écrire tous les nombres.</p>
+		<p>Les nombres entiers sur un octet vont de -127 à +127, le 
+		codage du <mark>signe négatif</mark> se fait par 
+		<mark>complémentation à deux
+		</mark> de son opposé.<br/> Cela signifie que chaque bit est 
+		inversé puis on ajoute 1 au résultat, par exemple : <br/>
+		le complément à 2 de 7 sur un octet (0000 0111) est 1111 1000 + 
+		1 soit 1111 1001 qui est égale à l'<mark>opposé de 7 ; soit -7
+		</mark><a 
+		href="https://fr.wikipedia.org/wiki/Compl%C3%A9ment_%C3%A0_deux" 
+		target="_blank">(cf. wikipedia)</a></p>
+		<p>Remarques :</p> 
+		<ul>
+			<li>
+		en python le nombre entier peut être aussi grand 
+		que l'on veut : <br/>taper 2**1024, le nombre qui s'affiche est 
+		codé sur 128 octets !</li>
+			<li> diviser par 2 un nombre binaire revient à décaler ses 
+			chiffres de 1 vers la gauche et multiplier par 2 c'est 
+			l'inverse, par exempe : <br/>
+			110 = 5  >   11 = 3 et  1100  = 110 x 10 (ici 10 veut dire 2
+			)</li>
+		</ul>
+		<script> 
+		function calcBinaire (pos, obj) {
+			bit[pos-1] = obj.value;
+			let i, formule = "", n = 0, texteHTML = "";
+			for (i=0;i<8;i++) { n += bit[i]*Math.pow(2, i);
+				formule = bit[i] + " x 2<sup>"+i+"</sup> + " + formule; 
+			}
+			document.getElementById("resultatBin").innerHTML = n + 
+			" = " +	formule;
+			}</script>
+		<form action="" method="post">
+		<table class="tabBin">	<tr></tr><tr>
+			<td width="10px"><input type="number" min="0" max="1" 
+			value="0" onclick="calcBinaire (8, this)" /></td>
+			<td width="10px"><input type="number" min="0" max="1" 
+			value="0" onclick="calcBinaire (7, this)" /></td>
+			<td width="10px"><input type="number" min="0" max="1" 
+			value="0" onclick="calcBinaire (6, this)" /></td>
+			<td width="10px"><input type="number" min="0" max="1" 
+			value="0" onclick="calcBinaire (5, this)" /></td>
+			<td width="10px"><input type="number" min="0" max="1" 
+			value="0" onclick="calcBinaire (4, this)" /></td>
+			<td width="10px"><input type="number" min="0" max="1"
+			 value="0" onclick="calcBinaire (3, this)" /></td>
+			<td width="10px"><input type="number" min="0" max="1" 
+			value="0" onclick="calcBinaire (2, this)" /></td>
+			<td width="10px"><input type="number" min="0" max="1" 
+			value="0" onclick="calcBinaire (1, this)" /></td>
+				</tr>
+			<tr><td> = </td><td COLSPAN="6" ID="resultatBin">
+<!-- <input type="text" value="0" disabled id="resultatBin"/> --></td>
+			<td>
+			<input type=reset value="effacer" 
+	onclick="document.getElementById('resultatBin').innerHTML = '';"/>
+			</td></tr></form>
+		</table>
+		
+	</details>
+	<h3>Les nombres en hexadécimal :</h3>
+	<details><summary>hexadécimaux</summary>
+		<p></p>
+		<script> 
+		var chifHexaDec = { '0' : 0 , '1' : 1 , '2' : 2 , '3' : 3 , 
+			'4' : 4 , '5' : 5 , '6' : 6 , '7' : 7 , '8' : 8 , '9' : 9 , 
+			'A' : 10 , 'B' : 11 , 'C' : 12 , 'D' : 13 , 'E' : 14 , 
+			'F' : 15 }; 
+		var chifDecHexa = { '0' : '0' , '1' : '1' , '2' : '2' , 
+			'3' : '3' , '4' : '4' , '5' : '5' , '6' : '6' , '7' : '7' , 
+			'8' : '8' , '9' : '9' , '10' : 'A' , '11' : 'B' , 
+			'12' : 'C' , '13' : 'D' , '14' : 'E' , '15' : 'F' }; 
+		function calcHexa(pos, obj) {
+			hexaNum[pos-1] = obj.value;
+			let chiffre =  chifDecHexa[""+obj.value+""];
+			let nbHex = "";
+			let i, formule = "", n = 0, texteHTML = "";
+			for (i=0;i<9;i++) { n += hexaNum[i]*Math.pow(16, i);
+				formule = hexaNum[i] + " x 16<sup>"+i+"</sup> + " + formule; 
+				nbHex += chifDecHexa[""+hexaNum[i]+""] + nbHex;
+			}
+			document.getElementById("resultatHexa").innerHTML = n + 
+			" = " +	formule + " = " + nbHex;
+			}</script>
+		<form action="" method="post">
+		<table class="tabBin">	<tr>
+			<td width="10px"><input type="number" min="0" max="15" 
+			value="0" onclick="calcHexa (9, this)" /></td>
+			<td width="10px"><input type="number" min="0" max="15" 
+			value="0" onclick="calcHexa (8, this)" /></td>
+			<td width="10px"><input type="number" min="0" max="15" 
+			value="0" onclick="calcHexa (7, this)" /></td>
+			<td width="10px"><input type="number" min="0" max="15" 
+			value="0" onclick="calcHexa (6, this)" /></td>
+			<td width="10px"><input type="number" min="0" max="15" 
+			value="0" onclick="calcHexa (5, this)" /></td>
+			<td width="10px"><input type="number" min="0" max="15" 
+			value="0" onclick="calcHexa (4, this)" /></td>
+			<td width="10px"><input type="number" min="0" max="15"
+			 value="0"onclick="calcHexa (3, this)" /></td>
+			<td width="10px"><input type="number" min="0" max="15" 
+			value="0" onclick="calcHexa (2, this)" /></td>
+			<td width="10px"><input type="number" min="0" max="15" 
+			value="0" onclick="calcHexa (1, this)" /></td>
+				</tr>
+			<tr><td> = </td><td COLSPAN="14" ID="resultatHexa">
+<!-- <input type="text" value="0" disabled id="resultatBin"/> --></td>
+			<td>
+			<input type=reset value="effacer" 
+	onclick="document.getElementById('resultatBin').innerHTML = '';"/>
+			</td></tr></form>
+		</table>
+	</details>
+	<h3>Les nombres entiers :</h3>
+	<details><summary>entiers</summary>
+		<p></p>
+	</details>
+	<h3>Les nombres en virgule flotante :</h3>
+	<details><summary>"les réels"</summary>
+		<p>Seuls les nombres qui sont composés de la somme de puissances
+		de 2 sont entièrement représentables sans erreur d'arrondi.
+		Par exemple :</p>
+		<p>
+		3*256 + 2*8 + 5*1/8 s'écrit en décimal 784.625 et <br/>dans 
+		l'ordinateur, ce nombre sera décomposé en deux parties en 
+		utilisant la notation dite ingénieur ; ce nombre sera composé 
+		d'un décimal juste inférieur à 1 : ici ce sera 0,784625 ; et 
+		pour égaler le nombre initial on l'associera à une puissance de 
+		10 : ici 10<sup>3</sup>. <br/> Ce nombre sera donc composé :</p>
+		<ul>
+			<li>d'un bit de signe (0 = +) (1 = -) ;</li>
+			<li>d'une <mark>mantisse</mark>, ici ce sont les chiffres à
+			droite de la virgule : 784625 ; pour être plus précis, voir 
+			wiki pour le nombre de bits alloués pour la mantisse ;</li>
+			<li>et d'un <mark>exposant</mark> permettant de retrouver le 
+			nombre voulu ; ici c'est 3 ; </li>
+		</ul>
+		<p>Des sites qui expliquent bien tout cela :</p>
+		<ul>
+			<li><a 
+	href="https://www.positron-libre.com/cours/electronique/systeme-numeration/nombre-virgule-flottante.php" 
+	target="_blank" title="">virgule flottante et mantisse</a></li>
+			<li><a 
+	href="https://fr.wikipedia.org/wiki/Virgule_flottante#Mises_en_%C5%93uvre" 
+	target="_blank" title="">wikipedia</a></li>
+		</ul>
+		<hr/>
+		<p></p>
+	</details>
+	
+	<h3>&Eacute;criture et conversion en pyhon et javascript</h3>
+	<details><summary>Python et JS</summary>
+		<h4>en Python</h4>
+		<p>En python les nombres dans des bases différentes de la base 
+		décimale s'écrivent avec un préfixe commençant par zéro suivi
+		d'une lettre correspondant à l'initial du nom de la base,
+		par exemple :</p>
+		<table>
+			<tr><th>Nombre décimal</th><th>binaire : 0b</th><th>octal 0o
+			</th><th>headecimal : 0x</th></tr>
+			<tr><td>16</td><td>0b1111</td><td>0o20</td><td>0x10</td></tr>
+			<tr><td>256</td><td>0b11111111</td><td>0o400</td><td>0x100
+			</td></tr>
+			<tr><td>255</td><td>0b10000000</td><td>0o377</td><td>0xff
+			</td></tr>
+		
+		</table>
+		<p>Les fonctions <em>built'in</em> <strong>bin</strong>, 
+		<strong>oct</strong> et <strong>hex</strong> renvoient 
+		sous forme de string l'écriture respectivement binaire, octale 
+		et 
+		hexadécimale d'un nombre N. Par exemple si N = 16 hex(N) renvoie
+		'0x10', si N = 256 bin(N) renvoie '0b11111111' <br/></p>
+		<p>Convertir un type str en un entier se fait par la fonction 
+		int	mais avec deux arguments, par exemple int(hex(17), 16) 
+		renvoie le nombre 17, hex(17) renvoie '0x11' ; 
+		int(hex(17), 10) renvoie une erreur car la base n'est pas 16 ici
+		.</p>
+		<h4>en JS</h4>
+		<p>La méthode toString(N) permet de convertir un nombre en 
+		base 10 en nombre en base N (jusqu'à la base 36 = 10 + 26 
+		lettres de l'alphabet) ; si nb = 16 alors 
+		nb.toString(16) affiche 10 ; <a 
+		href=
+"https://www.w3schools.com/js/tryit.asp?filename=tryjs_numbers_tostring" 
+		target="_blank">exemple</a> <br/>
+		<a href="javascript:voir('conversionsEnJavaScript');">
+			Code 
+		amusant à étudier</a>
+		 </p>
+		<p></p>
+	</details>
+</article>
+<!-- --------------------------------------------------------------- -->
+<!-- --------------     -------------- -->
+
+<article id="typeConstruits" class="ressourceCachee" >
+ 	<button class="btnQuitter" onclick="voir('typeConstruits');" >X
+	</button>
+	<h1>Rappels sur les types construits :</h1>
+	<h2>les listes</h2>
+	<details><summary></summary>
+		<p></p>
+	</details>
+	<h2>les tuples</h2>
+	<details><summary>les tuples</summary>
+		<p></p>
+	</details>
+	<h2>les dictionnaires et les sets</h2>
+	<details><summary>dictionnaires et les sets</summary>
+		<p></p>
+	</details>
+	<h2>les conversion de type à type</h2>
+	<details><summary>fonctions de conversion</summary>
+		<p></p>
+	</details>
+</article>
+<!-- --------------------------------------------------------------- -->
+<!-- --------------     -------------- -->
+
+<article id="type" class="ressourceCachee" >
+ 	<button class="btnQuitter" onclick="voir('type');" >X
+	</button>
+	<h1>Rappels sur les types construits :</h1>
+	<h2>les listes</h2>
+	<details><summary></summary>
+		<p></p>
+	</details>
+	<h2>les tuples</h2>
+	<details><summary>les tuples</summary>
+		<p></p>
+	</details>
+	<h2>les dictionnaires et les sets</h2>
+	<details><summary>dictionnaires et les sets</summary>
+		<p></p>
+	</details>
+	<h2>les conversion de type à type</h2>
+	<details><summary>fonctions de conversion</summary>
+		<p></p>
+	</details>
+</article>
+
+<!-- --------------------------------------------------------------- -->
+<!-- --------------     -------------- -->
+
+<article id="conversionsEnJavaScript" class="ressourceCachee" >
+ 	<button class="btnQuitter" onclick="visible='True';voir('conversionsEnJavaScript');" >X
+	</button>
+	<h1>The toString() method can output numbers from base 2 to 36:</h1>
+
+	<p id="demo"></p>
+
+<script>
+var myNumber = 12568 ;
+var mystere = 12*Math.pow(36,5)+24*Math.pow(36,4)+30*Math.pow(36,3)+
+12*Math.pow(36,2)+24*Math.pow(36,1)+30;
+document.getElementById("demo").innerHTML =
+myNumber + " = <br/>" + 
+" Decimal " + myNumber.toString(10) + "<br/>" +
+" Hexadecimal " + myNumber.toString(16) + "<br/>" +
+" Octal " + myNumber.toString(8) + "<br/>" +
+" Base 36 " + myNumber.toString(35);
+for (i=0; i <36; i++) {
+ document.getElementById("demo").innerHTML += "<br/>"+ i +" -&gt;" + 
+ i.toString(36);
+}
+document.getElementById("demo").innerHTML += "<br/>"+ mystere + " =" +
+mystere.toString(36)+ " en base 36 !";
+</script>
+	</details>
+</article>
+</body>
+</html>
+
+
