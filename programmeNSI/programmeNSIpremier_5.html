@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.0 Transitional//EN//FR">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>Élements du programme de la spécialité de NSI</title>
+	<meta name="author" content="jdendaletche"/>
+	<meta name="created" content="2019-09-12"/>
+	<meta name="changed" content="2019-09-16"/>
+	<meta name="Company" content="Lycée La Découverte Decazeville 12300 Aveyron Occitanie France Terre"/>
+	<!-- la méta-donnée suivante rafraichit l'écran toute les minutes -->
+	<meta http-equiv="refresh" content="60">
+	
+	<!-- Définition du style de la page -->
+	<link rel="stylesheet" type="text/css" href="styleProgramme.css">
+	<style>	</style>
+	
+	<!-- inclusion de code en javascript pour rendre la page dynamique, la construire -->
+	<script src="sommaire.js"></script>
+</head>
+<!-- Début du corps de page --> 
+<body onload="construireListeSommaire (0,5);">
+	<header>
+		<h1>Programme de <abbr title="Numérique et Sciences de l'Informatique">NSI</abbr> en <span id="spNiveau">term....</span></h1>
+	</header>
+	<section>
+	<article>
+	<h1 id="titre1">titre principal</h1>
+	<p id="tmp">en construction</p>
+		<h2>Traitement de données en tables</h2>
+	<p>Les données organisées en table correspondent à une liste de p-uplets nommés qui partagent les
+mêmes descripteurs. La mobilisation de ce type de structure de données permet de préparer les élèves
+à aborder la notion de base de données qui ne sera présentée qu’en classe terminale. Il s’agit d’utiliser
+un tableau doublement indexé ou un tableau de p-uplets, dans un langage de programmation ordinaire
+et non dans un système de gestion de bases de données.</p>
+	<table><tbody>
+			<tr><th>Contenus</th><th>Capacités attendues</th><th>Commentaires</th></tr>
+			<tr>
+				<td><p>Indexation de tables</p></td>
+				<td><p>Importer une table depuis un fichier texte tabulé ou un fichier CSV.</p></td>
+				<td><p>Est utilisé un tableau doublement indexé ou un tableau de p-uplets qui partagent les mêmes descripteurs.</p></td>
+			</tr>
+			<tr>
+				<td><p>Recherche dans une table</p></td>
+				<td><p>Rechercher les lignes d’une table vérifiant des critères exprimés en logique propositionnelle.</p></td>
+				<td><p>La recherche de doublons, les tests de cohérence d’une table sont présentés.</p></td>
+			</tr>
+			<tr>
+				<td><p>Tri d’une table</p></td>
+				<td><p>Trier une table suivant une colonne.</p></td>
+				<td><p>Une fonction de tri intégrée au système ou à une bibliothèque peut être utilisée.</p></td>
+			</tr>
+			<tr>
+				<td><p>Fusion de tables</p></td>
+				<td><p>Construire une nouvelle table en combinant les données de deux tables.</p></td>
+				<td><p>La notion de domaine de valeurs est mise en évidence.</p></td>
+			</tr>
+		</tbody></table>
+	</article>
+	<nav id="listeSommaire" >
+	<!-- Le sommaire sera écrit ici -->
+	</nav>
+	</section>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.0 Transitional//EN//FR">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>Élements du programme de la spécialité de NSI</title>
+	<meta name="author" content="jdendaletche"/>
+	<meta name="created" content="2019-09-12"/>
+	<meta name="changed" content="2019-09-16"/>
+	<meta name="Company" content="Lycée La Découverte Decazeville 12300 Aveyron Occitanie France Terre"/>
+	<!-- la méta-donnée suivante rafraichit l'écran toute les minutes -->
+	<meta http-equiv="refresh" content="60">
+	
+	<!-- Définition du style de la page -->
+	<link rel="stylesheet" type="text/css" href="styleProgramme.css">
+	<style>	</style>
+	
+	<!-- inclusion de code en javascript pour rendre la page dynamique, la construire -->
+	<script src="sommaire.js"></script>
+</head>
+<!-- Début du corps de page --> 
+<body onload="construireListeSommaire (0,9);">
+	<header>
+		<h1>Programme de <abbr title="Numérique et Sciences de l'Informatique">NSI</abbr> en <span id="spNiveau">term....</span></h1>
+	</header>
+	<section>
+	<article>
+	<h1 id="titre1">titre principal</h1>
+	<p id="tmp">en construction</p>
+		<h2>Algorithmique</h2>
+	<p>Le concept de méthode algorithmique est introduit ; de nouveaux exemples seront vus en terminale.
+	Quelques algorithmes classiques sont étudiés. L’étude de leurs coûts respectifs prend tout son sens dans
+	le cas de données nombreuses, qui peuvent être préférentiellement des données ouvertes.</p>
+	<p>Il est nécessaire de montrer l’intérêt de prouver la correction d’un algorithme pour lequel on dispose
+	d’une spécification précise, notamment en mobilisant la notion d’invariant sur des exemples simples. La
+	nécessité de prouver la terminaison d’un programme est mise en évidence dès qu’on utilise une boucle
+	non bornée (ou, en terminale, des fonctions récursives) grâce à la mobilisation de la notion de variant
+	sur des exemples simples.</p>
+	
+	<table><tbody>
+			<tr><th>Contenus</th><th>Capacités attendues</th><th>Commentaires</th></tr>
+			<tr>
+				<td><p>Parcours séquentiel d’un tableau</p></td>
+				<td><p>Écrire un algorithme de recherche d’une occurrence sur des valeurs de type quelconque.</p>
+					<p>Écrire un algorithme de recherche d’un extrémum, de calcul d’une moyenne.</p></td>
+				<td><p>On montre que le coût est linéaire.</p>
+				</td>
+			</tr>
+			<tr>
+				<td><p>Tris par insertion, par sélection</p></td>
+				<td><p>Écrire un algorithme de tri.</p>
+					<p>Décrire un invariant de boucle qui prouve la correction des tris par insertion, par sélection.</p></td>
+				<td><p>La terminaison de ces algorithmes est à justifier.</p>
+					<p>On montre que leur coût est quadratique dans le pire cas.</p>
+				</td>
+			</tr>
+			<tr>
+				<td><p>Algorithme des k plus proches voisins</p></td>
+				<td><p>Écrire un algorithme qui prédit la classe d’un élément en fonction de la classe majoritaire de ses k plus proches voisins.</p>
+				</td>
+				<td><p>Il s’agit d’un exemple d’algorithme d’apprentissage.</p>
+				</td>
+			</tr>
+			<tr>
+				<td><p>Recherche dichotomique dans un tableau trié</p></td>
+				<td><p>Montrer la terminaison de la recherche dichotomique à l’aide d’un variant de boucle.</p></td>
+				<td><p>Des assertions peuvent être utilisées.</p>
+					<p>La preuve de la correction peut être présentée par le professeur.</p>
+				</td>
+			</tr>
+			<tr>
+				<td><p>Algorithmes gloutons</p></td>
+				<td><p>Résoudre un problème grâce à un algorithme glouton.</p></td>
+				<td><p>Exemples : problèmes du sac à dos ou du rendu de monnaie.</p>
+					<p>Les algorithmes gloutons constituent une méthode algorithmique parmi d’autres qui seront vues en terminale.</p>
+				</td>
+			</tr>
+			
+		</tbody></table>
+	</article>
+	<nav id="listeSommaire" >
+	<!-- Le sommaire sera écrit ici au chargement de la page par la procédure construireListeSommaire en javascript -->
+	</nav>
+	</section>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.0 Transitional//EN//FR">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>Élements du programme de la spécialité de NSI</title>
+	<meta name="author" content="jdendaletche"/>
+	<meta name="created" content="2019-09-12"/>
+	<meta name="changed" content="2019-09-16"/>
+	<meta name="Company" content="Lycée La Découverte Decazeville 12300 Aveyron Occitanie France Terre"/>
+	<!-- la méta-donnée suivante rafraichit l'écran toute les minutes -->
+	<meta http-equiv="refresh" content="60">
+	
+	<!-- Définition du style de la page -->
+	<link rel="stylesheet" type="text/css" href="styleProgramme.css">
+	<style>	</style>
+	
+	<!-- inclusion de code en javascript pour rendre la page dynamique, la construire -->
+	<script src="sommaire.js"></script>
+</head>
+<!-- Début du corps de page --> 
+<body onload="construireListeSommaire (0,7);">
+	<header>
+		<h1>Programme de <abbr title="Numérique et Sciences de l'Informatique">NSI</abbr> en <span id="spNiveau">term....</span></h1>
+	</header>
+	<section>
+	<article>
+	<h1 id="titre1">titre principal</h1>
+	<p id="tmp">en construction</p>
+
+		<h2>Architectures matérielles et systèmes d’exploitation</h2>
+	<p>Exprimer un algorithme dans un langage de programmation a pour but de le rendre exécutable par une
+	machine dans un contexte donné. La découverte de l’architecture des machines et de leur système
+	d’exploitation constitue une étape importante.</p>
+	<p>Les circuits électroniques sont au cœur de toutes les machines informatiques. Les réseaux permettent
+	de transmettre l’information entre machines. Les systèmes d’exploitation gèrent et optimisent
+	l’ensemble des fonctions de la machine, de l’exécution des programmes aux entrées-sorties et à la
+	gestion d’énergie.</p>
+	<p>On étudie aussi le rôle des capteurs et actionneurs dans les entrées-sorties clavier, interfaces graphiques
+et tactiles, dispositifs de mesure physique, commandes de machines, etc.</p>
+	
+	<table><tbody>
+			<tr><th>Contenus</th><th>Capacités attendues</th><th>Commentaires</th></tr>
+			<tr>
+				<td><p>Modèle d’architecture séquentielle (von Neumann)</p></td>
+				<td><p>Distinguer les rôles et les caractéristiques des différents constituants d’une machine.</p>
+				<p>Dérouler l’exécution d’une séquence d’instructions simples du type langage machine.</p></td>
+				<td><p>La présentation se limite aux concepts généraux.</p>
+					<p>On distingue les architectures monoprocesseur et les architectures multiprocesseur.</p>
+					<p>Des activités débranchées sont proposées.</p>
+					<p>Les circuits combinatoires réalisent des fonctions booléennes.</p>
+				</td>
+			</tr>
+			<tr>
+				<td><p>Transmission de données dans un réseau</p><p>Protocoles de communication</p><p>Architecture d’un réseau</p></td>
+				<td><p>Mettre en évidence l’intérêt du découpage des données en paquets et de leur encapsulation.</p>
+					<p>Dérouler le fonctionnement d’un protocole simple de récupération de perte de paquets (bit alterné).</p>
+					<p>Simuler ou mettre en œuvre un réseau.</p></td>
+				<td><p>Le protocole peut être expliqué et simulé en mode débranché.</p>
+					<p>Le lien est fait avec ce qui a été vu en classe de seconde sur le protocole TCP/IP.</p>
+					<p>Le rôle des différents constituants du réseau local de l’établissement est présenté.</p></td>
+			</tr>
+			<tr>
+				<td><p>Systèmes d’exploitation</p></td>
+				<td><p>Identifier les fonctions d’un système d’exploitation.</p>
+					<p>Utiliser les commandes de base en ligne de commande.</p>
+					<p>Gérer les droits et permissions d’accès aux fichiers.</p>
+					</td>
+				<td><p>Les différences entre systèmes d’exploitation libres et propriétaires sont évoquées.</p>
+					<p>Les élèves utilisent un système d’exploitation libre.</p>
+					<p>Il ne s’agit pas d’une étude théorique des systèmes d’exploitation.</p></td>
+			</tr>
+			<tr>
+				<td><p>Périphériques d’entrée et de sortie</p><p>Interface Homme-Machine (IHM)</p></td>
+				<td><p>Identifier le rôle des capteurs et actionneurs.</p><p>Réaliser par programmation une IHM répondant à un cahier des charges donné.</p></td>
+				<td><p>Les activités peuvent être développées sur des objets connectés, des systèmes embarqués ou robots.</p></td>
+			</tr>
+			
+		</tbody></table>
+	</article>
+	<nav id="listeSommaire" >
+	<!-- Le sommaire sera écrit ici -->
+	</nav>
+	</section>
+</body>
+</html>

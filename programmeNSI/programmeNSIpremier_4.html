@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>Élements du programme de la spécialité de NSI</title>
+	<meta name="author" content="jdendaletche"/>
+	<meta name="created" content="2019-09-12"/>
+	<meta name="changed" content="2019-09-16"/>
+	<meta name="Company" content="Lycée La Découverte Decazeville 12300 Aveyron Occitanie France Terre"/>
+	
+	<!-- Définition du style de la page -->
+	<link rel="stylesheet" type="text/css" href="styleProgramme.css">
+	<style>	</style>
+	
+	<!-- inclusion de code en javascript pour rendre la page dynamique, la construire -->
+	<script src="sommaire.js"></script>
+</head>
+<!-- Début du corps de page --> 
+<body onload="construireListeSommaire (0,4);">
+	<header>
+		<h1>Programme de <abbr title="Numérique et Sciences de l'Informatique">NSI</abbr> en <span id="spNiveau">term....</span></h1>
+	</header>
+	<section>
+	<article>
+	<h1 id="titre1">titre principal</h1>
+	<p id="tmp">en construction</p>
+			<h2>Représentation des données : types construits</h2>
+		<p>À partir des types de base se constituent des types construits, qui sont introduits au fur et à mesure
+		qu’ils sont nécessaires.</p>
+		<p>Il s’agit de présenter tour à tour les p-uplets (tuples), les enregistrements qui collectent des valeurs de
+		types différents dans des champs nommés et les tableaux qui permettent un accès calculé direct aux
+		éléments. En pratique, on utilise les appellations de Python, qui peuvent être différentes de celles
+		d’autres langages de programmation.</p>
+		<table><tbody>
+			<tr><th>Contenus</th><th>Capacités attendues</th><th>Commentaires</th></tr>
+			<tr>
+				<td><p>p-uplets.</p><p>p-uplets nommés</p></td>
+				<td><p>Écrire une fonction renvoyant un p-uplet de valeurs.</p></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><p>Tableau indexé, tableau donné en compréhension</p></td>
+				<td><p>Lire et modifier les éléments d’un tableau grâce à leurs index.</p>
+					<p>Construire un tableau par compréhension.</p>
+					<p>Utiliser des tableaux de tableaux pour représenter des matrices : notation a [i] [j].</p>
+					<p>Itérer sur les éléments d’un tableau.</p></td>
+				<td><p>Seuls les tableaux dont les éléments sont du même type sont présentés.</p>
+					<p>Aucune connaissance des tranches (slices) n’est exigible.</p>
+					<p>L’aspect dynamique des tableaux de Python n’est pas évoqué. Python identifie listes et tableaux.</p>
+					<p>Il n’est pas fait référence aux tableaux de la bibliothèque NumPy.</p>
+				</td>
+			</tr>
+			<tr>
+				<td><p>Dictionnaires par clés et valeurs</p></td>
+				<td><p>Construire une entrée de dictionnaire.</p><p>Itérer sur les éléments d’un dictionnaire.</p></td>
+				<td><p>Il est possible de présenter les données EXIF d’une image sous la forme d’un enregistrement.</p>
+					<p>En Python, les p-uplets nommés sont implémentés par des dictionnaires.</p>
+					<p>Utiliser les méthodes keys(), values() et items ().</p></td>
+			</tr>
+			<tr>
+				<td><p></p></td>
+				<td><p></p></td>
+				<td><p></p></td>
+			</tr>
+		</tbody></table>
+	</article>
+	<nav id="listeSommaire" >
+	<!-- Le sommaire sera écrit ici -->
+	</nav>
+	</section>
+</body>
+</html>

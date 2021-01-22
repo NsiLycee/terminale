@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.0 Transitional//EN//FR">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>Élements du programme de la spécialité de NSI</title>
+	<meta name="author" content="jdendaletche"/>
+	<meta name="created" content="2019-09-12"/>
+	<meta name="changed" content="2019-09-16"/>
+	<meta name="Company" content="Lycée La Découverte Decazeville 12300 Aveyron Occitanie France Terre"/>
+	<!-- la méta-donnée suivante rafraichit l'écran toute les minutes -->
+	<meta http-equiv="refresh" content="60">
+	
+	<!-- Définition du style de la page -->
+	<link rel="stylesheet" type="text/css" href="styleProgramme.css">
+	<style>	</style>
+	
+	<!-- inclusion de code en javascript pour rendre la page dynamique, la construire -->
+	<script src="sommaire.js"></script>
+</head>
+<!-- Début du corps de page --> 
+<body onload="construireListeSommaire (0,6);">
+	<header>
+		<h1>Programme de <abbr title="Numérique et Sciences de l'Informatique">NSI</abbr> en <span id="spNiveau">term....</span></h1>
+	</header>
+	<section>
+	<article>
+	<h1 id="titre1">titre principal</h1>
+	<p id="tmp">en construction</p>
+		<h2>Interactions entre l’homme et la machine sur le Web</h2>
+	<p>Lors de la navigation sur le Web, les internautes interagissent avec leur machine par le biais des pages Web.</p>
+	<p>L’Interface Homme-Machine (IHM) repose sur la gestion d’événements associés à des éléments graphiques munis de méthodes algorithmiques.</p>
+	<p>La compréhension du dialogue client-serveur déjà abordé en classe de seconde est consolidée, sur des exemples simples, 
+		en identifiant les requêtes du client, les calculs puis les réponses du serveur traitées par le client.</p>
+	<p>Il ne s’agit pas de décrire exhaustivement les différents éléments disponibles, ni de développer une expertise dans les langages qui permettent 
+		de mettre en œuvre le dialogue tels que PHP ou JavaScript.</p>
+	<table><tbody>
+			<tr><th>Contenus</th><th>Capacités attendues</th><th>Commentaires</th></tr>
+			<tr>
+				<td><p>Modalités de l’interaction entre l’homme et la machine</p><p>Événements</p></td>
+				<td><p>Identifier les différents composants graphiques permettant d’interagir avec une application Web.</p>
+				<p>Identifier les événements que les fonctions associées aux différents composants graphiques sont capables de traiter.</p></td>
+				<td><p>Il s’agit d’examiner le code HTML d’une page comprenant des composants graphiques et de distinguer ce qui relève de la description des composants
+				graphiques en HTML de leur comportement (réaction aux événements) programmé par exemple en JavaScript.</p></td>
+			</tr>
+			<tr>
+				<td><p>Interaction avec l’utilisateur dans une page Web</p></td>
+				<td><p>Analyser et modifier les méthodes exécutées lors d’un clic sur un bouton d’une page Web.</p></td>
+				<td><p></p></td>
+			</tr>
+			<tr>
+				<td><p>Interaction client-serveur.</p><p>Requêtes HTTP, réponses du serveur</p></td>
+				<td><p>Distinguer ce qui est exécuté sur le client ou sur le serveur et dans quel ordre.</p>
+					<p>Distinguer ce qui est mémorisé dans le client et retransmis au serveur.</p>
+					<p>Reconnaître quand et pourquoi la transmission est chiffrée.</p></td>
+				<td><p>Il s’agit de faire le lien avec ce qui a été vu en classe de seconde et d’expliquer comment on peut passer des
+					paramètres à un site grâce au protocoleHTTP.</p></td>
+			</tr>
+			<tr>
+				<td><p>Formulaire d’une page Web</p></td>
+				<td><p>Analyser le fonctionnement d’un formulaire simple.</p><p>Distinguer les transmissions de paramètres par les requêtes POST ou GET.</p></td>
+				<td><p>Discuter les deux types de requêtes selon le type des valeurs à transmettre et/ou leur confidentialité.</p></td>
+			</tr>
+		</tbody></table>
+	</article>
+	<nav id="listeSommaire" >
+	<!-- Le sommaire sera écrit ici -->
+	</nav>
+	</section>
+</body>
+</html>

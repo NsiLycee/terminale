@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.0 ">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>Élements du programme de la spécialité de NSI en terminale</title>
+	<meta name="author" content="jdendaletche"/>
+	<meta name="created" content="2019-09-12"/>
+	<meta name="changed" content="2019-09-16"/>
+	<meta name="Company" content="Lycée La Découverte Decazeville 12300 Aveyron Occitanie France Terre"/>
+	
+	<!-- Définition du style de la page -->
+	<link rel="stylesheet" type="text/css" href="styleProgramme.css">
+	<style>	</style>
+	
+	<!-- inclusion de code en javascript pour rendre la page dynamique, la construire -->
+	<script src="sommaire.js"></script>
+</head>
+<!-- Utile : alert('debug');-->
+<!-- Début du corps de page --> 
+<body onload="construireListeSommaire (1,4);"> 
+	<header>
+		<h1>Programme de <abbr title="Numérique et Sciences de l'Informatique">NSI</abbr> en <span id="spNiveau">term....</span></h1>
+	</header>
+	<section>
+	<article>
+	<h1 id="titre1">titre principal</h1>
+	<p id="tmp">en construction</p>
+
+	<p>Le développement des traitements informatiques nécessite la manipulation de données de plus en plus
+nombreuses. Leur organisation et leur stockage constituent un enjeu essentiel de performance.
+Le recours aux bases de données relationnelles est aujourd’hui une solution très répandue. Ces bases de
+données permettent d’organiser, de stocker, de mettre à jour et d’interroger des données structurées
+volumineuses utilisées simultanément par différents programmes ou différents utilisateurs. Cela est
+impossible avec les représentations tabulaires étudiées en classe de première.<br/></p>
+	<p>Des systèmes de gestion de bases de données (SGBD) de très grande taille (de l’ordre du pétaoctet) sont au
+centre de nombreux dispositifs de collecte, de stockage et de production d’informations.
+L’accès aux données d’une base de données relationnelle s’effectue grâce à des requêtes d’interrogation et
+de mise à jour qui peuvent par exemple être rédigées dans le langage <abbr title="Structured Query Language">SQL</abbr> (<em>Structured Query Language</em>). Les
+traitements peuvent conjuguer le recours au langage SQL et à un langage de programmation.<br/></p>
+	<p>Il convient de sensibiliser les élèves à un usage critique et responsable des données.<br/></p>
+
+	<table><tbody>
+			<tr><th>Contenus</th><th>Capacités attendues</th><th>Commentaires</th><th>applications en classe</th></tr>
+			<tr>
+				<td><p>Modèle relationnel : relation, attribut, domaine, clef primaire,
+clef étrangère, schéma relationnel.</p></td>
+				<td><p>Identifier les concepts définissant
+le modèle relationnel.</p></td>
+				<td><p>Ces concepts permettent
+d’exprimer les contraintes
+d’intégrité (domaine, relation
+et référence).</p></td>
+				<td><ul>
+					<li><a href="http://jodenda.free.fr/terminaleNSI/BasesDeDonnees/accueilBDD.html" target="_blank" title="">séance 1</a></li>
+					<li><a href="" target="_blank" title=""></a></li>
+					<li><a href="" target="_blank" title=""></a></li>
+					<li><a href="" target="_blank" title=""></a></li>
+					<li><a href="" target="_blank" title=""></a></li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td><p>Base de données relationnelle.</p></td>
+				<td><p>Savoir distinguer la structure d’une
+base de données de son contenu.
+Repérer des anomalies dans le
+schéma d’une base de données.</p></td>
+				<td><p>La structure est un ensemble de schémas 
+				relationnels qui respecte les contraintes du modèle relationnel.
+Les anomalies peuvent
+être des redondances de
+données ou des anomalies
+d’insertion, de suppression, de
+mise à jour.
+On privilégie la manipulation
+de données nombreuses et
+réalistes.</p></td>
+								<td><ul>
+					<li><a href="" target="_blank" title=""></a></li>
+					<li><a href="" target="_blank" title=""></a></li>
+					<li><a href="" target="_blank" title=""></a></li>
+					<li><a href="" target="_blank" title=""></a></li>
+					<li><a href="" target="_blank" title=""></a></li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td><p>Système de gestion de bases de données relationnelles.</p></td>
+				<td><p>Identifier les services rendus par un système de gestion de bases de données relationnelles :
+persistance des données, gestion des accès concurrents, efficacité de traitement des requêtes,sécurisation des accès.
+				</p></td>
+				<td><p>Il s’agit de comprendre le rôle et les enjeux des différents services sans en détailler le
+fonctionnement.</p></td>
+								<td><ul>
+					<li><a href="https://pixees.fr/informatiquelycee/n_site/nsi_term_bd_intro.html" target="_blank"
+						   title="intérêts des SGBD">intérêts des SGBD</a></li>
+					<li><a href="https://pixees.fr/informatiquelycee/n_site/nsi_term_bd_rela.html" target="_blank"
+						   title="base de données relationnelles">base de données relationnelles</a></li>
+					<li><a href="https://pixees.fr/informatiquelycee/n_site/nsi_term_bd_sql.html" target="_blank"
+						   title="activité SQL avec DB Browser ...">activité SQL avec DB Browser</a> for
+						<a href="https://www.tresfacile.net/python-et-les-bases-de-donnees-sqlite3/" target="_blank"
+						title="utiliser le module sqlite3 dans un programme python">sqlite3</a></li>
+					<li><a href="" target="_blank" title=""></a></li>
+					<li><a href="" target="_blank" title=""></a></li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td><p>Langage SQL : requêtes
+d’interrogation et de mise à jour
+d’une base de données.</p></td>
+				<td><p>Identifier les composants d’une
+requête.
+Construire des requêtes
+d’interrogation à l’aide des clauses du langage SQL : SELECT, FROM,
+WHERE, JOIN.
+Construire des requêtes d’insertion
+et de mise à jour à l’aide de :
+UPDATE, INSERT, DELETE.</p></td>
+				<td><p>On peut utiliser DISTINCT,
+ORDER BY ou les fonctions
+d’agrégation sans utiliser les
+clauses GROUP BY et HAVING.</p></td>
+								<td>
+					<ul>
+					<li><a href="https://www.w3schools.com/sql/sql_select.asp" target="_blank"
+						   title="instruction SELECT">exemple de SELECT</a></li>
+					<li><a href="https://www.w3schools.com/sql/sql_ref_from.asp" target="_blank"
+						   title="instruction FROM">FROM</a></li>
+					<li><a href="https://www.w3schools.com/sql/sql_where.asp" target="_blank"
+						   title="instruction WHERE">WHERE</a></li>
+					<li><a href="https://www.w3schools.com/sql/sql_ref_join.asp" target="_blank"
+						   title="instruction JOIN">JOIN</a></li>
+					<li><a href="https://www.w3schools.com/sql/sql_ref_update.asp" target="_blank"
+						   title="instruction UPDATE">UPDATE</a></li>
+					<li><a href="https://www.w3schools.com/sql/sql_ref_insert_into.asp" target="_blank"
+						   title="instruction INSERT">INSERT</a></li>
+					<li><a href="https://www.w3schools.com/sql/sql_ref_delete.asp" target="_blank"
+						   title="instruction DELETE">DELETE</a></li>
+					<li><a href="" target="_blank" title="instruction "></a></li>
+					<li><a href="" target="_blank" title="instruction "></a></li>
+					</ul>
+				</td>
+			</tr>
+
+		</tbody></table>
+
+	<p><br/></p>
+	<p><br/></p>
+	<p><br/></p>
+	<p><br/></p>
+	</article>
+	<nav id="listeSommaire" >
+	<!-- Le sommaire sera écrit ici -->Navigation
+	</nav>
+	</section>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.0 Transitional//EN//FR">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>Élements du programme de la spécialité de NSI</title>
+	<meta name="author" content="jdendaletche"/>
+	<meta name="created" content="2019-09-12"/>
+	<meta name="changed" content="2019-09-16"/>
+	<meta name="Company" content="Lycée La Découverte Decazeville 12300 Aveyron Occitanie France Terre"/>
+	<!-- la méta-donnée suivante rafraichit l'écran toute les minutes -->
+	<meta http-equiv="refresh" content="60">
+	
+	<!-- Définition du style de la page -->
+	<link rel="stylesheet" type="text/css" href="styleProgramme.css">
+	<style>	</style>
+	
+	<!-- inclusion de code en javascript pour rendre la page dynamique, la construire -->
+	<script src="sommaire.js"></script>
+</head>
+<!-- Début du corps de page --> 
+<body onload="construireListeSommaire (0,8);">
+	<header>
+		<h1>Programme de <abbr title="Numérique et Sciences de l'Informatique">NSI</abbr> en <span id="spNiveau">term....</span></h1>
+	</header>
+	<section>
+	<article>
+	<h1 id="titre1">titre principal</h1>
+	<p id="tmp">en construction</p>
+		<h2>Langages et programmation</h2>
+	<p>Les langages de programmation Turing-complets sont caractérisés par un corpus de « constructions
+	élémentaires ». Sans introduire cette terminologie, il s’agit de montrer qu’il existe de nombreux
+	langages de programmation, différents par leur style (impératif, fonctionnel, objet, logique,
+	événementiel, etc.), ainsi que des langages formalisés de description ou de requêtes qui ne sont pas des
+	langages de programmation.</p>
+	<p>L’importance de la spécification, de la documentation et des tests est à présenter, ainsi que l’intérêt de
+	la modularisation qui permet la réutilisation de programmes et la mise à disposition de bibliothèques.
+	Pour les programmes simples écrits par les élèves on peut se contenter d’une spécification rapide mais
+	précise.</p>
+	
+	<table><tbody>
+			<tr><th>Contenus</th><th>Capacités attendues</th><th>Commentaires</th></tr>
+			<tr>
+				<td><p>Constructions élémentaires</p></td>
+				<td><p>Mettre en évidence un corpus de constructions élémentaires.</p></td>
+				<td><p>Séquences, affectation, conditionnelles, boucles bornées, boucles non bornées, appels de fonction.</p>
+				</td>
+			</tr>
+			<tr>
+				<td><p>Diversité et unité des langages de programmation</p></td>
+				<td><p>Repérer, dans un nouveau langage de programmation les traits communs et les traits particuliers à ce langage.</p></td>
+				<td><p>Les manières dont un même programme simple s’écrit dans différents langages sont comparées.</p>
+				</td>
+			</tr>
+			<tr>
+				<td><p>Spécification</p></td>
+				<td><p>Prototyper une fonction.</p><p>Décrire les préconditions sur les arguments.</p>
+				<p>Décrire des postconditions sur les résultats.</p></td>
+				<td><p>Des assertions peuvent être utilisées pour garantir des préconditions ou des postconditions.</p>
+				</td>
+			</tr>
+			<tr>
+				<td><p>Mise au point de programmes</p></td>
+				<td><p>Utiliser des jeux de tests.</p></td>
+				<td><p>L’importance de la qualité et du nombre des tests est mise en évidence.</p>
+					<p>Le succès d’un jeu de tests ne garantit pas la correction d’un programme.</p>
+				</td>
+			</tr>
+			<tr>
+				<td><p>Utilisation de bibliothèques</p></td>
+				<td><p>Utiliser la documentation d’une bibliothèque.</p></td>
+				<td><p>Aucune connaissance exhaustive d’une bibliothèque particulière n’est exigible.</p>
+				</td>
+			</tr>
+			
+		</tbody></table>
+	</article>
+	<nav id="listeSommaire" >
+	<!-- Le sommaire sera écrit ici -->
+	</nav>
+	</section>
+</body>
+</html>
