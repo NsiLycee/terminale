@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Le texte envoyé sur le réseau est encodé en ASCII</title>
+</head>
+<body>
+
+<h1>This is a Heading</h1>
+<p id="debug">This is a paragraph.</p>
+<input id="saisie" placeholder="texte à encoder" oninput="$('debug').innerHTML = '<br/>'+traduireURI(this.value);"/>
+</body>
+<script>
+function $(id) {return document.getElementById(id)}
+function traduireURI (texte) { return encodeURI(texte);}
+
+</script>
+</html>
