@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8" /><title>tirage de nombres au hasard</title></head>
+<body>
+
+<h2>Exemple de sorties aléatoires</h2>
+<p>Cliquer pour faire un nouveau tirage</p>
+<input type="button" value="tirage" onclick="tirage();" />
+
+<p id="demo"></p>
+
+<input type="button" value="tirage2" onclick="trier();melanger()" />
+<p id="demo2"></p>
+<script>
+var tab = ["tirage uniforme entre 0 et 1 : Math.random() = ", "tirage uniforme entre 1 et 100 : Math.random()*100+1 = ",
+"tirage uniforme entier entre 1 et 100 : Math.floor(Math.random()*100+1) = ",
+"tirage gaussien m = 10 s = 2.5 : aleaN(10,2.5) = "];
+var fonctions = ["Math.random()","Math.random()*100+1","Math.floor(Math.random()*100+1)","aleaN(10,2.5)" ];
+
+function tirage() {
+	document.getElementById("demo").innerHTML = "<ul>";
+	for (let i in tab) {
+		document.getElementById("demo").innerHTML += "<li>" + tab[i] + eval(fonctions[i])+"</li>";
+	}
+    document.getElementById("demo").innerHTML += "</ul>";
+}
+function aleaN(moyenne = 0, ecartype = 1) {// retourne un nombre aléatoire suivant une loi normale de moyenne et d'écart-type déterminés (par défaut m = 0 et s = 1 : c'est la loi normale centrée réduite)
+	let somme = 0, i;
+    for(i=0; i<12;i++) {
+    	somme += Math.random();
+    }
+    return (somme -6)*ecartype+moyenne;
+}
+document.body.addEventListener("load", tirage);
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+document.getElementById("demo2").innerHTML = fruits;
+
+function trier() {
+  fruits.sort();
+  document.getElementById("demo2").innerHTML = fruits;
+}
+function melanger () {
+	let liste = [];
+    for (let i in fruits) {
+    	liste.push([Math.random(), fruits[i]]);
+    }
+    document.getElementById("demo2").innerHTML += "<br/>"+liste;
+    liste.sort();
+    document.getElementById("demo2").innerHTML += "<br/>"+liste;
+    let liste2 = [];
+    for (let i in fruits) {
+    	liste2.push(liste[i][1]);
+        document.getElementById("demo2").innerHTML += "<br/> liste["+i+"][1] = "+liste[i][1];
+    }
+    document.getElementById("demo2").innerHTML += "<br/>"+liste2;
+}
+</script>
+
+</body>
+</html> 
