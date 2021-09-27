@@ -1,0 +1,77 @@
+﻿<!DOCTYPE HTML >
+<html>
+<head>
+	<meta charset="utf-8" /><!-- encodage en utf-8 -->
+	<title>Cours sur l'architecture matérielle</title>
+	<style>/* commentaires CSS */
+	table, tr,td, th, caption 	{
+			border 	: 	solid yellow 2px	;
+			color	:	white		;
+			border-collapse : collapse	;
+			background :	darkblue	;
+		}
+	td, th 	{
+		width 		: 10%		;
+		height		: 8%;	
+		text-align	: center	;
+		}
+
+
+	</style>
+</head>
+
+<body>
+
+<ul>
+	<li>L'écriture binaire ; conversion en décimal et 
+hexadécimal :<br/>
+	exemple : 0b11 = 3 ; 0xab = 171
+	</li>
+	<li>logique : fonction logiques or, and, xor, not ; 
+tables de vérités
+	<table><caption>Table de vérité de XOR = ou exclusif</caption>
+	<tr>
+		<th>XOR</th>
+		<th><br/>1<br/></th>
+		<th><br/>0<br/></th>
+	</tr>
+	<tr>
+		<td><br/>1<br/></td>
+		<td><br/>0<br/></td>
+		<td><br/>1<br/><br/></td>
+	</tr>
+	<tr>
+		<td><br/>0<br/></td>
+		<td><br/>1<br/></td>
+		<td><br/>0<br/></td>
+	</tr>
+	</table>
+</li>
+	<li>les transistors sont associés pour former 
+	des portes logiques ; ces portes logiques sont
+combinées pour créer des fonctions logiques (additionneur) :
+	<img src="https://pixees.fr/informatiquelycee/n_site/\
+img/porte_ADD.png"
+             alt="texte affiché si l'image ne l'est pas : \
+circuits logiques combinés"
+	     title="info bulle : circuits logiques \
+combinés en additionneur de bits">
+	</li>
+	<li>Le soustracteur utilise deux modules car la sous
+traction de a par b peut s'écrire comme l'addition de a par
+l'opposé de b ; soit en binaire par l'addition de a par le
+complément à deux de b (not(b)+1)   exemple 0b010 = 2 not-> 0b101   + 1  -> 0b110
+   pour vérifier l'addition de deux binaire, de valeur
+opposée donne 0 !
+		<ol>
+			<li>un module qui calcule l'opposé
+	d'un nombre en complément à 2</li>
+			<li>un additionneur</li>
+		</ol>
+	</li>
+	<li></li>
+	<li></li>
+
+</ul>
+</body>
+</html>

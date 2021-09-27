@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<style>Fonctions récursives en javascript</style>
+</head>
+<body>
+
+<h2>Fonctions récursives en JavaScript</h2>
+
+<p>Cet exemple affiche les résultats de deux fonctions récursives :</p>
+
+<p id="demo"></p>
+
+<script>
+var compteur = 1;
+var x = myFunction(4, 3);
+demo.innerHTML += "x = " + x + "<br/>";
+
+function factoriel ( n ) {
+	if (n <= 1) 
+    {
+    	return 1; 
+    }
+    else 
+    {
+    	return n * factoriel(n-1);
+    }
+}
+
+function myFunction(a, b) {
+	var demo = document.getElementById("demo");
+    compteur ++;
+  if (a>50) { 
+  			compteur + " a = " + a + "<br/> fact("+compteur+") = " + factoriel(compteur)+ "<br/>";
+  			return 2; }
+  else {
+  	demo.innerHTML += compteur + " a = " + a + "<br/> fact("+compteur+") = " + factoriel(compteur)+ "<br/>";
+    return b * myFunction(2*a,b);
+  }
+
+}
+</script>
+
+</body>
+</html>
