@@ -1,0 +1,321 @@
+﻿<!-- Created: 08/09/2020 by dendalj -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional/EN">
+<html>
+  <head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>Les bases de données</title>
+	<meta name="created" content="2018-09-20T15:31:00"/>
+	<meta name="changedby" content="Joël Dendaletche"/>
+	<meta name="changed" content="2019-10-20 T11:00:00"/>
+	<meta name="AppVersion" content="16.0000"/>
+	<meta name="Company" content="Lycée La Découverte"/>
+	<meta name="DocSecurity" content="0"/>
+	<meta name="HyperlinksChanged" content="false"/>
+	<meta name="LinksUpToDate" content="false"/>
+	<meta name="ScaleCrop" content="false"/>
+	<meta name="ShareDoc" content="false"/>
+
+	<!-- Pour utiliser les gadgets jQuery : dans cette page les div toggle-->
+	<script src="../../JS/jquery.min.js"></script>
+
+	<!-- feuille de style externe -->
+	<link rel="stylesheet" type="text/css" href="../../CSS/coursDP.css">
+	<style type="text/css">
+        .titreIntro {
+        font-size : 200 %;
+     }
+	</style>
+	<!-- feuille de style externe -->
+	<link rel="stylesheet" type="text/css"
+		href="../../programme NSI/styleProgramme.css">
+<!-- ------------------------------------------------------------------>
+    <link rel="stylesheet" type="text/css"
+          href="../../CSS/style.css">
+    <link rel="stylesheet" type="text/css"
+          href="../../CSS/numerotationTitres.css">
+    <link rel="stylesheet" type="text/css"
+          href="../../CSS/ressourcesCachees.css">
+	<link rel="stylesheet" type="text/css"
+	      href="../../CSS/styleQuiz.css">
+    <link rel="stylesheet" type="text/css"
+          href="../../CSS/simpleMenuHorizontal.css">
+    <link rel="stylesheet" type="text/css"
+      href="../../CSS/bootstrapMini.css">
+        <link rel="stylesheet" type="text/css"
+      href="../../CSS/tomorrowNight.css">
+	<!-- biliothèque jQuery pour les parties déroulantes -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+	</script>
+	<script language="JavaScript">
+		var titrePage = "Blog de Joël Dendaletche : cours sur les bases de données";
+		var aurevoir = "&Aacute; bientôt, revenez vite !";
+
+		function titre(texte)
+		{
+			document.title = texte;
+		}
+		var nTitres = 8;
+		function init()
+		{
+			 //construireListeSommaire ();
+
+			 for (var i = 0 ; i<nTitres ; i++) {
+				document.getElementById("item_content"+ parseInt(i+1)).hidden = true;
+				//document.getElementById("item_content"+ parseInt(i+1)).style.color = 'yellow';
+			 }
+		}
+	</script>
+</head>
+<body lang="fr-FR" onload="init();">
+<!-- ------------------------------------------------------------------>
+<header>
+		<small>Blog de <abbr title="Joël Dendaletche">jodenda</abbr>
+		</small>
+        <p>Les Bases de données</p>
+<nav>
+	<ul class="menu">
+		<li><a href="../../index.html">retour à la page d'accueil</a>
+		</li>
+		<li><a href="../../programmeNSI/programmeNSITerm_4.html"
+		title ="programme BDD en terminale &hellip;">
+			programme BDD en terminale</a>
+		</li>
+		<li><a href="../../programmeNSI/programmeNSITerm_0.html"
+		title ="tout le programme de terminale &hellip;">
+            tout le programme de terminale
+			</a>
+		</li>
+	</ul>
+</nav>
+</header>
+<!-- ------------------------------------------------------------------>
+<main>
+	<section>
+		<aside>
+		</aside>
+		<article>
+            <p class="titreIntro">Introduction</p>
+                <p>
+    <a href="https://fr.wikipedia.org/wiki/Base_de_donn%C3%A9es"
+       target="_blank" title="lien vers l'article base de données sur Wikipedia"
+        >BDD dans wikipedia</a>
+    </p>
+    <h1>termes et définitions à connaître :</h1>
+            <details><summary>... &nbsp; cliquer sur les ... pour dérouler le texte</summary>
+    <ol>
+        <li><dfn><strong><u>base de données (BDD)</u></strong> : ensemble de
+        tables (relations) contenant des entités caractérisées par leurs attributs et de
+        tables matérialisant des relations entre certaines tables (appelées
+        aussi relation !)</dfn></li>
+        <li><dfn><strong><u>relation</u></strong> : une relation dans une base
+        de donnée est instanciée (concrétisée) par un tableau dont les colonnes
+        instancient les attributs et les lignes désignent les entités stockées
+        dans la BDD</dfn></li>
+        <li><dfn><strong><u>attribut</u></strong> : type de valeur caractérisant une entité
+        </dfn> </li>
+        <li><dfn><strong><u>domaine</u></strong> : c'est l'ensemble des valeurs que l'attribut peut prendre</dfn></li>
+        <li><dfn><strong><u>entité</u></strong> : objets individuel dont les
+        valeurs d'attributs sont enregistrées dans une relation (table)</dfn> </li>
+        <li><dfn><strong><u>degré</u></strong> : nombre d'attributs d'une table
+        ; nombre de valeurs dans le tuple caractérisant une entité</dfn></li>
+        <li><dfn><strong><u>requète</u></strong> : (en anglais : Query) phrase
+        composée d'une combinaison logique de mots SQL, de noms de relations
+        (tables), d'attributs, qui permettent de tirer des informations de la
+        BDD, de la créer, de la détruire et de la modifier</dfn></li>
+    </ol>
+            </details>
+    <h2>Exemple de relation</h2>
+            <details><summary>...</summary>
+    <table>
+        <caption>tab1 : exemple d'une relation contenant cinq entités. Son degré est de cinq, car elle contient cinq attributs</caption>
+        <tr>
+            <th><p>attributs &rarr;<br/>numEntite &darr;</p></th>
+            <th title="attribut prenom de type TINYTEXT ou CHAR(60)">prenom</th>
+            <th  title="attribut nom de type TINYTEXT ou CHAR(50) ou TEXT">nom</th>
+            <th   title="attribut adresse de type CHAR(300) ou TEXT">adresse</th>
+            <th  title="attribut codePostal de type INT(5)">codePostal</th>
+        </tr>
+        <tr>
+            <td title="identifiant unique de l'entité ou clef primaire">1</td>
+            <td title="valeur de l'attribut prenom pour l'entité 1">'Jean'</td>
+            <td title="valeur de l'attribut nom pour l'entité 1">'Rivière'</td>
+            <td title="valeur de l'attribut adresse pour l'entité 1">'2 rue des Ports'</td>
+            <td title="valeur de l'attribut codePostal pour l'entité 1">12560</td>
+        </tr>
+        </tr>
+        <tr>
+            <td title="identifiant unique de l'entité ou clef primaire">2</td>
+            <td title="valeur de l'attribut prenom pour l'entité 2">'Paulette'</td>
+            <td title="valeur de l'attribut nom pour l'entité 2">'Jean'</td>
+            <td title="valeur de l'attribut adresse pour l'entité 2">'Le Pouel Kergot</td>
+            <td title="valeur de l'attribut codePostal pour l'entité 2">56200</td>
+        </tr>
+        </tr>
+        <tr>
+            <td title="identifiant unique de l'entité ou clef primaire">3</td>
+            <td title="valeur de l'attribut prenom pour l'entité 3">'Jean'</td>
+            <td title="valeur de l'attribut nom pour l'entité 3">'Rivière'</td>
+            <td title="valeur de l'attribut adresse pour l'entité 3">'10 avenue Diks'</td>
+            <td title="valeur de l'attribut codePostal pour l'entité 3">89542</td>
+        </tr>
+        </tr>
+        <tr>
+            <td title="identifiant unique de l'entité ou clef primaire">4</td>
+            <td title="valeur de l'attribut prenom pour l'entité 4">'Joël'</td>
+            <td title="valeur de l'attribut nom pour l'entité 4">'Denda'</td>
+            <td title="valeur de l'attribut adresse pour l'entité 4">'75 boulevard des champs Elysées'</td>
+            <td title="valeur de l'attribut codePostal pour l'entité 4">75000</td>
+        </tr>
+        <tr>
+            <td title="identifiant unique de l'entité ou clef primaire">5</td>
+            <td title="valeur de l'attribut prenom pour l'entité 5">null</td>
+            <td title="valeur de l'attribut nom pour l'entité 5">'Gray'</td>
+            <td title="valeur de l'attribut adresse pour l'entité 5">null</td>
+            <td title="valeur de l'attribut codePostal pour l'entité 5">75000</td>
+        </tr>
+    </table>
+    <p>remarques :</p>
+    <ul>
+        <li>lors de la création de la table, la taille maximale de la valeur
+        d'un attribut est spécifiée la déclaration de son type (voir tous
+        <a  href="https://www.w3schools.com/sql/sql_datatypes.asp"
+            target="_blank"
+            title="type des valeurs SQL">les types de données
+        SQL</a>)
+        </li>
+        <li>une valeur non encore renseignée est instanciée par la valeur <i>null</i> (<a target="_blank"
+           title="exemple de valeur NULL et recherche associée"
+           href="https://www.tutorialspoint.com/sql/sql-null-values.htm">exemple</a>)</li>
+        <li>ici le dégré de la table est 5 ; c'est le nombre d'attributs de chaque entité</li>
+        <li>l'entité 5 devra être complétée (mise à jour = UPDATE) car deux de ses attributs ont des valeurs <i>null</i>
+        </li>
+        <li>cette relation possède une clef primaire ; c'est ici le numéro d'entité (il est unique !)</li>
+        <li>la valeur 'Jean' est présente dans deux attributs et trois entités mais cela ne pose aucun problème !</li>
+    </ul>
+            </details>
+	<h2>Le modèle relationnel</h2>
+            <details><summary>...</summary>
+	<p>
+	Inventé par <a href="https://fr.wikipedia.org/w/index.php?title=Edgar_Frank_Codd&oldid=cur"
+                   target="_blank" title="inventeur du modèle relationnel">Edgar Frank Codd</a>, ce modèle codifie la
+        façon dont sont organisées les bases de données.
+	<a href="https://fr.wikipedia.org/wiki/Mod%C3%A8le_relationnel" target="_blank"
+       title="article wikipedia sur le modèle relationnel">Wikipedia</a> en donne une très bonne description </p>
+	<p>Le <strong><u>schéma conceptuel</u></strong> d'une <abbr title="base de donnée">BDD</abbr> permet de visualiser
+        les différentes tables composant un système de gestion de base de donnée (SGBD) et les relations entre elles :
+    </p>
+	<img src="http://tecfaetu.unige.ch/staf/staf-h/torres/staf2x/cours_BD/Image13a.jpg"
+         alt="exemple de schéma conceptuel de BDD" title="exemple de schéma conceptuel de BDD" />
+            <figure><figcaption>Schéma conceptuel de la BDD d'une agence d'assurance de risques sur des automobiles
+            </figcaption></figure>
+    <p>remarques :</p>
+    <ul>
+        <li>la <strong><u>cardinalité</u></strong> des relations est orientée ; par exemple une voiture a un possésseur et un seul (1-1) alors
+        qu'un client peut ne posséder aucun véhicule (0) ou un nombre quelquonque (N), cela donne une cardinalité de
+            0-N dans ce sens ;</li>
+        <li>pour implémenter cette base de donnée il va falloir créer dans chaque table des <strong><u>clefs primaires
+        </u></strong> et si nécessaire des <strong><u>clefs étrangères</u></strong> ; il faudra parfois créer de
+            nouvelles tables (relations) pour implémenter des relations ;</li>
+        <li>étant donné que les relations (liens entre les tables) peuvent être implémentés sous forme de tables, tables
+            et relations signifient la même chose dans le contexte des bases de données</li>
+    </ul>
+            </details>
+    <h1>Le langage <abbr title="Search Query Language">SQL</abbr> </h1>
+
+            <h2>Création d'une relation</h2>
+            <details><summary>CREATE TABLE maRelation (tuple des attributs avec ou sans typage) </summary>
+                <ul>
+                    <li> sans typage : ici une table appelée maClasseDeLycee est créée ; son degré est de 7 ; les attributs n'ont pas encore de type  <br/>
+		<pre><code class="sql hljs">
+CREATE TABLE "maClasseDeLycee" (
+            'nom',
+            'prenom',
+            'adresse',
+            'codePostal',
+            'groupe',
+            'email',
+            'anniversaire'  )
+			</code></pre></li>
+                    <li>avec <a href="https://www.tutorialspoint.com/sqlite/sqlite_data_types.htm"
+                                title="les types dans sqlite" target="_blank">typage</a>
+                        (parmi les types <select>
+                        <option title="le type entier">INTEGER</option>
+                        <option title="le type texte">TEXT</option>
+                        <option title="le type blob permet de stocker de gros paquets de données en binaire">BLOB</option>
+                        <option title="le type real stocke des nombres à virgule flottante">REAL</option>
+                        <option title="le type numérique ppeut stocker des DATES">NUMERIC</option>
+                    </select> : ici une table appelée maClasseDeLycee est créée ;
+                        son degré est de 7 <br/>
+		<pre><code class="sql hljs">
+CREATE TABLE "maClasseDeLycee" (
+            'nom' TEXT,
+            'prenom'  TEXT,
+            'adresse'  TEXT,
+            'codePostal' INTEGER,
+            'groupe' INTEGER,
+            'email' TEXT,
+            'anniversaire' TEXT
+                                )
+			</code></pre></li>
+                </ul>
+            </details>
+            <h2>Interrogation de la base de donnée : observation sélective</h2>
+            <details><summary>SELECT * FROM nomTable WHERE ...</summary>
+			<code><pre>
+SELECT nom, prenom, age, tel FROM nomTable WHERE prenom = 'Paul'
+            </pre></code>
+            </details>
+            <h2>Modification du contenu de la base de donnée</h2>
+            <details><summary>UPDATE <i>vs</i> ALTER</summary>
+                <p>Il est possible de mettre à jour (<i>update</i>) les données de la table ; par exemple, changer
+                l'orthographe d'un nom qui a été mal saisi :</p>
+            	<code><pre>
+UPDATE maTable
+SET nom='Jurdckiblizk'
+WHERE nom='Jurdequiblits'
+                </pre></code>
+                <p>La commande ALTER permet d'aller plus loin en modifiant par exemple la structure de la table (ajout
+                    d'un attribut), ou changer le nom de la table ...
+                    <a href="https://www.tutorialspoint.com/sqlite/sqlite_alter_command.htm" target="_blank"
+                       title="exemples d'expressions ALTER" >source</a></p>
+                <code><pre>
+ALTER TABLE database_name.table_name ADD COLUMN monAttribut text
+
+ALTER TABLE database_name.table_name RENAME TO new_table_name
+
+                </pre></code>
+            </details>
+            <h2>Propriétés nécessaires des bases de données</h2>
+            <details><summary>intégrité</summary>
+                <dfn>intégrité : le SGBD doit veiller à la cohérence des données dans toutes les relations de la BDD ...
+                </dfn>
+            </details>
+
+
+		</article>
+
+	</section>
+
+</main>
+
+<footer>
+	<h1>ressources utiles :</h1>
+	<ul>
+		<li><a href="https://sqlitebrowser.org/"
+		target="_blank">Le site officiel de "DB Browser for SQLite"</a>
+		</li>
+		<li><a href="https://sqlitebrowser.org/dl/"
+		target="_blank"
+		title="page de téléchargement pour installer DB Browser for SQlite">
+		page de téléchargement </a>pour installer DB Browser for SQlite
+		</li>
+        <li><a href="https://pixees.fr/informatiquelycee/n_site/nsi_term_bd_rela.html" target="_blank" >activité de pixees.fr sur le modèle relationnel des BDD</a> </li>
+		<li><a href="https://pixees.fr/informatiquelycee/n_site/nsi_term.html" target="_blank">tous les cours de pixees.fr pour la NSI en terminale</a></li>
+		<li><a href="https://pixees.fr/informatiquelycee/n_site/nsi_term_bd_sql.html" target="_blank">activité de pixees.fr pour découvrir les requètes SQL</a></li>
+		<li><a href="" target="_blank"></a></li>
+        <li><a href="https://www.tresfacile.net/python-et-les-bases-de-donnees-sqlite3/" target="_blank">pour commencer avec sqlite3 dans python</a></li>
+	</ul>
+</footer>
+</body>
+</html>
+
