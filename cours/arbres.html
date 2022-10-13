@@ -1,11 +1,128 @@
 <!DOCTYPE html>
 <html>
+<html>
 <head>
-<title>TAD Arbres</title>
-</head>
-<body>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title> TAD Arbre </title>
+	<!-- Les deux lignes suivantes permettent d'insérer une icône à coté
+	     de l'onglet de la page -->
+	<link rel="shortcut icon" href="icone.png" type="image/x-icon"/>
+	<link rel="icon" href="icone.png" type="image/x-icon"/>
 
-<p>Rappel :&nbsp;</p>
+	<script src="../JS/sommaire.js"></script>
+	<script language="JavaScript">
+		var titrePage = "BTS Biotechnologie";
+		var aurevoir = "&Aacute; bientôt, revenez vite !";
+		//var id = setInterval(ma_fontion, 1000);
+		function titre(texte)
+		{
+			document.title = texte;
+		}
+		function init()
+		{
+			 // alert("debug init");
+			 construireListeSommaire ();
+		}
+	</script>
+	<script language="JavaScript" src="../../JS/affichages.js"></script>
+
+
+	<meta name="author" content="Joël Dendaletche"/>
+	<meta name="created" content="2019-09-02"/>
+	<meta name="changed" content="2019-09-16"/>
+	<meta name="Company" content="Lycée La Découverte Decazeville 12300 Aveyron Occitanie France Terre"/>
+	<meta name="description" content="programme NSI première">
+	<meta name="keywords" content="Informatique">
+	<!-- la méta-donnée suivante rafraichit l'écran toute les minutes -->
+	<!-- <meta http-equiv="refresh" content="60">   -->
+
+
+	<!-- feuille de style externe -->
+	<link rel="stylesheet" type="text/css"
+		href="./programme NSI/styleProgramme.css">
+<!-- ------------------------------------------------------------------>
+    <link rel="stylesheet" type="text/css"
+          href="../CSS/style.css">
+    <link rel="stylesheet" type="text/css"
+          href="../CSS/numerotationTitres.css">
+    <link rel="stylesheet" type="text/css"
+          href="../CSS/ressourcesCachees.css">
+	<link rel="stylesheet" type="text/css"
+	      href="../CSS/styleQuiz.css">
+    <link rel="stylesheet" type="text/css"
+          href="../CSS/simpleMenuHorizontal.css">
+	<!-- Définition du style local de la page : déconseillé ! -->
+	<style>
+	 /* Styles appliqués aux portions de code */
+		.attribut { color : black;
+			font-weight: bold; }
+		.balise { color : purple; }
+		.texte { color : blue ; }
+		.commentaire { color : green; }
+		div.codeHTML {
+			border : 2px solid black;
+			padding : 10px;
+			text-align: left;
+			}
+		.caracteristique {
+			color : red;
+			font-weight: bold;
+		}
+		.valeur {
+		color : orange;
+		}
+	</style>
+</head>
+<!-- la balise body délimite les instructions qui permettront d'afficher le contenu de la page web à l'écran -->
+<body onload="init();" onblur="titre(aurevoir);"
+      onfocus="titre(titrePage);">
+<!-- ------------------------------------------------------------------>
+<header>
+		<small>Blog de <abbr title="Joël Dendaletche">jodenda</abbr>
+		</small>
+<nav>
+	<ul class="menu">
+		<li><a href="./index.html">retour à la page d'accueil</a>
+		</li>
+		<li><a href="./cours/arbres.html">TAD Arbre</a>
+		</li>
+		<li><a href="./terminaleNSI/BasesDeDonnees/accueilBDD.html"
+		title ="des vidéos pour mieux comprendre la théorie &hellip;">
+			base de données</a>
+		</li>
+		<li><a href="https://pixees.fr/informatiquelycee/n_site/nsi_prem.html"
+		title ="page d'accueil de pixees première  &hellip;">
+			Pixees première</a>
+		</li>
+       	<li><a href="https://pixees.fr/informatiquelycee/n_site/nsi_term.html"
+		title ="page d'accueil de pixees terminale  &hellip;">
+			Pixees terminale</a>
+		</li>
+        <li><a href="http://jodenda.free.fr/programmeNSI/programmeNSITerm_0.html"
+		title ="programmes de NSI">
+			programmes de NSI</a>
+		</li>
+		<li><a href="http://jodenda.free.fr/programmeNSI/programme2022.html"
+		title ="programmes allégé 2022">
+			programmes allégé de NSI version 2022</a>
+		</li>
+		<li>
+            règles de <a
+  href="http://jodenda.free.fr/programmeNSI/ressources/ressource_0.html"
+  target="_blank">bonnes pratiques</a> en codage
+        </li>
+	<li>
+            projets finaux : <a
+  href="./ressources/projetsFinaux.html"
+  target="_blank">page de présentation</a> 
+        </li>
+	</ul>
+</nav>
+</header>
+<!-- ------------------------------------------------------------------>
+
+	<section>
+	<article>
 
 <h1>Les arbres</h1>
 
@@ -71,3 +188,28 @@ Jo&#34;<sub>(100)</sub>      No&#233;mie&#34;<sub>(110)</sub>                   
 <p>&nbsp;</p>
 
 <p><a href="https://fr.wikipedia.org/wiki/Algorithme_de_parcours_en_largeur#:~:text=L'algorithme%20de%20parcours%20en,non%20explor%C3%A9s%20des%20successeurs%2C%20etc." rel="nofollow">Algorithme de parcours en largeur</a></p>
+
+</article>
+	<nav id="listeSommaire" >
+
+	<!-- Le sommaire sera écrit ici au chargement de la page par une routine en javascript -->
+
+	</nav>
+	</section>
+	<footer>
+		<h2>Liens utiles :</h2>
+		<ul>
+			<li><a href="https://www.w3schools.com" target="_blank">tutoriel w3school pour HTML, CSS, JS, Python ;</a></li>
+			<li><a href="https://www.w3schools.com/css/css_howto.asp" target="_blank">section "how to" du tutoriel w3school pour <strong title="Cascade Style Sheet">CSS</strong> ;</a></li>
+			<li><a href="https://icon-icons.com" target="_blank">bibliothèque d'icones et images libres.</a></li>
+			<li><a href="https://pixees.fr/informatiquelycee/n_site/nsi_term.html" target="_blank">cours de terminale NSI sur pixees.fr</a></li>
+			<li><a href="https://openclassrooms.com/fr/courses/5439146-faites-vos-premiers-pas-dans-le-monde-de-l-electronique-numerique/5439153-codez-des-images-et-des-videos"
+					target="_blank">auto-formation gratuite sur l'électronique numérique
+				</a>(après inscription sur la plateforme OpenClassroom)</li>
+
+
+		</ul>
+	</footer>
+
+</body>
+</html>
